@@ -1,0 +1,82 @@
+{{ block title }}
+
+    Welcome! you are the {{ player.role }}
+{{ endblock }}
+{{ block content }}
+
+    <div style="width: 50%; height: 400px; float:left;">
+    </div>
+
+    <div style="line-height:1; width: 50%; height: 400px; float:right;">
+        <div id="div1" style="height: 80%; border:4px groove; background-color:#e8e7e3; overflow:scroll;">
+            <h4 style="border:1px; border-style: none none groove none;"> Chat box </h4>
+        </div>
+        <div id="div2">
+        {{ if player.role == Constants.director_role }}
+            <button type="button" class="button button1" onclick="liveSend('a')" >a</button>
+            <button type="button" class="button button1" onclick="liveSend('b')" >b</button>
+            <button type="button" class="button button1" onclick="liveSend('undo')" >undo</button>
+            <button type="button" class="button button1" style="float:right;" onclick="liveSend('send')" >send</button>
+        </div>
+        {{ endif }}
+    </div>
+
+{{ endblock }}
+
+<style>
+.button {
+  border: none;
+  color: Black;
+  padding: 8px 16px;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  font-size: 16px;
+  margin: 4px 2px;
+  cursor: pointer;
+}
+
+.button1 {
+  background-color: #e8e7e3;
+}
+
+.button1:hover {
+  background-color: #c2c2c2;
+}
+</style>
+
+<script>
+document.addEventListener("DOMContentLoaded", (event) => {
+    liveSend("");
+});
+    var remove = 0
+    let role = js_vars;
+
+//console.log(chat.length)
+
+function chatFunction(message) {
+    var para = document.createElement("p");
+    var node = document.createTextNode(message);
+    para.appendChild(node);
+
+    var element = document.getElementById("div1");
+    element.appendChild(para);
+    remove++
+}
+
+function liveRecv(data){
+    var chat = data;
+    var element = document.getElementById("div1");
+    var shouldremove = remove
+    for (i = 0; i < shouldremove; i++) {
+        element.removeChild(element.lastChild)
+        remove--
+    }
+    Array.from(chat).forEach(chatFunction);
+    if (role == "Matcher"){
+        element.removeChild(element.lastChild)
+    }
+
+    element.scrollTop = element.scrollHeight
+}
+</script>
