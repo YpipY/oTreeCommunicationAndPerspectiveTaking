@@ -5,6 +5,13 @@ SESSION_CONFIGS = [
          name='FruitGame',
          app_sequence=['FruitGame'],
          num_demo_participants=2,
+         condition3d=False,
+     ),
+     dict(
+         name='FruitGame3d',
+         app_sequence=['FruitGame'],
+         num_demo_participants=2,
+         condition3d=True,
      ),
 ]
 

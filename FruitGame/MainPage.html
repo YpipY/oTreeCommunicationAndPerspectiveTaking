@@ -5,8 +5,12 @@
 {{ block content }}
 
     <!-- Game box -->
+    {{ if player.group.condition3d }}
+    <div style="line-height:1;  width: 49%; height: 400px; margin-right: 1%; float:left; transform: rotateX(60deg) rotateZ(30deg);">
+    {{ else }}
     <div style="line-height:1;  width: 49%; height: 400px; margin-right: 1%; float:left;">
-        <div style="width: 50%; height: 200px; float:left; border:1px; border-style: none solid solid none">
+    {{ endif }}
+        <div style="width: 50%; height: 200px; float:left; border:1px; border-style: <!-- none solid solid none -->">
             <div style=" height: 80px;">
                 {{ if player.role == Constants.director_role }}
                 {{ if player.group.imgavalue == True }} <p style="text-align: center; font-size: 20px; color: green"> <br><br><br>GOOD </p>
@@ -83,8 +87,8 @@
         </div>
         <div id="div2">
         {{ if player.role == Constants.director_role }}
-            <button type="button" class="button button1" onclick="liveSend('a')" >a</button>
-            <button type="button" class="button button1" onclick="liveSend('b')" >b</button>
+            <button type="button" class="button button1" onclick="liveSend('wa')" >wa</button>
+            <button type="button" class="button button1" onclick="liveSend('bi')" >bi</button>
             <button type="button" class="button button1" onclick="liveSend('undo')" >undo</button>
             <button type="button" class="button button1" style="float:right;" onclick="liveSend('send')" >send</button>
         </div>

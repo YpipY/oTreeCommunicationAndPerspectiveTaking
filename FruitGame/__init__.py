@@ -34,6 +34,8 @@ class Group(BaseGroup):
     imgcvalue = models.BooleanField()
     imgdvalue = models.BooleanField()
 
+    condition3d = models.BooleanField()
+
 
 class Player(BasePlayer):
     pass
@@ -64,6 +66,8 @@ def creating_session(subsession):
         group.imgbvalue = imgvalue[1]
         group.imgcvalue = imgvalue[2]
         group.imgdvalue = imgvalue[3]
+
+        group.condition3d = subsession.session.config['condition3d']
 
 
 # PAGES
@@ -113,7 +117,7 @@ class MainPage(Page):
             send.append('Message: ' + group.tempcom)
             return {0: send}
         elif 'undo' in data:  # Remove last from the unsent message
-            group.tempcom = group.tempcom[:-1]
+            group.tempcom = group.tempcom[:-2]
         else: # Add to the unsent message
             group.tempcom = group.tempcom + data
         y = Communications.filter(group=group, r=player.round_number)
