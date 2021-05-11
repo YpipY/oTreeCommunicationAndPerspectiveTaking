@@ -1,5 +1,9 @@
 {{ block title }}
-    Page title
+    {{ if player.group.imgselectedcorrect }}
+    Matcher selected a good fruit
+    {{ else }}
+    Matcher selected a bad fruit
+    {{ endif }}
 {{ endblock }}
 
 {{ block content }}
