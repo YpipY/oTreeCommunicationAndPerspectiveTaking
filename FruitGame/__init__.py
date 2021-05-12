@@ -7,6 +7,7 @@ Fruit selection game to study language and perspective takings development
 """
 
 
+# OTREE CLASSES
 class Constants(BaseConstants):
     name_in_url = 'FruitGame'
     players_per_group = 2
@@ -47,31 +48,36 @@ class Communications(ExtraModel):
     coms = models.StringField()
 
 
-# GLOBAL VARIABLES
-#global tempcom
-#tempcom = ""
-
-
 # FUNCTIONS
 def creating_session(subsession):
+    # Flip the roles after x rounds
+    x = 5
+    matrix = subsession.get_group_matrix()
+    if subsession.round_number > x:
+        for row in matrix:
+            row.reverse()
+    subsession.set_group_matrix(matrix)
+
     for group in subsession.get_groups():
+        # Select the placement of fruits
         imgorder = random.sample([1, 2, 3, 4], k=4)
         group.imga = imgorder[0]
         group.imgb = imgorder[1]
         group.imgc = imgorder[2]
         group.imgd = imgorder[3]
 
+        # Select the value of the fruits
         imgvalue = random.sample([True, True, False, False], k=4)
         group.imgavalue = imgvalue[0]
         group.imgbvalue = imgvalue[1]
         group.imgcvalue = imgvalue[2]
         group.imgdvalue = imgvalue[3]
-
         group.condition3d = subsession.session.config['condition3d']
 
 
 # PAGES
 class MainPage(Page):
+    # For finding the image path for each image placement
     @staticmethod
     def vars_for_template(player):
         group = player.group
@@ -80,10 +86,12 @@ class MainPage(Page):
                     image_pathc='FruitGame/{}.png'.format(group.imgc),
                     image_pathd='FruitGame/{}.png'.format(group.imgd))
 
+    # Returns player role for javascript functions
     @staticmethod
     def js_vars(player):
         return (player.role)
 
+    # Control input received from players and outputs back to them
     @staticmethod
     def live_method(player, data):
         group = player.group
