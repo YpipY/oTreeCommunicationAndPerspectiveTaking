@@ -1,5 +1,5 @@
 from otree.api import *
-from Lib import random
+import random
 c = Currency
 
 doc = """
