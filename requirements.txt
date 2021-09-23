@@ -1,2 +1,2 @@
-otree>=5.0.0a21
+otree>=5.4.1
 psycopg2>=2.8.4
