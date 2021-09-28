@@ -36,6 +36,7 @@ class Group(BaseGroup):
     imgdvalue = models.BooleanField()
 
     condition3d = models.BooleanField()
+    silhouette_corner = models.BooleanField()
 
 
 class Player(BasePlayer):
@@ -67,12 +68,13 @@ def creating_session(subsession):
         group.imgd = imgorder[3]
 
         # Select the value of the fruits
-        imgvalue = random.sample([True, True, False, False], k=4)
+        imgvalue = random.sample([True, False, False, False], k=4)
         group.imgavalue = imgvalue[0]
         group.imgbvalue = imgvalue[1]
         group.imgcvalue = imgvalue[2]
         group.imgdvalue = imgvalue[3]
         group.condition3d = subsession.session.config['condition3d']
+        group.silhouette_corner = subsession.session.config['silhouette_corner']
 
 
 # PAGES
@@ -81,10 +83,10 @@ class MainPage(Page):
     @staticmethod
     def vars_for_template(player):
         group = player.group
-        return dict(image_patha='FruitGame/{}.png'.format(group.imga),
-                    image_pathb='FruitGame/{}.png'.format(group.imgb),
-                    image_pathc='FruitGame/{}.png'.format(group.imgc),
-                    image_pathd='FruitGame/{}.png'.format(group.imgd))
+        return dict(image_patha='FruitGame/{}.jpg'.format(group.imga),
+                    image_pathb='FruitGame/{}.jpg'.format(group.imgb),
+                    image_pathc='FruitGame/{}.jpg'.format(group.imgc),
+                    image_pathd='FruitGame/{}.jpg'.format(group.imgd))
 
     # Returns player role for javascript functions
     @staticmethod

@@ -1,15 +1,28 @@
 {{ block title }}
 
     Welcome! You are the {{ player.role }}
+
+    <!-- To give some space for the game box and chat box -->
+    <div style=" height: 40px;">
+        </div>
+
 {{ endblock }}
+
 {{ block content }}
 
     <!-- Game box -->
     {{ if player.group.condition3d }}
-    <div style="position: absolute; top: 130px;  left: -30px; transform: rotateY(60deg) rotateZ(-20deg);" >
-        <p style="line-height:1; margin:0px; margin-left:10px"> {{ if player.role == Constants.director_role }} Matcher {{ else }} Director {{ endif }}</p>
-        <img src="{{ static 'FruitGame/man.png' }}"/>
-    </div>
+        {{ if player.group.silhouette_corner }}
+            <div style="position: absolute; top: 90px;  left: 130px; transform: rotateX(30deg) rotateY(-15deg);" >
+                <p style="line-height:1; margin:0px; margin-left:10px"> {{ if player.role == Constants.director_role }} Matcher {{ else }} Director {{ endif }}</p>
+                <img src="{{ static 'FruitGame/man.png' }}"/>
+            </div>
+        {{ else }}
+            <div style="position: absolute; top: 155px;  left: -30px; transform: rotateY(60deg) rotateZ(-20deg);" >
+                <p style="line-height:1; margin:0px; margin-left:10px"> {{ if player.role == Constants.director_role }} Matcher {{ else }} Director {{ endif }}</p>
+                <img src="{{ static 'FruitGame/man.png' }}"/>
+            </div>
+        {{ endif }}
     {{ endif }}
     {{ if player.group.condition3d }}
     <div style="line-height:1;  width: 49%; height: 400px; margin-right: 1%; float:left; transform: rotateX(60deg) rotateZ(30deg);">
@@ -17,71 +30,77 @@
     <div style="line-height:1;  width: 49%; height: 400px; margin-right: 1%; float:left;">
     {{ endif }}
         <div style="width: 50%; height: 200px; float:left; border:1px; border-style: none solid solid none">
-            <div style=" height: 80px;">
-                {{ if player.role == Constants.director_role }}
-                {{ if player.group.imgavalue == True }} <p style="text-align: center; font-size: 20px; color: green"> <br><br><br>GOOD </p>
-                {{ else }} <p style="text-align: center; font-size: 20px; color: red;">  <br><br><br>BAD </p>
-                {{ endif }}
-                {{ endif }}
+            <div style=" height: 40px;">
+                <!-- Old code of good/bad targets -->
+                <!--{{ if player.role == Constants.director_role }}-->
+                <!--{{ if player.group.imgavalue == True }} <p style="text-align: center; font-size: 20px; color: green"> <br><br><br>GOOD </p>-->
+                <!--{{ else }} <p style="text-align: center; font-size: 20px; color: red;">  <br><br><br>BAD </p>-->
+                <!--{{ endif }}-->
+                <!--{{ endif }}-->
             </div>
             <div class="container">
-                <img src="{{ static image_patha }}"  class="center" />
-                {{ if player.role == Constants.matcher_role }}
-                <div class="center-full">
-                    <button type="button" class="button button1" onclick="liveSend('select1')" >Select</button>
-                </div>
+                <div style="margin-left: 40px">
+                {{ if player.role == Constants.director_role }}
+                    {{ if player.group.imgavalue == True }}
+                        <img src="{{ static image_patha }}" width="122px" height="122px" style="border: 2px solid green" }/>
+                    {{ else }}
+                        <img src="{{ static image_patha }}" width="120px" height="120px" }/>
+                    {{ endif }}
+                {{ else }}
+                    <input type="image" src="{{ static image_patha }}" class="buttontrans" width="120px" height="120px" onclick="liveSend('select1')">
                 {{ endif }}
+                </div>
             </div>
         </div>
         <div style="width: 50%; height: 200px; float:right; border:1px; border-style: none none solid solid">
-            <div style=" height: 80px;">
-                {{ if player.role == Constants.director_role }}
-                {{ if player.group.imgbvalue == True }} <p style="text-align: center; font-size: 20px; color: green"> <br><br><br>GOOD </p>
-                {{ else }} <p style="text-align: center; font-size: 20px; color: red;">  <br><br><br>BAD </p>
-                {{ endif }}
-                {{ endif }}
+            <div style=" height: 40px;">
             </div>
             <div class="container">
-                <img src="{{ static image_pathb }}"  class="center"/>
-                {{ if player.role == Constants.matcher_role }}
-                <div class="center-full">
-                    <button type="button" class="button button1" onclick="liveSend('select2')" >Select</button>
-                </div>
+                <div style="margin-left: 40px">
+                {{ if player.role == Constants.director_role }}
+                    {{ if player.group.imgbvalue == True }}
+                        <img src="{{ static image_pathb }}" width="122px" height="122px" style="border: 2px solid green" }/>
+                    {{ else }}
+                        <img src="{{ static image_pathb }}" width="120px" height="120px" }/>
+                    {{ endif }}
+                {{ else }}
+                    <input type="image" src="{{ static image_pathb }}" class="buttontrans" width="120px" height="120px" onclick="liveSend('select2')">
                 {{ endif }}
+                </div>
             </div>
         </div>
         <div style="width: 50%; height: 200px; float:left; border:1px; border-style: solid solid  none none">
-            <div style=" height: 80px;">
-                {{ if player.role == Constants.director_role }}
-                {{ if player.group.imgcvalue == True }} <p style="text-align: center; font-size: 20px; color: green"> <br><br><br>GOOD </p>
-                {{ else }} <p style="text-align: center; font-size: 20px; color: red;">  <br><br><br>BAD </p>
-                {{ endif }}
-                {{ endif }}
+            <div style=" height: 40px;">
             </div>
             <div class="container">
-                <img src="{{ static image_pathc }}"  class="center"/>
-                {{ if player.role == Constants.matcher_role }}
-                <div class="center-full">
-                    <button type="button" class="button button1" onclick="liveSend('select3')" >Select</button>
-                </div>
+                <div style="margin-left: 40px">
+                {{ if player.role == Constants.director_role }}
+                    {{ if player.group.imgcvalue == True }}
+                        <img src="{{ static image_pathc }}" width="122px" height="122px" style="border: 2px solid green" }/>
+                    {{ else }}
+                        <img src="{{ static image_pathc }}" width="120px" height="120px" }/>
+                    {{ endif }}
+                {{ else }}
+                    <input type="image" src="{{ static image_pathc }}" class="buttontrans" width="120px" height="120px" onclick="liveSend('select3')">
                 {{ endif }}
+                </div>
             </div>
         </div>
         <div style="width: 50%; height: 200px; float:right; border:1px; border-style: solid none  none solid">
-            <div style=" height: 80px;">
-                {{ if player.role == Constants.director_role }}
-                {{ if player.group.imgdvalue == True }} <p style="text-align: center; font-size: 20px; color: green"> <br><br><br>GOOD </p>
-                {{ else }} <p style="text-align: center; font-size: 20px; color: red;">  <br><br><br>BAD </p>
-                {{ endif }}
-                {{ endif }}
+            <div style=" height: 40px;">
             </div>
             <div class="container">
-                <img src="{{ static image_pathd }}"  class="center"/>
-                {{ if player.role == Constants.matcher_role }}
-                <div class="center-full">
-                    <button type="button" class="button button1" onclick="liveSend('select4')" >Select</button>
-                </div>
+                <div style="margin-left: 40px">
+                {{ if player.role == Constants.director_role }}
+                    {{ if player.group.imgdvalue == True }}
+                        <img src="{{ static image_pathd }}" width="122px" height="122px" style="border: 2px solid green" }/>
+                    {{ else }}
+                        <img src="{{ static image_pathd }}" width="120px" height="120px" }/>
+                    {{ endif }}
+                {{ else }}
+                    <input type="image" src="{{ static image_pathd }}" class="buttontrans" width="120px" height="120px" onclick="liveSend('select4')">
                 {{ endif }}
+                    </div>
             </div>
         </div>
     </div>
@@ -95,13 +114,21 @@
         {{ if player.role == Constants.director_role }}
             <button type="button" class="button button1" onclick="liveSend('wa')" >wa</button>
             <button type="button" class="button button1" onclick="liveSend('bi')" >bi</button>
-            <button type="button" class="button button1" onclick="liveSend('undo')" >undo</button>
             <button type="button" class="button button1" style="float:right;" onclick="liveSend('send')" >send</button>
+            <button type="button" class="button button1" style="float:right;" onclick="liveSend('undo')" >undo</button>
         </div>
         {{ endif }}
     </div>
 
 <style>
+.buttontrans {
+    background-color: transparent;
+}
+
+.buttontrans:hover {
+    border: 5px solid transparent;
+}
+
 .button {
   border: none;
   color: Black;
@@ -120,6 +147,15 @@
 
 .button1:hover {
   background-color: #c2c2c2;
+}
+
+.buttonwrap {
+  border: 3px outset gray;
+  background-color: lightgray;
+}
+
+.buttonwrap:active {
+  border-style: inset;
 }
 
 .center {

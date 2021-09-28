@@ -1,18 +1,27 @@
 from os import environ
 
 SESSION_CONFIGS = [
-     dict(
-         name='FruitGame',
-         app_sequence=['FruitGame'],
-         num_demo_participants=2,
-         condition3d=False,
-     ),
-     dict(
-         name='FruitGame3d',
-         app_sequence=['FruitGame'],
-         num_demo_participants=2,
-         condition3d=True,
-     ),
+    dict(
+        name='FruitGame',
+        app_sequence=['FruitGame'],
+        num_demo_participants=2,
+        condition3d=False,
+        silhouette_corner=False,
+    ),
+    dict(
+        name='FruitGame3d',
+        app_sequence=['FruitGame'],
+        num_demo_participants=2,
+        condition3d=True,
+        silhouette_corner=False,
+    ),
+    dict(
+        name='FruitGame3dCorner',
+        app_sequence=['FruitGame'],
+        num_demo_participants=2,
+        condition3d=True,
+        silhouette_corner=True,
+    ),
 ]
 
 # if you set a property in SESSION_CONFIG_DEFAULTS, it will be inherited by all configs
