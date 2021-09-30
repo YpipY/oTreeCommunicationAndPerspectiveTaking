@@ -1,5 +1,7 @@
 from otree.api import *
 import random
+import itertools
+
 c = Currency
 
 doc = """
@@ -11,7 +13,7 @@ Fruit selection game to study language and perspective takings development
 class Constants(BaseConstants):
     name_in_url = 'FruitGame'
     players_per_group = 2
-    num_rounds = 10
+    num_rounds = 24
     director_role = 'Director'
     matcher_role = 'Matcher'
 
@@ -20,6 +22,7 @@ class Subsession(BaseSubsession):
     pass
 
 
+# group call, is called once for each dyad at subsession creation
 class Group(BaseGroup):
     tempcom = models.StringField(label='communication', initial='')
     imgselected = models.IntegerField(label='selected_fruit')
@@ -28,12 +31,12 @@ class Group(BaseGroup):
     imga = models.IntegerField()
     imgb = models.IntegerField()
     imgc = models.IntegerField()
-    imgd = models.IntegerField()
+    #imgd = models.IntegerField()
 
     imgavalue = models.BooleanField()
     imgbvalue = models.BooleanField()
     imgcvalue = models.BooleanField()
-    imgdvalue = models.BooleanField()
+    #imgdvalue = models.BooleanField()
 
     condition3d = models.BooleanField()
     silhouette_corner = models.BooleanField()
@@ -51,28 +54,40 @@ class Communications(ExtraModel):
 
 # FUNCTIONS
 def creating_session(subsession):
+    global permutations
+
     # Flip the roles after x rounds
-    x = 5
+    x = Constants.num_rounds/2
     matrix = subsession.get_group_matrix()
     if subsession.round_number > x:
         for row in matrix:
             row.reverse()
     subsession.set_group_matrix(matrix)
 
+    # setting values for all the groups
     for group in subsession.get_groups():
-        # Select the placement of fruits
-        imgorder = random.sample([1, 2, 3, 4], k=4)
-        group.imga = imgorder[0]
-        group.imgb = imgorder[1]
-        group.imgc = imgorder[2]
-        group.imgd = imgorder[3]
+        # Select the placement of objects (true random)
+        #imgorder = random.sample([1, 2, 3, 4], k=4)
+        #group.imga = imgorder[0]
+        #group.imgb = imgorder[1]
+        #group.imgc = imgorder[2]
+        #group.imgd = imgorder[3]
 
-        # Select the value of the fruits
-        imgvalue = random.sample([True, False, False, False], k=4)
+        # make the all permutations of the object ordering (pseudorandom)
+        if subsession.round_number == 1:
+            permutations = list(itertools.permutations([1, 2, 3, 4], 3))
+            random.shuffle(permutations)
+
+        group.imga = permutations[subsession.round_number - 1][0]
+        group.imgb = permutations[subsession.round_number - 1][1]
+        group.imgc = permutations[subsession.round_number - 1][2]
+
+        # Select the value of the objects
+        imgvalue = random.sample([True, False, False], k=3)
         group.imgavalue = imgvalue[0]
         group.imgbvalue = imgvalue[1]
         group.imgcvalue = imgvalue[2]
-        group.imgdvalue = imgvalue[3]
+        #group.imgdvalue = imgvalue[3]
         group.condition3d = subsession.session.config['condition3d']
         group.silhouette_corner = subsession.session.config['silhouette_corner']
 
@@ -85,8 +100,8 @@ class MainPage(Page):
         group = player.group
         return dict(image_patha='FruitGame/{}.jpg'.format(group.imga),
                     image_pathb='FruitGame/{}.jpg'.format(group.imgb),
-                    image_pathc='FruitGame/{}.jpg'.format(group.imgc),
-                    image_pathd='FruitGame/{}.jpg'.format(group.imgd))
+                    image_pathc='FruitGame/{}.jpg'.format(group.imgc))
+                    #image_pathd='FruitGame/{}.jpg'.format(group.imgd))
 
     # Returns player role for javascript functions
     @staticmethod
@@ -109,9 +124,9 @@ class MainPage(Page):
             elif '3' in data:
                 group.imgselected = group.imgc
                 group.imgselectedcorrect = group.imgcvalue
-            elif '4' in data:
-                group.imgselected = group.imgd
-                group.imgselectedcorrect = group.imgdvalue
+            #elif '4' in data:
+            #    group.imgselected = group.imgd
+            #    group.imgselectedcorrect = group.imgdvalue
             y = Communications.filter(group=group, r=player.round_number)
             messageoutput = ''
             for x in y:

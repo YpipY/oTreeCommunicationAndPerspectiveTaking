@@ -42,7 +42,7 @@
                 <div style="margin-left: 40px">
                 {{ if player.role == Constants.director_role }}
                     {{ if player.group.imgavalue == True }}
-                        <img src="{{ static image_patha }}" width="122px" height="122px" style="border: 2px solid green" }/>
+                        <img src="{{ static image_patha }}" width="124px" height="124px" style="border: 4px solid green" }/>
                     {{ else }}
                         <img src="{{ static image_patha }}" width="120px" height="120px" }/>
                     {{ endif }}
@@ -59,7 +59,7 @@
                 <div style="margin-left: 40px">
                 {{ if player.role == Constants.director_role }}
                     {{ if player.group.imgbvalue == True }}
-                        <img src="{{ static image_pathb }}" width="122px" height="122px" style="border: 2px solid green" }/>
+                        <img src="{{ static image_pathb }}" width="124px" height="124px" style="border: 4px solid green" }/>
                     {{ else }}
                         <img src="{{ static image_pathb }}" width="120px" height="120px" }/>
                     {{ endif }}
@@ -70,13 +70,13 @@
             </div>
         </div>
         <div style="width: 50%; height: 200px; float:left; border:1px; border-style: solid solid  none none">
-            <div style=" height: 40px;">
+            {# <div style=" height: 40px;">
             </div>
             <div class="container">
                 <div style="margin-left: 40px">
                 {{ if player.role == Constants.director_role }}
                     {{ if player.group.imgcvalue == True }}
-                        <img src="{{ static image_pathc }}" width="122px" height="122px" style="border: 2px solid green" }/>
+                        <img src="{{ static image_pathc }}" width="124px" height="124px" style="border: 4px solid green" }/>
                     {{ else }}
                         <img src="{{ static image_pathc }}" width="120px" height="120px" }/>
                     {{ endif }}
@@ -84,7 +84,7 @@
                     <input type="image" src="{{ static image_pathc }}" class="buttontrans" width="120px" height="120px" onclick="liveSend('select3')">
                 {{ endif }}
                 </div>
-            </div>
+            </div> #}
         </div>
         <div style="width: 50%; height: 200px; float:right; border:1px; border-style: solid none  none solid">
             <div style=" height: 40px;">
@@ -92,13 +92,13 @@
             <div class="container">
                 <div style="margin-left: 40px">
                 {{ if player.role == Constants.director_role }}
-                    {{ if player.group.imgdvalue == True }}
-                        <img src="{{ static image_pathd }}" width="122px" height="122px" style="border: 2px solid green" }/>
+                    {{ if player.group.imgcvalue == True }}
+                        <img src="{{ static image_pathc }}" width="124px" height="124px" style="border: 4px solid green" }/>
                     {{ else }}
-                        <img src="{{ static image_pathd }}" width="120px" height="120px" }/>
+                        <img src="{{ static image_pathc }}" width="120px" height="120px" }/>
                     {{ endif }}
                 {{ else }}
-                    <input type="image" src="{{ static image_pathd }}" class="buttontrans" width="120px" height="120px" onclick="liveSend('select4')">
+                    <input type="image" src="{{ static image_pathc }}" class="buttontrans" width="120px" height="120px" onclick="liveSend('select3')">
                 {{ endif }}
                     </div>
             </div>
@@ -107,11 +107,15 @@
 
     <!-- Chat box -->
     <div style="line-height:1; width: 50%; height: 400px; float:right;">
-        <div id="div1" style="height: 80%; border:4px groove; background-color:#e8e7e3; overflow:scroll;">
+        <div id="div" style="height: 80%; border: 4px groove; background-color:#e8e7e3; overflow:auto;">
             <h4 style="border:1px; border-style: none none groove none;"> Communications </h4>
+            <div id="div1" style="height: 80%; background-color:#e8e7e3">
+            </div>
         </div>
-        <div id="div2">
+        <div id="div3">
         {{ if player.role == Constants.director_role }}
+            <div id="div2" style="height: 10%;  border:1px; border: 4px groove; background-color:#e8e7e3; overflow:auto ;" >
+            </div>
             <button type="button" class="button button1" onclick="liveSend('wa')" >wa</button>
             <button type="button" class="button button1" onclick="liveSend('bi')" >bi</button>
             <button type="button" class="button button1" style="float:right;" onclick="liveSend('send')" >send</button>
@@ -192,8 +196,16 @@ function chatFunction(message) {
     var node = document.createTextNode(message);
     para.appendChild(node);
 
-    var element = document.getElementById("div1");
-    element.appendChild(para);
+
+
+    if (!message.includes('Message:')){
+        var element = document.getElementById("div1");
+        element.appendChild(para);
+    } else {
+        var element = document.getElementById("div2");
+        element.appendChild(para);
+    }
+
     remove++;
 }
 
@@ -206,12 +218,18 @@ function liveRecv(data){
     }
 
     var element = document.getElementById("div1");
+    var elementmbox = document.getElementById("div2");
     var shouldremove = remove;
 
     // Removes current chat
     for (i = 0; i < shouldremove; i++) {
         element.removeChild(element.lastChild);
         remove--;
+    }
+    // Removes current message that is being typed
+    if (role == "Director"){
+        elementmbox.removeChild(elementmbox.lastChild);
+        remove--
     }
 
     // Draws new chat
