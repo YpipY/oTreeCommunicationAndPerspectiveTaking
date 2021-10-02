@@ -1,8 +1,15 @@
 {{ block title }}
-    {{ if player.group.imgselectedcorrect }}
-    Matcher selected the correct object
+    {{ if player.group.imgselected == 0 }}
+        <p style="line-height:1; margin:0px; margin-left:10px">Matcher<span style="line-height:1; margin:0px; margin-left:10px; font-weight: bold; text-decoration: underline;">did not select</span><span style="line-height:1; margin:0px; margin-left:10px;">an object in time</span>
+        </p>
     {{ else }}
-    Matcher selected the wrong object
+        {{ if player.group.imgselectedcorrect }}
+            <p style="line-height:1; margin:0px; margin-left:10px">Matcher selected the<span style="line-height:1; margin:0px; margin-left:10px; font-weight: bold; text-decoration: underline;">correct</span><span style="line-height:1; margin:0px; margin-left:10px;">object</span>
+            </p>
+        {{ else }}
+            <p style="line-height:1; margin:0px; margin-left:10px">Matcher selected the<span style="line-height:1; margin:0px; margin-left:10px; font-weight: bold; text-decoration: underline;">wrong</span><span style="line-height:1; margin:0px; margin-left:10px;">object</span>
+            </p>
+        {{ endif }}
     {{ endif }}
 {{ endblock }}
 

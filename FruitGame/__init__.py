@@ -38,6 +38,8 @@ class Group(BaseGroup):
     imgcvalue = models.BooleanField()
     #imgdvalue = models.BooleanField()
 
+    matcherpos = models.IntegerField()
+
     condition3d = models.BooleanField()
     silhouette_corner = models.BooleanField()
 
@@ -66,7 +68,7 @@ def creating_session(subsession):
 
     # setting values for all the groups
     for group in subsession.get_groups():
-        # Select the placement of objects (true random)
+        # Select the placement of objects ("true" random)
         #imgorder = random.sample([1, 2, 3, 4], k=4)
         #group.imga = imgorder[0]
         #group.imgb = imgorder[1]
@@ -88,12 +90,24 @@ def creating_session(subsession):
         group.imgbvalue = imgvalue[1]
         group.imgcvalue = imgvalue[2]
         #group.imgdvalue = imgvalue[3]
+        # potion relative to director. Clockwise starting with 1 = top
+        group.matcherpos = random.choice([1, 2, 3, 4])
         group.condition3d = subsession.session.config['condition3d']
         group.silhouette_corner = subsession.session.config['silhouette_corner']
 
 
 # PAGES
 class MainPage(Page):
+    # Amount of time before timeout in seconds
+    timeout_seconds = 120
+
+    # Decide what happens if timeout
+    @staticmethod
+    def before_next_page(player, timeout_happened):
+        if timeout_happened:
+            player.group.imgselected = 0
+            player.group.imgselectedcorrect = False
+
     # For finding the image path for each image placement
     @staticmethod
     def vars_for_template(player):
