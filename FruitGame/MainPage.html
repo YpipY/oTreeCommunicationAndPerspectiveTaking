@@ -17,7 +17,7 @@
 
     <!-- Game box -->
     {{ if player.group.condition3d }}
-    <div style="line-height:1;  width: 49%; height: 400px; margin-right: 11%; float:left; transform: rotateX(65deg) rotateZ(45deg);">
+    <div style="line-height:1;  width: 49%; height: 400px; margin-right: 11%; float:left; transform: rotateX(75deg) rotateZ(45deg);">
     {{ else }}
     <div style="line-height:1;  width: 49%; height: 400px; margin-right: 1%; float:left;">
     {{ endif }}
@@ -62,7 +62,7 @@
                 </div>
             </div>#}
         </div>
-        <div style="width: 50%; height: 200px; float:left; border:1px; border-style: solid solid  none none">
+        <div style="width: 50%; height: 200px; float:left; border:1px; border-style: solid solid none none">
             {# <div style=" height: 40px;">
             </div>
             <div class="container">
@@ -79,7 +79,7 @@
                 </div>
             </div> #}
         </div>
-        <div style="width: 50%; height: 200px; float:right; border:1px; border-style: solid none  none solid">
+        <div style="width: 50%; height: 200px; float:right; border:1px; border-style: solid none none solid">
             {#<div style=" height: 40px;">
             </div>
             <div class="container">
@@ -101,140 +101,140 @@
     <!-- Placing objects-->
         {{ if player.role == Constants.director_role }}
                 {{ if player.group.imgavalue == True }}
-                    <div style="position: absolute; top: 217px;  left: 197px">
-                        <img src="{{ static image_patha }}" width="86px" height="86px" style="border: 3px solid green"/>
+                    <div style="position: absolute; top: 247px;  left: 211px">
+                        <img src="{{ static image_patha }}" width="62px" height="62px" style="border: 3px solid green"/>
                     </div>
                 {{ else }}
-                    <div style="position: absolute; top: 220px;  left: 200px">
-                        <img src="{{ static image_patha }}" width="80px" height="80px"/>
+                    <div style="position: absolute; top: 250px;  left: 214px">
+                        <img src="{{ static image_patha }}" width="56px" height="56px"/>
                     </div>
                 {{ endif }}
 
                 {{ if player.group.imgbvalue == True }}
-                    <div style="position: absolute; top: 287px;  left: 347px">
-                        <img src="{{ static image_pathb }}" width="86px" height="86px" style="border: 3px solid green"/>
+                    <div style="position: absolute; top: 272px;  left: 327px">
+                        <img src="{{ static image_pathb }}" width="72px" height="72px" style="border: 3px solid green"/>
                         </div>
                 {{ else }}
-                    <div style="position: absolute; top: 290px;  left: 350px">
-                         <img src="{{ static image_pathb }}" width="80px" height="80px"/>
+                    <div style="position: absolute; top: 275px;  left: 330px">
+                         <img src="{{ static image_pathb }}" width="66px" height="66px"/>
                     </div>
                 {{ endif }}
 
 
                 {{ if player.group.imgcvalue == True }}
-                    <div style="position: absolute; top: 357px;  left: 197px">
+                    <div style="position: absolute; top: 307px;  left: 197px">
                         <img src="{{ static image_pathc }}" width="86px" height="86px" style="border: 3px solid green"/>
                     </div>
                 {{ else }}
-                    <div style="position: absolute; top: 360px;  left: 200px">
+                    <div style="position: absolute; top: 310px;  left: 200px">
                         <img src="{{ static image_pathc }}" width="80px" height="80px"/>
                     </div>
                 {{ endif }}
         {{ else }}
             {{ if player.group.matcherpos == 1}}
-                <div style="position: absolute; top: 360px;  left: 200px">
+                <div style="position: absolute; top: 310px;  left: 200px">
                     <input type="image" src="{{ static image_patha }}" class="buttontrans" width="80px" height="80px" onclick="liveSend('select1')">
                 </div>
-                <div style="position: absolute; top: 290px;  left: 40px">
-                    <input type="image" src="{{ static image_pathb }}" class="buttontrans" width="80px" height="80px" onclick="liveSend('select2')">
+                <div style="position: absolute; top: 275px;  left: 90px">
+                    <input type="image" src="{{ static image_pathb }}" class="buttontrans" width="66px" height="66px" onclick="liveSend('select2')">
                 </div>
-                <div style="position: absolute; top: 220px;  left: 200px">
-                    <input type="image" src="{{ static image_pathc }}" class="buttontrans" width="80px" height="80px" onclick="liveSend('select3')">
+                <div style="position: absolute; top: 250px;  left: 214px">
+                    <input type="image" src="{{ static image_pathc }}" class="buttontrans" width="56px" height="56px" onclick="liveSend('select3')">
                 </div>
             {{ endif }}
 
             {{ if player.group.matcherpos == 2}}
-                <div style="position: absolute; top: 290px;  left: 350px">
-                    <input type="image" src="{{ static image_patha }}" class="buttontrans" width="80px" height="80px" onclick="liveSend('select1')">
+                <div style="position: absolute; top: 275px;  left: 330px">
+                    <input type="image" src="{{ static image_patha }}" class="buttontrans" width="66px" height="66px" onclick="liveSend('select1')">
                 </div>
-                <div style="position: absolute; top: 360px;  left: 200px">
+                <div style="position: absolute; top: 310px;  left: 200px">
                     <input type="image" src="{{ static image_pathb }}" class="buttontrans" width="80px" height="80px" onclick="liveSend('select2')">
                 </div>
-                <div style="position: absolute; top: 290px;  left: 40px">
-                    <input type="image" src="{{ static image_pathc }}" class="buttontrans" width="80px" height="80px" onclick="liveSend('select3')">
+                <div style="position: absolute; top: 275px;  left: 90px">
+                    <input type="image" src="{{ static image_pathc }}" class="buttontrans" width="66px" height="66px" onclick="liveSend('select3')">
                 </div>
             {{ endif }}
 
             {{ if player.group.matcherpos == 3}}
-                <div style="position: absolute; top: 220px;  left: 200px">
-                    <input type="image" src="{{ static image_patha }}" class="buttontrans" width="80px" height="80px" onclick="liveSend('select1')">
+                <div style="position: absolute; top: 250px;  left: 214px">
+                    <input type="image" src="{{ static image_patha }}" class="buttontrans" width="56px" height="56px" onclick="liveSend('select1')">
                 </div>
-                <div style="position: absolute; top: 290px;  left: 350px">
-                    <input type="image" src="{{ static image_pathb }}" class="buttontrans" width="80px" height="80px" onclick="liveSend('select2')">
+                <div style="position: absolute; top: 275px;  left: 330px">
+                    <input type="image" src="{{ static image_pathb }}" class="buttontrans" width="66px" height="66px" onclick="liveSend('select2')">
                 </div>
-                <div style="position: absolute; top: 360px;  left: 200px">
+                <div style="position: absolute; top: 310px;  left: 200px">
                     <input type="image" src="{{ static image_pathc }}" class="buttontrans" width="80px" height="80px" onclick="liveSend('select3')">
                 </div>
             {{ endif }}
 
             {{ if player.group.matcherpos == 4}}
-                <div style="position: absolute; top: 290px;  left: 40px">
-                    <input type="image" src="{{ static image_patha }}" class="buttontrans" width="80px" height="80px" onclick="liveSend('select1')">
+                <div style="position: absolute; top: 275px;  left: 90px">
+                    <input type="image" src="{{ static image_patha }}" class="buttontrans" width="66px" height="66px" onclick="liveSend('select1')">
                 </div>
-                <div style="position: absolute; top: 220px;  left: 200px">
-                    <input type="image" src="{{ static image_pathb }}" class="buttontrans" width="80px" height="80px" onclick="liveSend('select2')">
+                <div style="position: absolute; top: 250px;  left: 200px">
+                    <input type="image" src="{{ static image_pathb }}" class="buttontrans" width="56px" height="56px" onclick="liveSend('select2')">
                 </div>
-                <div style="position: absolute; top: 290px;  left: 350px">
-                    <input type="image" src="{{ static image_pathc }}" class="buttontrans" width="80px" height="80px" onclick="liveSend('select3')">
+                <div style="position: absolute; top: 275px;  left: 330px">
+                    <input type="image" src="{{ static image_pathc }}" class="buttontrans" width="66px" height="66px" onclick="liveSend('select3')">
                 </div>
             {{ endif }}
         {{ endif }}
     <!-- Add silhouette -->
         {{ if player.group.silhouette_corner }}
             {{ if player.role == Constants.director_role }}
-                <div style="position: absolute; top: 450px;  left: 200px" >
-                    <img src="{{ static 'FruitGame/Director1.jpg' }}" width="60px" height="110px"/>
+                <div style="position: absolute; top: 400px;  left: 200px" >
+                    <img src="{{ static 'FruitGame/Director1.png' }}" width="60px" height="110px"/>
                 </div>
                 {{ if player.group.matcherpos == 1}}
-                    <div style="position: absolute; top: 130px;  left: 200px" >
-                        <img src="{{ static 'FruitGame/Matcher1.jpg' }}" width="50px" height="80px"/>
+                    <div style="position: absolute; top: 200px;  left: 225px" >
+                        <img src="{{ static 'FruitGame/Matcher1.png' }}" width="35px" height="55px"/>
                     </div>
                 {{ endif }}
                 {{ if player.group.matcherpos == 2}}
-                    <div style="position: absolute; top: 260px;  left: 460px" >
-                        <img src="{{ static 'FruitGame/Matcher1.jpg' }}" width="50px" height="80px"/>
+                    <div style="position: absolute; top: 270px;  left: 460px" >
+                        <img src="{{ static 'FruitGame/Matcher1.png' }}" width="40px" height="65px"/>
                     </div>
                 {{ endif }}
                 {{ if player.group.matcherpos == 3}}
-                    <div style="position: absolute; top: 482px;  left: 270px" >
-                        <img src="{{ static 'FruitGame/Matcher1.jpg' }}" width="50px" height="80px"/>
+                    <div style="position: absolute; top: 432px;  left: 270px" >
+                        <img src="{{ static 'FruitGame/Matcher1.png' }}" width="50px" height="80px"/>
                     </div>
                 {{ endif }}
                 {{ if player.group.matcherpos == 4}}
-                    <div style="position: absolute; top: 260px;  left: -50px" >
-                        <img src="{{ static 'FruitGame/Matcher1.jpg' }}" width="50px" height="80px"/>
+                    <div style="position: absolute; top: 270px;  left: -20px" >
+                        <img src="{{ static 'FruitGame/Matcher1.png' }}" width="40px" height="65px"/>
                     </div>
                 {{ endif }}
             {{ else }}
-                <div style="position: absolute; top: 482px;  left: 270px" >
-                    <img src="{{ static 'FruitGame/Matcher1.jpg' }}" width="50px" height="80px"/>
+                <div style="position: absolute; top: 432px;  left: 270px" >
+                    <img src="{{ static 'FruitGame/Matcher1.png' }}" width="50px" height="80px"/>
                 </div>
                 {{ if player.group.matcherpos == 1}}
-                    <div style="position: absolute; top: 110px;  left: 200px" >
-                        <img src="{{ static 'FruitGame/Director1.jpg' }}" width="60px" height="110px"/>
+                    <div style="position: absolute; top: 190px;  left: 225px" >
+                        <img src="{{ static 'FruitGame/Director1.png' }}" width="40px" height="70px"/>
                     </div>
                 {{ endif }}
                 {{ if player.group.matcherpos == 2}}
-                    <div style="position: absolute; top: 260px;  left: -50px" >
-                        <img src="{{ static 'FruitGame/Director1.jpg' }}" width="60px" height="110px"/>
+                    <div style="position: absolute; top: 260px;  left: -20px" >
+                        <img src="{{ static 'FruitGame/Director1.png' }}" width="50px" height="90px"/>
                     </div>
                 {{ endif }}
                 {{ if player.group.matcherpos == 3}}
-                    <div style="position: absolute; top: 450px;  left: 200px" >
-                        <img src="{{ static 'FruitGame/Director1.jpg' }}" width="60px" height="110px"/>
+                    <div style="position: absolute; top: 400px;  left: 200px" >
+                        <img src="{{ static 'FruitGame/Director1.png' }}" width="60px" height="110px"/>
                     </div>
                 {{ endif }}
                 {{ if player.group.matcherpos == 4}}
                     <div style="position: absolute; top: 260px;  left: 460px" >
-                        <img src="{{ static 'FruitGame/Director1.jpg' }}" width="60px" height="110px"/>
+                        <img src="{{ static 'FruitGame/Director1.png' }}" width="50px" height="90px"/>
                     </div>
                 {{ endif }}
             {{ endif }}
         {{ else }}
             <div style="position: absolute; top: 155px;  left: -30px; transform: rotateY(60deg) rotateZ(-20deg);" >
                 <!-- <p style="line-height:1; margin:0px; margin-left:10px"> {{ if player.role == Constants.director_role }} Matcher {{ else }} Director {{ endif }}</p> -->
-                <img src="{{ static 'FruitGame/Matcher1.jpg' }}" width="40px" height="40px"/>
-                <img src="{{ static 'FruitGame/Director1.jpg' }}" width="40px" height="40px"/>
+                <img src="{{ static 'FruitGame/Matcher1.png' }}" width="40px" height="40px"/>
+                <img src="{{ static 'FruitGame/Director1.png' }}" width="40px" height="40px"/>
             </div>
         {{ endif }}
     {{ endif }}

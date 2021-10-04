@@ -112,9 +112,9 @@ class MainPage(Page):
     @staticmethod
     def vars_for_template(player):
         group = player.group
-        return dict(image_patha='FruitGame/{}.jpg'.format(group.imga),
-                    image_pathb='FruitGame/{}.jpg'.format(group.imgb),
-                    image_pathc='FruitGame/{}.jpg'.format(group.imgc))
+        return dict(image_patha='FruitGame/{}.png'.format(group.imga),
+                    image_pathb='FruitGame/{}.png'.format(group.imgb),
+                    image_pathc='FruitGame/{}.png'.format(group.imgc))
                     #image_pathd='FruitGame/{}.jpg'.format(group.imgd))
 
     # Returns player role for javascript functions
