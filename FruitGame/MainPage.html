@@ -1,9 +1,9 @@
 {{ block title }}
     {{ if player.role == Constants.director_role }}
-    <p style="line-height:1; margin:0px; margin-left:10px"> Welcome! You are the<span style="line-height:1; margin:0px; margin-left:10px; color: green">{{ player.role }} </span>
+    <p style="line-height:1; margin:0px; margin-left:10px"> Welcome! You are the<span style="line-height:1; margin:0px; margin-left:10px; color: purple">{{ player.role }} </span>
          </p>
     {{ else }}
-    <p style="line-height:1; margin:0px; margin-left:10px"> Welcome! You are the<span style="line-height:1; margin:0px; margin-left:10px; color: blue">{{ player.role }} </span>
+    <p style="line-height:1; margin:0px; margin-left:10px"> Welcome! You are the<span style="line-height:1; margin:0px; margin-left:10px; color: orange">{{ player.role }} </span>
          </p>
     {{ endif }}
 
@@ -183,50 +183,50 @@
         {{ if player.group.silhouette_corner }}
             {{ if player.role == Constants.director_role }}
                 <div style="position: absolute; top: 400px;  left: 200px" >
-                    <img src="{{ static 'FruitGame/Director1.png' }}" width="60px" height="110px"/>
+                    <img src="{{ static 'FruitGame/Director1.png' }}" width="60px" height="auto"/>
                 </div>
                 {{ if player.group.matcherpos == 1}}
-                    <div style="position: absolute; top: 200px;  left: 225px" >
-                        <img src="{{ static 'FruitGame/Matcher1.png' }}" width="35px" height="55px"/>
+                    <div style="position: absolute; top: 170px;  left: 225px" >
+                        <img src="{{ static 'FruitGame/Matcher1.png' }}" width="40px" height="auto"/>
                     </div>
                 {{ endif }}
                 {{ if player.group.matcherpos == 2}}
-                    <div style="position: absolute; top: 270px;  left: 460px" >
-                        <img src="{{ static 'FruitGame/Matcher1.png' }}" width="40px" height="65px"/>
+                    <div style="position: absolute; top: 245px;  left: 460px" >
+                        <img src="{{ static 'FruitGame/Matcher1.png' }}" width="50px" height="auto"/>
                     </div>
                 {{ endif }}
                 {{ if player.group.matcherpos == 3}}
-                    <div style="position: absolute; top: 432px;  left: 270px" >
-                        <img src="{{ static 'FruitGame/Matcher1.png' }}" width="50px" height="80px"/>
+                    <div style="position: absolute; top: 400px;  left: 270px" >
+                        <img src="{{ static 'FruitGame/Matcher1.png' }}" width="60px" height="auto"/>
                     </div>
                 {{ endif }}
                 {{ if player.group.matcherpos == 4}}
-                    <div style="position: absolute; top: 270px;  left: -20px" >
-                        <img src="{{ static 'FruitGame/Matcher1.png' }}" width="40px" height="65px"/>
+                    <div style="position: absolute; top: 245px;  left: -20px" >
+                        <img src="{{ static 'FruitGame/Matcher1.png' }}" width="50px" height="auto"/>
                     </div>
                 {{ endif }}
             {{ else }}
-                <div style="position: absolute; top: 432px;  left: 270px" >
-                    <img src="{{ static 'FruitGame/Matcher1.png' }}" width="50px" height="80px"/>
+                <div style="position: absolute; top: 400px;  left: 270px" >
+                    <img src="{{ static 'FruitGame/Matcher1.png' }}" width="60px" height="auto"/>
                 </div>
                 {{ if player.group.matcherpos == 1}}
-                    <div style="position: absolute; top: 190px;  left: 225px" >
-                        <img src="{{ static 'FruitGame/Director1.png' }}" width="40px" height="70px"/>
+                    <div style="position: absolute; top: 170px;  left: 225px" >
+                        <img src="{{ static 'FruitGame/Director1.png' }}" width="40px" height="auto"/>
                     </div>
                 {{ endif }}
                 {{ if player.group.matcherpos == 2}}
-                    <div style="position: absolute; top: 260px;  left: -20px" >
-                        <img src="{{ static 'FruitGame/Director1.png' }}" width="50px" height="90px"/>
+                    <div style="position: absolute; top: 245px;  left: -20px" >
+                        <img src="{{ static 'FruitGame/Director1.png' }}" width="50px" height="auto"/>
                     </div>
                 {{ endif }}
                 {{ if player.group.matcherpos == 3}}
                     <div style="position: absolute; top: 400px;  left: 200px" >
-                        <img src="{{ static 'FruitGame/Director1.png' }}" width="60px" height="110px"/>
+                        <img src="{{ static 'FruitGame/Director1.png' }}" width="60px" height="auto"/>
                     </div>
                 {{ endif }}
                 {{ if player.group.matcherpos == 4}}
-                    <div style="position: absolute; top: 260px;  left: 460px" >
-                        <img src="{{ static 'FruitGame/Director1.png' }}" width="50px" height="90px"/>
+                    <div style="position: absolute; top: 245px;  left: 460px" >
+                        <img src="{{ static 'FruitGame/Director1.png' }}" width="50px" height="auto"/>
                     </div>
                 {{ endif }}
             {{ endif }}
