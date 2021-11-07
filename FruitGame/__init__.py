@@ -260,7 +260,6 @@ class PerspectiveChange(Page):
     def is_displayed(player):
         if player.round_number == 1:
             return False
-        print(player.in_round(player.round_number - 1).group.matcherpos)
         return player.in_round(player.round_number - 1).group.matcherpos != player.group.matcherpos
 
 
@@ -286,11 +285,8 @@ class GridColorChange(Page):
 class MidSurvey(Page):
     form_model = 'player'
     form_fields = ['wamapping', 'bimapping', 'kemapping', 'zumapping']
-
     @staticmethod
     def is_displayed(player):
-        print(player.round_number)
-        print(player.round_number % 24 == 18)
         return player.round_number % 24 == 18
 
 
