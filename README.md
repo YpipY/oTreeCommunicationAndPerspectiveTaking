@@ -4,7 +4,7 @@ Chen, D. L., Schonger, M., & Wickens, C. (2016). oTree—An open-source platform
 https://github.com/oTree-org/oTree/
 
 ### To run on your own computer for testing do as follows
-  - Make sure you have the newest version of oTree == 5.4.1 and Python >= 3.7, older then that and I cannot guarantee the code will run. 
+  - Make sure you have the newest version of oTree >= 5.1.9 and Python >= 3.7, older then that and I cannot guarantee the code will run. 
     oTree install instrutions can be found here: https://otree.readthedocs.io/en/latest/install.html 
     Python can be found here: https://www.python.org/downloads/
   - Save the GitHub repository to a folder of your choice

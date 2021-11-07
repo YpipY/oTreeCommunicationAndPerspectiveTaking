@@ -16,11 +16,9 @@ SESSION_CONFIGS = [
     #    silhouette_corner=False,
     #),
     dict(
-        name='FruitGame3dCorner',
-        app_sequence=['FruitGame'],
+        name='FruitGame',
+        app_sequence=['FruitGameMiscInfo', 'FruitGame'],
         num_demo_participants=2,
-        condition3d=True,
-        silhouette_corner=True,
     ),
 ]
 

@@ -5,15 +5,17 @@ import itertools
 c = Currency
 
 doc = """
-Fruit selection game to study language and perspective takings development.
+Fruit selection game to study language and perspective takings development. This is the introduction, training and
+personal information gathering part. Personal information is only collected here, use the unique participant code to
+tie this to the main game data if needed. (Done so that the datafile does not get too large)
 """
 
 
 # OTREE CLASSES
 class Constants(BaseConstants):
-    name_in_url = 'FruitGame'
+    name_in_url = 'FruitGameMiscInfo'
     players_per_group = 2
-    num_rounds = 96
+    num_rounds = 4
     director_role = 'Director'
     matcher_role = 'Matcher'
 
@@ -51,15 +53,14 @@ class Group(BaseGroup):
 
 
 class Player(BasePlayer):
-    # Meaning mappings
-    wamapping = models.StringField(label='Describe, if applicable, what thing(s) that "wa" communicates in your '
-                                         'shared communications-system:')
-    bimapping = models.StringField(label='Describe, if applicable, what thing(s) that "bi" communicates in your '
-                                         'shared communications-system:')
-    kemapping = models.StringField(label='Describe, if applicable, what thing(s) that "ke" communicates in your '
-                                         'shared communications-system:')
-    zumapping = models.StringField(label='Describe, if applicable, what thing(s) that "zu" communicates in your '
-                                         'shared communications-system:')
+    # personal information
+    age = models.IntegerField(label="Your age:", min=0)
+    gender = models.StringField(label="Your gender:", choices=["Female", "Male", "Other"])
+    nativelanguage = models.StringField(label="Your native language(s). Capitalized, written in english and separated "
+                                              "by a space. If unsure ask an experiment:")
+    nonnativelanguage = models.StringField(label="Your fluent non-native language(s). Capitalized, written in "
+                                                 "english and separated by a space. If unsure ask an experiment:",
+                                           blank=True)
 
     # number used to assign silhouette color
     number = models.IntegerField()
@@ -153,7 +154,6 @@ def creating_session(subsession):
         # group.imgdvalue = imgvalue[3]
         # potion relative to director. Clockwise starting with 1 = top
         # group.matcherpos = random.choice([1, 2, 3, 4])
-
 
 # PAGES
 class MainPage(Page):
@@ -254,58 +254,28 @@ class Results(Page):
     pass
 
 
-# Tells the players if the perspective has just changed
-class PerspectiveChange(Page):
-    @staticmethod
-    def is_displayed(player):
-        if player.round_number == 1:
-            return False
-        print(player.in_round(player.round_number - 1).group.matcherpos)
-        return player.in_round(player.round_number - 1).group.matcherpos != player.group.matcherpos
-
-
-# Tells the players if the objects have just changed
-class ObjectChange(Page):
-    @staticmethod
-    def is_displayed(player):
-        if player.round_number == 1:
-            return False
-        return player.in_round(player.round_number - 1).group.objects != player.group.objects
-
-
-# Tells the players if the grid colors have just changed
-class GridColorChange(Page):
-    @staticmethod
-    def is_displayed(player):
-        if player.round_number == 1:
-            return False
-        return player.in_round(player.round_number - 1).group.gridcolorpos != player.group.gridcolorpos
-
-
-# Small survey asking what each symbol maps to
-class MidSurvey(Page):
+# Page where personal information is collected (only round 1)
+class PersonalInformation(Page):
     form_model = 'player'
-    form_fields = ['wamapping', 'bimapping', 'kemapping', 'zumapping']
+    form_fields = ['age', 'gender', 'nativelanguage', 'nonnativelanguage']
 
-    @staticmethod
-    def is_displayed(player):
-        print(player.round_number)
-        print(player.round_number % 24 == 18)
-        return player.round_number % 24 == 18
-
-
-# More detailed survey asking what each symbol maps to
-class EndingSurvey(Page):
-    @staticmethod
-    def is_displayed(player):
-        return player.round_number == Constants.num_rounds
-
-# Page that tell the player that the experiment has begun (only round 1)
-class Start(Page):
     @staticmethod
     def is_displayed(player):
         return player.round_number == 1
 
-page_sequence = [Start, PerspectiveChange, ObjectChange, GridColorChange,
-                 MidSurvey, EndingSurvey,
+
+# Page where introduction to the task is presented (only round 1)
+class Introduction(Page):
+    @staticmethod
+    def is_displayed(player):
+        # copies the given information on the first round, into the other rows (seems a little hack)
+        if player.round_number != 1:
+            player.age = player.in_round(player.round_number - 1).age
+            player.gender = player.in_round(player.round_number - 1).gender
+            player.nativelanguage = player.in_round(player.round_number - 1).nativelanguage
+            player.nonnativelanguage = player.in_round(player.round_number - 1).nonnativelanguage
+        return player.round_number == 1
+
+
+page_sequence = [PersonalInformation, Introduction,
                  StartWaitPage, MainPage, Results]
