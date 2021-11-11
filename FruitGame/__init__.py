@@ -52,14 +52,13 @@ class Group(BaseGroup):
 
 class Player(BasePlayer):
     # Meaning mappings
-    wamapping = models.StringField(label='Describe, if applicable, what thing(s) that "wa" communicates in your '
-                                         'shared communications-system:')
-    bimapping = models.StringField(label='Describe, if applicable, what thing(s) that "bi" communicates in your '
-                                         'shared communications-system:')
-    kemapping = models.StringField(label='Describe, if applicable, what thing(s) that "ke" communicates in your '
-                                         'shared communications-system:')
-    zumapping = models.StringField(label='Describe, if applicable, what thing(s) that "zu" communicates in your '
-                                         'shared communications-system:')
+    wamapping = models.StringField(label='What, if anything, is the meaning of "wa":')
+    bimapping = models.StringField(label='What, if anything, is the meaning of "bi":')
+    kemapping = models.StringField(label='What, if anything, is the meaning of "ke":')
+    zumapping = models.StringField(label='What, if anything, is the meaning of "zu":')
+
+    # Old question´:
+    # 'Describe, if applicable, what thing(s) "wa" communicates in your communications system:'
 
     # number used to assign silhouette color
     number = models.IntegerField()
@@ -154,11 +153,10 @@ def creating_session(subsession):
         # potion relative to director. Clockwise starting with 1 = top
         # group.matcherpos = random.choice([1, 2, 3, 4])
 
-
 # PAGES
 class MainPage(Page):
     # Amount of time before timeout in seconds
-    timeout_seconds = 60
+    timeout_seconds = 6000
 
     # Decide what happens if timeout
     @staticmethod
@@ -171,6 +169,12 @@ class MainPage(Page):
     @staticmethod
     def vars_for_template(player):
         group = player.group
+
+        # calculating score
+        score = 0
+        for p in player.in_previous_rounds():
+            if p.group.imgselectedcorrect:
+                score += 1
 
         # find out with silhouette to use
         if player.number == 1:
@@ -192,7 +196,8 @@ class MainPage(Page):
                     image_pathb='FruitGame/{}.png'.format(group.imgb),
                     image_pathc='FruitGame/{}.png'.format(group.imgc),
                     silhouetteme=silhouetteme,
-                    silhouetteother=silhouetteother)
+                    silhouetteother=silhouetteother,
+                    score=score)
         # image_pathd='FruitGame/{}.jpg'.format(group.imgd))
 
     # Returns player role for javascript functions
@@ -297,11 +302,25 @@ class EndingSurvey(Page):
         return player.round_number == Constants.num_rounds
 
 # Page that tell the player that the experiment has begun (only round 1)
-class Start(Page):
+class Start1(Page):
     @staticmethod
     def is_displayed(player):
         return player.round_number == 1
 
-page_sequence = [Start, PerspectiveChange, ObjectChange, GridColorChange,
+
+class Start2(Page):
+    @staticmethod
+    def is_displayed(player):
+        return player.round_number == 1
+
+
+class Start3(Page):
+    @staticmethod
+    def is_displayed(player):
+        return player.round_number == 1
+
+
+page_sequence = [Start1, Start2, Start3,
+                 PerspectiveChange, ObjectChange, GridColorChange,
                  MidSurvey, EndingSurvey,
                  StartWaitPage, MainPage, Results]

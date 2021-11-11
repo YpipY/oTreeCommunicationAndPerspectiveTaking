@@ -55,11 +55,16 @@ class Group(BaseGroup):
 class Player(BasePlayer):
     # personal information
     age = models.IntegerField(label="Your age:", min=0)
-    gender = models.StringField(label="Your gender:", choices=["Female", "Male", "Other"])
+    gender = models.StringField(label="Your gender:", choices=[["Female", "Female"],
+                                                               ["Male", "Male"],
+                                                               ["Nonbinary", "Nonbinary"],
+                                                               ["Other", "Other: please specify"]],
+                                widget=widgets.RadioSelectHorizontal)
+    genderother = models.StringField(label="Specify gender here if applicable:", blank=True)
     nativelanguage = models.StringField(label="Your native language(s). Capitalized, written in english and separated "
-                                              "by a space. If unsure ask an experiment:")
-    nonnativelanguage = models.StringField(label="Your fluent non-native language(s). Capitalized, written in "
-                                                 "english and separated by a space. If unsure ask an experiment:",
+                                              "by a semicolon (;). If unsure ask an experimenter:")
+    nonnativelanguage = models.StringField(label="Your fluent non-native language(s). Capitalized, written in english "
+                                                 "and separated by a semicolon (;). If unsure ask an experimenter:",
                                            blank=True)
 
     # number used to assign silhouette color
@@ -188,9 +193,9 @@ class MainPage(Page):
                 silhouetteme = 'FruitGame/Player2Matcher.png'
                 silhouetteother = 'FruitGame/Player1Director.png'
 
-        return dict(image_patha='FruitGame/{}.png'.format(group.imga),
-                    image_pathb='FruitGame/{}.png'.format(group.imgb),
-                    image_pathc='FruitGame/{}.png'.format(group.imgc),
+        return dict(image_patha='FruitGame/p{}.png'.format(group.imga),
+                    image_pathb='FruitGame/p{}.png'.format(group.imgb),
+                    image_pathc='FruitGame/p{}.png'.format(group.imgc),
                     silhouetteme=silhouetteme,
                     silhouetteother=silhouetteother)
         # image_pathd='FruitGame/{}.jpg'.format(group.imgd))
@@ -257,15 +262,13 @@ class Results(Page):
 # Page where personal information is collected (only round 1)
 class PersonalInformation(Page):
     form_model = 'player'
-    form_fields = ['age', 'gender', 'nativelanguage', 'nonnativelanguage']
+    form_fields = ['age', 'gender', 'genderother',  'nativelanguage', 'nonnativelanguage']
 
     @staticmethod
-    def is_displayed(player):
-        return player.round_number == 1
+    def error_message(player, value):
+        if value['gender'] == 'Other' and value['genderother'] == '':
+            return 'You must specify "other" gender'
 
-
-# Page where introduction to the task is presented (only round 1)
-class Introduction(Page):
     @staticmethod
     def is_displayed(player):
         # copies the given information on the first round, into the other rows (seems a little hack)
@@ -277,5 +280,37 @@ class Introduction(Page):
         return player.round_number == 1
 
 
-page_sequence = [PersonalInformation, Introduction,
+# Pages where introduction to the task is presented (only round 1)
+class Introduction1(Page):
+    @staticmethod
+    def is_displayed(player):
+        return player.round_number == 1
+
+
+class Introduction2(Page):
+    @staticmethod
+    def is_displayed(player):
+        return player.round_number == 1
+
+
+class Introduction3(Page):
+    @staticmethod
+    def is_displayed(player):
+        return player.round_number == 1
+
+
+class Introduction4(Page):
+    @staticmethod
+    def is_displayed(player):
+        return player.round_number == 1
+
+
+class Introduction5(Page):
+    @staticmethod
+    def is_displayed(player):
+        return player.round_number == 1
+
+
+page_sequence = [PersonalInformation,
+                 Introduction1, Introduction2, Introduction3, Introduction4, Introduction5,
                  StartWaitPage, MainPage, Results]

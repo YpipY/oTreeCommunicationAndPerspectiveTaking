@@ -5,5 +5,42 @@ Please provide some simple personal information
 {{ block content }}
 {{ formfields }}
 
-    {{ next_button }}
+{# This is a more detailed setup if I want to deal with it
+<div style="line-height:1.5">
+    <div style="line-height:0">
+        <p> Your age:</p>
+        {{ form.age }}
+    </div>
+    <br>
+    <div style="line-height:1.5">
+        <p>Your gender:</p>
+        {{ form.gender }}
+    </div>
+    <br>
+    <br>
+    <div style="line-height:0">
+        <p>Your native language(s). Capitalized, written in english and separated by a semicolon (;). If unsure ask an experimenter:</p>
+        {{ form.nativelanguage }}
+    </div>
+    <br>
+    <br>
+    <div style="line-height:0">
+        <p>Your fluent non-native language(s). Capitalized, written in english and separated by a semicolon (;). If unsure ask an experimenter:</p>
+        {{ form.nonnativelanguage }}
+    </div>
+</div>
+
+<div style="position: absolute; top: 247px; left: 211px; line-height:0">
+    <p>Specify gender here if applicable:</p>
+    {{ form.genderother }}
+</div>
+
+{{ formfield_errors 'age' }}
+{{ formfield_errors 'gender' }}
+{{ formfield_errors 'genderother' }}
+{{ formfield_errors 'nativelanguage' }}
+{{ formfield_errors 'nonnativelanguage' }}
+
+#}
+{{ next_button }}
 {{ endblock }}

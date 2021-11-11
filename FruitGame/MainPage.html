@@ -209,6 +209,10 @@
         {{ endif }}
     </div>
 
+    <!-- Score box player.in_previous_rounds().group.imgselectedcorrect -->
+    <div class="score">
+        <p>Score: {{ score }}</p>
+    </div>
     <!-- To give some space for the game box and chat box -->
     <div style="height: 400px;">
         </div>
@@ -288,6 +292,20 @@ button[disabled]{
     height: 60px;
 }
 
+.score {
+    color:black;
+    background-color:#e8e7e3;
+    border-color:black;
+    border: 1px solid;
+    padding: 1rem;
+    margin-bottom: 1rem;
+    border-radius: 0.25rem;
+    position: absolute;
+    top: 60px;
+    left: 525px;
+    width: 100px;
+    height: 60px;
+}
 
 </style>
 
