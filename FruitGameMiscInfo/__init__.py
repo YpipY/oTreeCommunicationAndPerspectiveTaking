@@ -114,8 +114,9 @@ def creating_session(subsession):
 
         # make the all permutations of the object ordering (pseudorandom)
         if subsession.round_number == 1:
-            permutations = list(itertools.permutations([1, 2, 3, 4], 3))
-            random.shuffle(permutations)
+            permutations = [[1, 2, 3], [3, 4, 1], [2, 3, 4], [1, 4, 3]]
+            #permutations = list(itertools.permutations([1, 2, 3, 4], 3))
+            #random.shuffle(permutations)
 
         # select the images form the current image block
         if group.objects == 1:
@@ -136,90 +137,8 @@ def creating_session(subsession):
             group.imgc = permutations[(subsession.round_number - 1) % 24][2] + 12
 
         # select the value of the objects
-        # this seems very bad practice, but I cannot come up with a better solution. good enough
-        if player.round_number == 1 or player.in_round(player.round_number - 1).group.objects != group.objects:
-            x = [1] * 2 + [2] * 2 + [3] * 2 + [4] * 2
-            y = [1] * 2 + [2] * 2 + [3] * 2 + [4] * 2
-            z = [1] * 2 + [2] * 2 + [3] * 2 + [4] * 2
-            random.shuffle(x)
-            random.shuffle(y)
-            random.shuffle(z)
-            aa = [0] * 24
 
-        if aa[0] != 1 and permutations[(subsession.round_number - 1) % 24][0] == x[0]:
-            imgvalue = [True, False, False]
-            aa[0] += 1
-        elif aa[1] != 1 and permutations[(subsession.round_number - 1) % 24][1] == y[0]:
-            imgvalue = [False, True, False]
-            aa[1] += 1
-        elif aa[2] != 1 and permutations[(subsession.round_number - 1) % 24][2] == z[0]:
-            imgvalue = [False, False, True]
-            aa[2] += 1
-        elif aa[3] != 1 and permutations[(subsession.round_number - 1) % 24][0] == x[1]:
-            imgvalue = [True, False, False]
-            aa[3] += 1
-        elif aa[4] != 1 and permutations[(subsession.round_number - 1) % 24][1] == y[1]:
-            imgvalue = [False, True, False]
-            aa[4] += 1
-        elif aa[5] != 1 and permutations[(subsession.round_number - 1) % 24][2] == z[1]:
-            imgvalue = [False, False, True]
-            aa[5] += 1
-        elif aa[6] != 1 and permutations[(subsession.round_number - 1) % 24][0] == x[2]:
-            imgvalue = [True, False, False]
-            aa[6] += 1
-        elif aa[7] != 1 and permutations[(subsession.round_number - 1) % 24][1] == y[2]:
-            imgvalue = [False, True, False]
-            aa[7] += 1
-        elif aa[8] != 1 and permutations[(subsession.round_number - 1) % 24][2] == z[2]:
-            imgvalue = [False, False, True]
-            aa[8] += 1
-        elif aa[9] != 1 and permutations[(subsession.round_number - 1) % 24][0] == x[3]:
-            imgvalue = [True, False, False]
-            aa[9] += 1
-        elif aa[10] != 1 and permutations[(subsession.round_number - 1) % 24][1] == y[3]:
-            imgvalue = [False, True, False]
-            aa[10] += 1
-        elif aa[11] != 1 and permutations[(subsession.round_number - 1) % 24][2] == z[3]:
-            imgvalue = [False, False, True]
-            aa[11] += 1
-        elif aa[12] != 1 and permutations[(subsession.round_number - 1) % 24][0] == x[4]:
-            imgvalue = [True, False, False]
-            aa[12] += 1
-        elif aa[13] != 1 and permutations[(subsession.round_number - 1) % 24][1] == y[4]:
-            imgvalue = [False, True, False]
-            aa[13] += 1
-        elif aa[14] != 1 and permutations[(subsession.round_number - 1) % 24][2] == z[4]:
-            imgvalue = [False, False, True]
-            aa[14] += 1
-        elif aa[15] != 1 and permutations[(subsession.round_number - 1) % 24][0] == x[5]:
-            imgvalue = [True, False, False]
-            aa[15] += 1
-        elif aa[16] != 1 and permutations[(subsession.round_number - 1) % 24][1] == y[5]:
-            imgvalue = [False, True, False]
-            aa[16] += 1
-        elif aa[17] != 1 and permutations[(subsession.round_number - 1) % 24][2] == z[5]:
-            imgvalue = [False, False, True]
-            aa[17] += 1
-        elif aa[18] != 1 and permutations[(subsession.round_number - 1) % 24][0] == x[6]:
-            imgvalue = [True, False, False]
-            aa[18] += 1
-        elif aa[19] != 1 and permutations[(subsession.round_number - 1) % 24][1] == y[6]:
-            imgvalue = [False, True, False]
-            aa[19] += 1
-        elif aa[20] != 1 and permutations[(subsession.round_number - 1) % 24][2] == z[6]:
-            imgvalue = [False, False, True]
-            aa[20] += 1
-        elif aa[21] != 1 and permutations[(subsession.round_number - 1) % 24][0] == x[7]:
-            imgvalue = [True, False, False]
-            aa[21] += 1
-        elif aa[22] != 1 and permutations[(subsession.round_number - 1) % 24][1] == y[7]:
-            imgvalue = [False, True, False]
-            aa[22] += 1
-        elif aa[23] != 1 and permutations[(subsession.round_number - 1) % 24][2] == z[7]:
-            imgvalue = [False, False, True]
-            aa[23] += 1
-        else:
-            imgvalue = random.sample([True, False, False], k=3)
+        imgvalue = random.sample([True, False, False], k=3)
         group.imgavalue = imgvalue[0]
         group.imgbvalue = imgvalue[1]
         group.imgcvalue = imgvalue[2]
@@ -228,7 +147,7 @@ def creating_session(subsession):
 # PAGES
 class MainPage(Page):
     # Amount of time before timeout in seconds
-    timeout_seconds = 6000
+    timeout_seconds = 60
 
     # Decide what happens if timeout
     @staticmethod

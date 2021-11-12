@@ -237,7 +237,7 @@ def creating_session(subsession):
 # PAGES
 class MainPage(Page):
     # Amount of time before timeout in seconds
-    timeout_seconds = 6000
+    timeout_seconds = 60
 
     # Decide what happens if timeout
     @staticmethod

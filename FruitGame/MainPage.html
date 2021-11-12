@@ -1,20 +1,27 @@
 {{ block title }}
     {{ if player.number == 1 }}
-        <p style="line-height:1; margin:0px; margin-left:10px"> You are the<span style="line-height:1; margin:0px; margin-left:10px; color: purple">{{ player.role }} </span>
+        <p style="line-height:1; margin:0px; margin-left:0px"> You are the<span style="line-height:1; margin:0px; margin-left:10px; color: purple">{{ player.role }} </span>
             </p>
     {{ else }}
-        <p style="line-height:1; margin:0px; margin-left:10px"> You are the<span style="line-height:1; margin:0px; margin-left:10px; color: orange">{{ player.role }} </span>
+        <p style="line-height:1; margin:0px; margin-left:0px"> You are the<span style="line-height:1; margin:0px; margin-left:10px; color: orange">{{ player.role }} </span>
             </p>
     {{ endif }}
-
-    <!-- To give some space for the game box and chat box -->
-    <div style=" height: 40px;">
-        </div>
 
 {{ endblock }}
 
 {{ block content }}
-
+    <!-- Extra text for description of task -->
+    {{ if player.role == Constants.director_role }}
+    <div style=" height: 40px;">
+        <p>Please select one of the four signals and click "send"</p>
+    </div>
+    {{ else }}
+    <div style=" height: 40px;">
+        <p style="margin-bottom: 0px" >The signal that the Director sent will show up in the "Communications" </p>
+        <p style="margin-bottom: 0px" >box. Please click on the object that you think the Director tried to</p>
+        <p style="margin-bottom: 0px" >communicate</p>
+    </div>
+    {{ endif }}
     <!-- Game box -->
     <div style="line-height:1;  width: 49%; height: 400px; margin-right: 11%; float:left; transform: rotateX(75deg) rotateZ(45deg);">
     <!-- Grid -->
@@ -478,9 +485,9 @@ button[disabled]{
     background-color:#e8e7e3;
     border-color:black;
     position: absolute;
-    top: 60px;
-    left: 645px;
-    width: 300px;
+    top: 72px;
+    left: 627px;
+    width: 330px;
     height: 60px;
 }
 
@@ -493,8 +500,8 @@ button[disabled]{
     margin-bottom: 1rem;
     border-radius: 0.25rem;
     position: absolute;
-    top: 60px;
-    left: 525px;
+    top: 72px;
+    left: 527px;
     width: 100px;
     height: 60px;
 }
