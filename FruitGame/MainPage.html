@@ -18,78 +18,246 @@
     <!-- Game box -->
     <div style="line-height:1;  width: 49%; height: 400px; margin-right: 11%; float:left; transform: rotateX(75deg) rotateZ(45deg);">
     <!-- Grid -->
-    {{ if player.group.gridcolorpos == 1}}
-        <div style="width: 50%; height: 200px; float:left; border:1px; border-style: none solid solid none; background-color: #e8e7e3">
-        </div>
-        <div style="width: 50%; height: 200px; float:right; border:1px; border-style: none none solid solid; background-color: #b5b5b5">
-        </div>
-        <div style="width: 50%; height: 200px; float:left; border:1px; border-style: solid solid none none; background-color: #787777">
-        </div>
-        <div style="width: 50%; height: 200px; float:right; border:1px; border-style: solid none none solid; background-color: #575656">
-        </div>
-    {{ endif }}
-    {{ if player.group.gridcolorpos == 2}}
-        <div style="width: 50%; height: 200px; float:left; border:1px; border-style: none solid solid none; background-color: #b5b5b5">
-        </div>
-        <div style="width: 50%; height: 200px; float:right; border:1px; border-style: none none solid solid; background-color: #575656">
-        </div>
-        <div style="width: 50%; height: 200px; float:left; border:1px; border-style: solid solid none none; background-color: #e8e7e3">
-        </div>
-        <div style="width: 50%; height: 200px; float:right; border:1px; border-style: solid none none solid; background-color: #787777">
-        </div>
-    {{ endif }}
-    {{ if player.group.gridcolorpos == 3}}
-        <div style="width: 50%; height: 200px; float:left; border:1px; border-style: none solid solid none; background-color: #575656">
-        </div>
-        <div style="width: 50%; height: 200px; float:right; border:1px; border-style: none none solid solid; background-color: #787777">
-        </div>
-        <div style="width: 50%; height: 200px; float:left; border:1px; border-style: solid solid none none; background-color: #b5b5b5">
-        </div>
-        <div style="width: 50%; height: 200px; float:right; border:1px; border-style: solid none none solid; background-color: #e8e7e3">
-        </div>
-    {{ endif }}
-    {{ if player.group.gridcolorpos == 4}}
-        <div style="width: 50%; height: 200px; float:left; border:1px; border-style: none solid solid none; background-color: #787777">
-        </div>
-        <div style="width: 50%; height: 200px; float:right; border:1px; border-style: none none solid solid; background-color: #e8e7e3">
-        </div>
-        <div style="width: 50%; height: 200px; float:left; border:1px; border-style: solid solid none none; background-color: #575656">
-        </div>
-        <div style="width: 50%; height: 200px; float:right; border:1px; border-style: solid none none solid; background-color: #b5b5b5">
-        </div>
+    {{ if player.number == 1}}
+        {{ if player.group.gridcolorpos == 1}}
+            <div style="width: 50%; height: 200px; float:left; border:1px; border-style: none solid solid none; background-color: #e8e7e3">
+            </div>
+            <div style="width: 50%; height: 200px; float:right; border:1px; border-style: none none solid solid; background-color: #b5b5b5">
+            </div>
+            <div style="width: 50%; height: 200px; float:left; border:1px; border-style: solid solid none none; background-color: #787777">
+            </div>
+            <div style="width: 50%; height: 200px; float:right; border:1px; border-style: solid none none solid; background-color: #575656">
+            </div>
+        {{ endif }}
+        {{ if player.group.gridcolorpos == 4}}
+            <div style="width: 50%; height: 200px; float:left; border:1px; border-style: none solid solid none; background-color: #b5b5b5">
+            </div>
+            <div style="width: 50%; height: 200px; float:right; border:1px; border-style: none none solid solid; background-color: #575656">
+            </div>
+            <div style="width: 50%; height: 200px; float:left; border:1px; border-style: solid solid none none; background-color: #e8e7e3">
+            </div>
+            <div style="width: 50%; height: 200px; float:right; border:1px; border-style: solid none none solid; background-color: #787777">
+            </div>
+        {{ endif }}
+        {{ if player.group.gridcolorpos == 3}}
+            <div style="width: 50%; height: 200px; float:left; border:1px; border-style: none solid solid none; background-color: #575656">
+            </div>
+            <div style="width: 50%; height: 200px; float:right; border:1px; border-style: none none solid solid; background-color: #787777">
+            </div>
+            <div style="width: 50%; height: 200px; float:left; border:1px; border-style: solid solid none none; background-color: #b5b5b5">
+            </div>
+            <div style="width: 50%; height: 200px; float:right; border:1px; border-style: solid none none solid; background-color: #e8e7e3">
+            </div>
+        {{ endif }}
+        {{ if player.group.gridcolorpos == 2}}
+            <div style="width: 50%; height: 200px; float:left; border:1px; border-style: none solid solid none; background-color: #787777">
+            </div>
+            <div style="width: 50%; height: 200px; float:right; border:1px; border-style: none none solid solid; background-color: #e8e7e3">
+            </div>
+            <div style="width: 50%; height: 200px; float:left; border:1px; border-style: solid solid none none; background-color: #575656">
+            </div>
+            <div style="width: 50%; height: 200px; float:right; border:1px; border-style: solid none none solid; background-color: #b5b5b5">
+            </div>
+        {{ endif }}
+    {{ else }}
+        {{ if player.group.player2pos == 2}}
+            {{ if player.group.gridcolorpos == 4}}
+                <div style="width: 50%; height: 200px; float:left; border:1px; border-style: none solid solid none; background-color: #e8e7e3">
+                </div>
+                <div style="width: 50%; height: 200px; float:right; border:1px; border-style: none none solid solid; background-color: #b5b5b5">
+                </div>
+                <div style="width: 50%; height: 200px; float:left; border:1px; border-style: solid solid none none; background-color: #787777">
+                </div>
+                <div style="width: 50%; height: 200px; float:right; border:1px; border-style: solid none none solid; background-color: #575656">
+                </div>
+            {{ endif }}
+            {{ if player.group.gridcolorpos == 3}}
+                <div style="width: 50%; height: 200px; float:left; border:1px; border-style: none solid solid none; background-color: #b5b5b5">
+                </div>
+                <div style="width: 50%; height: 200px; float:right; border:1px; border-style: none none solid solid; background-color: #575656">
+                </div>
+                <div style="width: 50%; height: 200px; float:left; border:1px; border-style: solid solid none none; background-color: #e8e7e3">
+                </div>
+                <div style="width: 50%; height: 200px; float:right; border:1px; border-style: solid none none solid; background-color: #787777">
+                </div>
+            {{ endif }}
+            {{ if player.group.gridcolorpos == 2}}
+                <div style="width: 50%; height: 200px; float:left; border:1px; border-style: none solid solid none; background-color: #575656">
+                </div>
+                <div style="width: 50%; height: 200px; float:right; border:1px; border-style: none none solid solid; background-color: #787777">
+                </div>
+                <div style="width: 50%; height: 200px; float:left; border:1px; border-style: solid solid none none; background-color: #b5b5b5">
+                </div>
+                <div style="width: 50%; height: 200px; float:right; border:1px; border-style: solid none none solid; background-color: #e8e7e3">
+                </div>
+            {{ endif }}
+            {{ if player.group.gridcolorpos == 1}}
+                <div style="width: 50%; height: 200px; float:left; border:1px; border-style: none solid solid none; background-color: #787777">
+                </div>
+                <div style="width: 50%; height: 200px; float:right; border:1px; border-style: none none solid solid; background-color: #e8e7e3">
+                </div>
+                <div style="width: 50%; height: 200px; float:left; border:1px; border-style: solid solid none none; background-color: #575656">
+                </div>
+                <div style="width: 50%; height: 200px; float:right; border:1px; border-style: solid none none solid; background-color: #b5b5b5">
+                </div>
+            {{ endif }}
+        {{ endif }}
+        {{ if player.group.player2pos == 3}}
+            {{ if player.group.gridcolorpos == 3}}
+                <div style="width: 50%; height: 200px; float:left; border:1px; border-style: none solid solid none; background-color: #e8e7e3">
+                </div>
+                <div style="width: 50%; height: 200px; float:right; border:1px; border-style: none none solid solid; background-color: #b5b5b5">
+                </div>
+                <div style="width: 50%; height: 200px; float:left; border:1px; border-style: solid solid none none; background-color: #787777">
+                </div>
+                <div style="width: 50%; height: 200px; float:right; border:1px; border-style: solid none none solid; background-color: #575656">
+                </div>
+            {{ endif }}
+            {{ if player.group.gridcolorpos == 2}}
+                <div style="width: 50%; height: 200px; float:left; border:1px; border-style: none solid solid none; background-color: #b5b5b5">
+                </div>
+                <div style="width: 50%; height: 200px; float:right; border:1px; border-style: none none solid solid; background-color: #575656">
+                </div>
+                <div style="width: 50%; height: 200px; float:left; border:1px; border-style: solid solid none none; background-color: #e8e7e3">
+                </div>
+                <div style="width: 50%; height: 200px; float:right; border:1px; border-style: solid none none solid; background-color: #787777">
+                </div>
+            {{ endif }}
+            {{ if player.group.gridcolorpos == 1}}
+                <div style="width: 50%; height: 200px; float:left; border:1px; border-style: none solid solid none; background-color: #575656">
+                </div>
+                <div style="width: 50%; height: 200px; float:right; border:1px; border-style: none none solid solid; background-color: #787777">
+                </div>
+                <div style="width: 50%; height: 200px; float:left; border:1px; border-style: solid solid none none; background-color: #b5b5b5">
+                </div>
+                <div style="width: 50%; height: 200px; float:right; border:1px; border-style: solid none none solid; background-color: #e8e7e3">
+                </div>
+            {{ endif }}
+            {{ if player.group.gridcolorpos == 4}}
+                <div style="width: 50%; height: 200px; float:left; border:1px; border-style: none solid solid none; background-color: #787777">
+                </div>
+                <div style="width: 50%; height: 200px; float:right; border:1px; border-style: none none solid solid; background-color: #e8e7e3">
+                </div>
+                <div style="width: 50%; height: 200px; float:left; border:1px; border-style: solid solid none none; background-color: #575656">
+                </div>
+                <div style="width: 50%; height: 200px; float:right; border:1px; border-style: solid none none solid; background-color: #b5b5b5">
+                </div>
+            {{ endif }}
+        {{ endif }}
+        {{ if player.group.player2pos == 4}}
+            {{ if player.group.gridcolorpos == 2}}
+                <div style="width: 50%; height: 200px; float:left; border:1px; border-style: none solid solid none; background-color: #e8e7e3">
+                </div>
+                <div style="width: 50%; height: 200px; float:right; border:1px; border-style: none none solid solid; background-color: #b5b5b5">
+                </div>
+                <div style="width: 50%; height: 200px; float:left; border:1px; border-style: solid solid none none; background-color: #787777">
+                </div>
+                <div style="width: 50%; height: 200px; float:right; border:1px; border-style: solid none none solid; background-color: #575656">
+                </div>
+            {{ endif }}
+            {{ if player.group.gridcolorpos == 1}}
+                <div style="width: 50%; height: 200px; float:left; border:1px; border-style: none solid solid none; background-color: #b5b5b5">
+                </div>
+                <div style="width: 50%; height: 200px; float:right; border:1px; border-style: none none solid solid; background-color: #575656">
+                </div>
+                <div style="width: 50%; height: 200px; float:left; border:1px; border-style: solid solid none none; background-color: #e8e7e3">
+                </div>
+                <div style="width: 50%; height: 200px; float:right; border:1px; border-style: solid none none solid; background-color: #787777">
+                </div>
+            {{ endif }}
+            {{ if player.group.gridcolorpos == 4}}
+                <div style="width: 50%; height: 200px; float:left; border:1px; border-style: none solid solid none; background-color: #575656">
+                </div>
+                <div style="width: 50%; height: 200px; float:right; border:1px; border-style: none none solid solid; background-color: #787777">
+                </div>
+                <div style="width: 50%; height: 200px; float:left; border:1px; border-style: solid solid none none; background-color: #b5b5b5">
+                </div>
+                <div style="width: 50%; height: 200px; float:right; border:1px; border-style: solid none none solid; background-color: #e8e7e3">
+                </div>
+            {{ endif }}
+            {{ if player.group.gridcolorpos == 3}}
+                <div style="width: 50%; height: 200px; float:left; border:1px; border-style: none solid solid none; background-color: #787777">
+                </div>
+                <div style="width: 50%; height: 200px; float:right; border:1px; border-style: none none solid solid; background-color: #e8e7e3">
+                </div>
+                <div style="width: 50%; height: 200px; float:left; border:1px; border-style: solid solid none none; background-color: #575656">
+                </div>
+                <div style="width: 50%; height: 200px; float:right; border:1px; border-style: solid none none solid; background-color: #b5b5b5">
+                </div>
+            {{ endif }}
+        {{ endif }}
+        {{ if player.group.player2pos == 1}}
+            {{ if player.group.gridcolorpos == 1}}
+                <div style="width: 50%; height: 200px; float:left; border:1px; border-style: none solid solid none; background-color: #e8e7e3">
+                </div>
+                <div style="width: 50%; height: 200px; float:right; border:1px; border-style: none none solid solid; background-color: #b5b5b5">
+                </div>
+                <div style="width: 50%; height: 200px; float:left; border:1px; border-style: solid solid none none; background-color: #787777">
+                </div>
+                <div style="width: 50%; height: 200px; float:right; border:1px; border-style: solid none none solid; background-color: #575656">
+                </div>
+            {{ endif }}
+            {{ if player.group.gridcolorpos == 4}}
+                <div style="width: 50%; height: 200px; float:left; border:1px; border-style: none solid solid none; background-color: #b5b5b5">
+                </div>
+                <div style="width: 50%; height: 200px; float:right; border:1px; border-style: none none solid solid; background-color: #575656">
+                </div>
+                <div style="width: 50%; height: 200px; float:left; border:1px; border-style: solid solid none none; background-color: #e8e7e3">
+                </div>
+                <div style="width: 50%; height: 200px; float:right; border:1px; border-style: solid none none solid; background-color: #787777">
+                </div>
+            {{ endif }}
+            {{ if player.group.gridcolorpos == 3}}
+                <div style="width: 50%; height: 200px; float:left; border:1px; border-style: none solid solid none; background-color: #575656">
+                </div>
+                <div style="width: 50%; height: 200px; float:right; border:1px; border-style: none none solid solid; background-color: #787777">
+                </div>
+                <div style="width: 50%; height: 200px; float:left; border:1px; border-style: solid solid none none; background-color: #b5b5b5">
+                </div>
+                <div style="width: 50%; height: 200px; float:right; border:1px; border-style: solid none none solid; background-color: #e8e7e3">
+                </div>
+            {{ endif }}
+            {{ if player.group.gridcolorpos == 2}}
+                <div style="width: 50%; height: 200px; float:left; border:1px; border-style: none solid solid none; background-color: #787777">
+                </div>
+                <div style="width: 50%; height: 200px; float:right; border:1px; border-style: none none solid solid; background-color: #e8e7e3">
+                </div>
+                <div style="width: 50%; height: 200px; float:left; border:1px; border-style: solid solid none none; background-color: #575656">
+                </div>
+                <div style="width: 50%; height: 200px; float:right; border:1px; border-style: solid none none solid; background-color: #b5b5b5">
+                </div>
+            {{ endif }}
+        {{ endif }}
     {{ endif }}
     </div>
     <!-- Placing objects-->
     {{ if player.role == Constants.director_role }}
         {{ if player.group.imgavalue == True }}
-            <div style="position: absolute; top: 247px;  left: 211px">
-                <img src="{{ static image_patha }}" width="62px" height="62px" style="border: 3px solid green"/>
-            </div>
-        {{ else }}
-            <div style="position: absolute; top: 250px;  left: 214px">
-                <img src="{{ static image_patha }}" width="56px" height="56px"/>
+            <div style="position: absolute; top: 225px;  left: 235px">
+            <p style="line-height:0; font-size: 60px; font-weight: bold; color: green; margin-left: 13px; transform: rotateZ(-55deg)"> &larr;</p>
             </div>
         {{ endif }}
+        <div style="position: absolute; top: 250px;  left: 214px">
+        <img src="{{ static image_patha }}" width="56px" height="56px"/>
+        </div>
         {{ if player.group.imgbvalue == True }}
-            <div style="position: absolute; top: 272px;  left: 357px">
-                <img src="{{ static image_pathb }}" width="72px" height="72px" style="border: 3px solid green"/>
-                </div>
-        {{ else }}
-            <div style="position: absolute; top: 275px;  left: 360px">
-                 <img src="{{ static image_pathb }}" width="66px" height="66px"/>
+            <div style="position: absolute; top: 255px;  left: 385px">
+            <p style="line-height:0; font-size: 65px; font-weight: bold; color: green; margin-left: 20px; transform: rotateZ(-55deg)"> &larr;</p>
             </div>
         {{ endif }}
+        <div style="position: absolute; top: 275px;  left: 360px">
+        <img src="{{ static image_pathb }}" width="66px" height="66px"/>
+        </div>
         {{ if player.group.imgcvalue == True }}
-            <div style="position: absolute; top: 307px;  left: 197px">
-                <img src="{{ static image_pathc }}" width="86px" height="86px" style="border: 3px solid green"/>
-            </div>
-        {{ else }}
-            <div style="position: absolute; top: 310px;  left: 200px">
-                <img src="{{ static image_pathc }}" width="80px" height="80px"/>
+            <div style="position: absolute; top: 300px;  left: 220px">
+            <p style="line-height:0; font-size: 80px; font-weight: bold; color: green; margin-left: 23px; transform: rotateZ(-55deg)"> &larr;</p>
             </div>
         {{ endif }}
+        <div style="position: absolute; top: 310px;  left: 200px">
+        <img src="{{ static image_pathc }}" width="80px" height="80px"/>
+        </div>
     {{ else }}
-        {{ if player.group.matcherpos == 3}}
+        {{ if player.group.player2pos == 3}}
             <div style="position: absolute; top: 310px;  left: 200px">
                 <input type="image" src="{{ static image_patha }}" class="buttontrans" width="80px" height="80px" onclick="liveSend('select1')">
             </div>
@@ -100,18 +268,30 @@
                 <input type="image" src="{{ static image_pathc }}" class="buttontrans" width="56px" height="56px" onclick="liveSend('select3')">
             </div>
         {{ endif }}
-        {{ if player.group.matcherpos == 2}}
-            <div style="position: absolute; top: 275px;  left: 360px">
-                <input type="image" src="{{ static image_patha }}" class="buttontrans" width="66px" height="66px" onclick="liveSend('select1')">
-            </div>
-            <div style="position: absolute; top: 310px;  left: 200px">
-                <input type="image" src="{{ static image_pathb }}" class="buttontrans" width="80px" height="80px" onclick="liveSend('select2')">
-            </div>
-            <div style="position: absolute; top: 275px;  left: 60px">
-                <input type="image" src="{{ static image_pathc }}" class="buttontrans" width="66px" height="66px" onclick="liveSend('select3')">
-            </div>
+        {{ if player.group.player2pos == 4}}
+            {{ if player.number == 1}}
+                <div style="position: absolute; top: 275px;  left: 360px">
+                    <input type="image" src="{{ static image_patha }}" class="buttontrans" width="66px" height="66px" onclick="liveSend('select1')">
+                </div>
+                <div style="position: absolute; top: 310px;  left: 200px">
+                    <input type="image" src="{{ static image_pathb }}" class="buttontrans" width="80px" height="80px" onclick="liveSend('select2')">
+                </div>
+                <div style="position: absolute; top: 275px;  left: 60px">
+                    <input type="image" src="{{ static image_pathc }}" class="buttontrans" width="66px" height="66px" onclick="liveSend('select3')">
+                </div>
+            {{ else }}
+                <div style="position: absolute; top: 275px;  left: 60px">
+                    <input type="image" src="{{ static image_patha }}" class="buttontrans" width="66px" height="66px" onclick="liveSend('select1')">
+                </div>
+                <div style="position: absolute; top: 250px;  left: 200px">
+                    <input type="image" src="{{ static image_pathb }}" class="buttontrans" width="56px" height="56px" onclick="liveSend('select2')">
+                </div>
+                <div style="position: absolute; top: 275px;  left: 360px">
+                    <input type="image" src="{{ static image_pathc }}" class="buttontrans" width="66px" height="66px" onclick="liveSend('select3')">
+                </div>
+            {{ endif }}
         {{ endif }}
-        {{ if player.group.matcherpos == 1}}
+        {{ if player.group.player2pos == 1}}
             <div style="position: absolute; top: 250px;  left: 214px">
                 <input type="image" src="{{ static image_patha }}" class="buttontrans" width="56px" height="56px" onclick="liveSend('select1')">
             </div>
@@ -122,39 +302,51 @@
                 <input type="image" src="{{ static image_pathc }}" class="buttontrans" width="80px" height="80px" onclick="liveSend('select3')">
             </div>
         {{ endif }}
-        {{ if player.group.matcherpos == 4}}
-            <div style="position: absolute; top: 275px;  left: 60px">
-                <input type="image" src="{{ static image_patha }}" class="buttontrans" width="66px" height="66px" onclick="liveSend('select1')">
-            </div>
-            <div style="position: absolute; top: 250px;  left: 200px">
-                <input type="image" src="{{ static image_pathb }}" class="buttontrans" width="56px" height="56px" onclick="liveSend('select2')">
-            </div>
-            <div style="position: absolute; top: 275px;  left: 360px">
-                <input type="image" src="{{ static image_pathc }}" class="buttontrans" width="66px" height="66px" onclick="liveSend('select3')">
-            </div>
+        {{ if player.group.player2pos == 2}}
+            {{ if player.number == 1}}
+                <div style="position: absolute; top: 275px;  left: 60px">
+                    <input type="image" src="{{ static image_patha }}" class="buttontrans" width="66px" height="66px" onclick="liveSend('select1')">
+                </div>
+                <div style="position: absolute; top: 250px;  left: 200px">
+                    <input type="image" src="{{ static image_pathb }}" class="buttontrans" width="56px" height="56px" onclick="liveSend('select2')">
+                </div>
+                <div style="position: absolute; top: 275px;  left: 360px">
+                    <input type="image" src="{{ static image_pathc }}" class="buttontrans" width="66px" height="66px" onclick="liveSend('select3')">
+                </div>
+            {{ else }}
+                <div style="position: absolute; top: 275px;  left: 360px">
+                    <input type="image" src="{{ static image_patha }}" class="buttontrans" width="66px" height="66px" onclick="liveSend('select1')">
+                </div>
+                <div style="position: absolute; top: 310px;  left: 200px">
+                    <input type="image" src="{{ static image_pathb }}" class="buttontrans" width="80px" height="80px" onclick="liveSend('select2')">
+                </div>
+                <div style="position: absolute; top: 275px;  left: 60px">
+                    <input type="image" src="{{ static image_pathc }}" class="buttontrans" width="66px" height="66px" onclick="liveSend('select3')">
+                </div>
+            {{ endif }}
         {{ endif }}
     {{ endif }}
     <!-- Add silhouette -->
-    {{ if player.role == Constants.director_role }}
+    {{ if player.number == 1 }}
         <div style="position: absolute; top: 400px;  left: 200px" >
             <img src="{{ static silhouetteme }}" width="60px" height="auto"/>
         </div>
-        {{ if player.group.matcherpos == 3}}
+        {{ if player.group.player2pos == 3}}
             <div style="position: absolute; top: 170px;  left: 225px" >
                 <img src="{{ static silhouetteother }}" width="40px" height="auto"/>
             </div>
         {{ endif }}
-        {{ if player.group.matcherpos == 2}}
+        {{ if player.group.player2pos == 2}}
             <div style="position: absolute; top: 245px;  left: 560px" >
                 <img src="{{ static silhouetteother }}" width="50px" height="auto"/>
             </div>
         {{ endif }}
-        {{ if player.group.matcherpos == 1}}
+        {{ if player.group.player2pos == 1}}
             <div style="position: absolute; top: 400px;  left: 270px" >
                 <img src="{{ static silhouetteother }}" width="60px" height="auto"/>
             </div>
         {{ endif }}
-        {{ if player.group.matcherpos == 4}}
+        {{ if player.group.player2pos == 4}}
             <div style="position: absolute; top: 245px;  left: -100px" >
                 <img src="{{ static silhouetteother }}" width="50px" height="auto"/>
             </div>
@@ -163,22 +355,22 @@
         <div style="position: absolute; top: 400px;  left: 270px" >
             <img src="{{ static silhouetteme }}" width="60px" height="auto"/>
         </div>
-        {{ if player.group.matcherpos == 3}}
+        {{ if player.group.player2pos == 3}}
             <div style="position: absolute; top: 170px;  left: 225px" >
                 <img src="{{ static silhouetteother }}" width="40px" height="auto"/>
             </div>
         {{ endif }}
-        {{ if player.group.matcherpos == 2}}
+        {{ if player.group.player2pos == 2}}
             <div style="position: absolute; top: 245px;  left: -100px" >
                 <img src="{{ static silhouetteother }}" width="50px" height="auto"/>
             </div>
         {{ endif }}
-        {{ if player.group.matcherpos == 1}}
+        {{ if player.group.player2pos == 1}}
             <div style="position: absolute; top: 400px;  left: 200px" >
                 <img src="{{ static silhouetteother }}" width="60px" height="auto"/>
             </div>
         {{ endif }}
-        {{ if player.group.matcherpos == 4}}
+        {{ if player.group.player2pos == 4}}
             <div style="position: absolute; top: 245px;  left: 560px" >
                 <img src="{{ static silhouetteother }}" width="50px" height="auto"/>
             </div>

@@ -5,9 +5,8 @@ import itertools
 c = Currency
 
 doc = """
-Fruit selection game to study language and perspective takings development. This is the introduction, training and
-personal information gathering part. Personal information is only collected here, use the unique participant code to
-tie this to the main game data if needed. (Done so that the datafile does not get too large)
+Fruit selection game to study language and perspective takings development. This is the introduction, practice and
+personal information gathering part. The data from this part can be discarded as it is copied over into the main app
 """
 
 
@@ -34,20 +33,18 @@ class Group(BaseGroup):
 
     # saves blocks
     objects = models.IntegerField()
-    matcherpos = models.IntegerField()
+    player2pos = models.IntegerField()
     gridcolorpos = models.IntegerField()
 
     # saves image
     imga = models.IntegerField()
     imgb = models.IntegerField()
     imgc = models.IntegerField()
-    # imgd = models.IntegerField()
 
     # saves image value (correct, incorrect)
     imgavalue = models.BooleanField()
     imgbvalue = models.BooleanField()
     imgcvalue = models.BooleanField()
-    # imgdvalue = models.BooleanField()
 
     # conditions
 
@@ -80,32 +77,17 @@ class Communications(ExtraModel):
 # FUNCTIONS
 # called for each round in the session
 def creating_session(subsession):
-    global permutations
-    global switch
+    global permutations, aa, switch, x, y, z
 
     # make all the switching of object, perspective and grid color permutations
     if subsession.round_number == 1:
-        switch = [[1] * 20 + [2] * 24 + [3] * 24 + [4] * 28,
-                  [1] * 28 + [2] * 20 + [3] * 24 + [4] * 24,
-                  [1] * 24 + [2] * 28 + [3] * 24 + [4] * 20]
+        # make starting positions and object blocks random
+        x = [[1, 2, 3, 4], [1, 2, 3, 4], [1, 2, 3, 4], [1, 2, 3, 4]]
+        switch = [[x[0][0]] * 20 + [x[0][1]] * 24 + [x[0][2]] * 24 + [x[0][3]] * 28,
+                  [x[1][0]] * 28 + [x[1][1]] * 20 + [x[1][2]] * 24 + [x[1][3]] * 24,
+                  [x[2][0]] * 24 + [x[2][1]] * 28 + [x[2][2]] * 24 + [x[2][3]] * 20]
         switch = list(itertools.permutations(switch, 3))
         random.shuffle(switch)
-
-    # give each player a constant number, 1 or 2 (since group in id_in_group dictates player role)
-    n = 1
-    for player in subsession.get_players():
-        player.number = n
-        n += 1
-        if n == 3:
-            n = 1
-
-    # Flip the roles after x rounds
-    # x = Constants.num_rounds/2
-    # matrix = subsession.get_group_matrix()
-    # if subsession.round_number > x:
-    #    for row in matrix:
-    #        row.reverse()
-    # subsession.set_group_matrix(matrix)
 
     # flip the roles every round
     matrix = subsession.get_group_matrix()
@@ -114,17 +96,20 @@ def creating_session(subsession):
             row.reverse()
     subsession.set_group_matrix(matrix)
 
+    # setting values for all the players
+    n = 1
+    for player in subsession.get_players():
+        # give each player a constant number, 1 or 2 (since group in id_in_group dictates player role)
+        player.number = n
+        n += 1
+        if n == 3:
+            n = 1
+
     # setting values for all the groups
     for group in subsession.get_groups():
-        # Select the placement of objects ("true" random)
-        # imgorder = random.sample([1, 2, 3, 4], k=4)
-        # group.imga = imgorder[0]
-        # group.imgb = imgorder[1]
-        # group.imgc = imgorder[2]
-        # group.imgd = imgorder[3]
-
+        # select the block sizes
         group.objects = switch[(group.id_in_subsession - 1) % 5][0][subsession.round_number - 1]
-        group.matcherpos = switch[(group.id_in_subsession - 1) % 5][1][subsession.round_number - 1]
+        group.player2pos = switch[(group.id_in_subsession - 1) % 5][1][subsession.round_number - 1]
         group.gridcolorpos = switch[(group.id_in_subsession - 1) % 5][2][subsession.round_number - 1]
 
         # make the all permutations of the object ordering (pseudorandom)
@@ -132,7 +117,7 @@ def creating_session(subsession):
             permutations = list(itertools.permutations([1, 2, 3, 4], 3))
             random.shuffle(permutations)
 
-        # Select the images form the current image block
+        # select the images form the current image block
         if group.objects == 1:
             group.imga = permutations[(subsession.round_number - 1) % 24][0]
             group.imgb = permutations[(subsession.round_number - 1) % 24][1]
@@ -150,20 +135,100 @@ def creating_session(subsession):
             group.imgb = permutations[(subsession.round_number - 1) % 24][1] + 12
             group.imgc = permutations[(subsession.round_number - 1) % 24][2] + 12
 
-        # Select the value of the objects
-        imgvalue = random.sample([True, False, False], k=3)
+        # select the value of the objects
+        # this seems very bad practice, but I cannot come up with a better solution. good enough
+        if player.round_number == 1 or player.in_round(player.round_number - 1).group.objects != group.objects:
+            x = [1] * 2 + [2] * 2 + [3] * 2 + [4] * 2
+            y = [1] * 2 + [2] * 2 + [3] * 2 + [4] * 2
+            z = [1] * 2 + [2] * 2 + [3] * 2 + [4] * 2
+            random.shuffle(x)
+            random.shuffle(y)
+            random.shuffle(z)
+            aa = [0] * 24
+
+        if aa[0] != 1 and permutations[(subsession.round_number - 1) % 24][0] == x[0]:
+            imgvalue = [True, False, False]
+            aa[0] += 1
+        elif aa[1] != 1 and permutations[(subsession.round_number - 1) % 24][1] == y[0]:
+            imgvalue = [False, True, False]
+            aa[1] += 1
+        elif aa[2] != 1 and permutations[(subsession.round_number - 1) % 24][2] == z[0]:
+            imgvalue = [False, False, True]
+            aa[2] += 1
+        elif aa[3] != 1 and permutations[(subsession.round_number - 1) % 24][0] == x[1]:
+            imgvalue = [True, False, False]
+            aa[3] += 1
+        elif aa[4] != 1 and permutations[(subsession.round_number - 1) % 24][1] == y[1]:
+            imgvalue = [False, True, False]
+            aa[4] += 1
+        elif aa[5] != 1 and permutations[(subsession.round_number - 1) % 24][2] == z[1]:
+            imgvalue = [False, False, True]
+            aa[5] += 1
+        elif aa[6] != 1 and permutations[(subsession.round_number - 1) % 24][0] == x[2]:
+            imgvalue = [True, False, False]
+            aa[6] += 1
+        elif aa[7] != 1 and permutations[(subsession.round_number - 1) % 24][1] == y[2]:
+            imgvalue = [False, True, False]
+            aa[7] += 1
+        elif aa[8] != 1 and permutations[(subsession.round_number - 1) % 24][2] == z[2]:
+            imgvalue = [False, False, True]
+            aa[8] += 1
+        elif aa[9] != 1 and permutations[(subsession.round_number - 1) % 24][0] == x[3]:
+            imgvalue = [True, False, False]
+            aa[9] += 1
+        elif aa[10] != 1 and permutations[(subsession.round_number - 1) % 24][1] == y[3]:
+            imgvalue = [False, True, False]
+            aa[10] += 1
+        elif aa[11] != 1 and permutations[(subsession.round_number - 1) % 24][2] == z[3]:
+            imgvalue = [False, False, True]
+            aa[11] += 1
+        elif aa[12] != 1 and permutations[(subsession.round_number - 1) % 24][0] == x[4]:
+            imgvalue = [True, False, False]
+            aa[12] += 1
+        elif aa[13] != 1 and permutations[(subsession.round_number - 1) % 24][1] == y[4]:
+            imgvalue = [False, True, False]
+            aa[13] += 1
+        elif aa[14] != 1 and permutations[(subsession.round_number - 1) % 24][2] == z[4]:
+            imgvalue = [False, False, True]
+            aa[14] += 1
+        elif aa[15] != 1 and permutations[(subsession.round_number - 1) % 24][0] == x[5]:
+            imgvalue = [True, False, False]
+            aa[15] += 1
+        elif aa[16] != 1 and permutations[(subsession.round_number - 1) % 24][1] == y[5]:
+            imgvalue = [False, True, False]
+            aa[16] += 1
+        elif aa[17] != 1 and permutations[(subsession.round_number - 1) % 24][2] == z[5]:
+            imgvalue = [False, False, True]
+            aa[17] += 1
+        elif aa[18] != 1 and permutations[(subsession.round_number - 1) % 24][0] == x[6]:
+            imgvalue = [True, False, False]
+            aa[18] += 1
+        elif aa[19] != 1 and permutations[(subsession.round_number - 1) % 24][1] == y[6]:
+            imgvalue = [False, True, False]
+            aa[19] += 1
+        elif aa[20] != 1 and permutations[(subsession.round_number - 1) % 24][2] == z[6]:
+            imgvalue = [False, False, True]
+            aa[20] += 1
+        elif aa[21] != 1 and permutations[(subsession.round_number - 1) % 24][0] == x[7]:
+            imgvalue = [True, False, False]
+            aa[21] += 1
+        elif aa[22] != 1 and permutations[(subsession.round_number - 1) % 24][1] == y[7]:
+            imgvalue = [False, True, False]
+            aa[22] += 1
+        elif aa[23] != 1 and permutations[(subsession.round_number - 1) % 24][2] == z[7]:
+            imgvalue = [False, False, True]
+            aa[23] += 1
+        else:
+            imgvalue = random.sample([True, False, False], k=3)
         group.imgavalue = imgvalue[0]
         group.imgbvalue = imgvalue[1]
         group.imgcvalue = imgvalue[2]
 
-        # group.imgdvalue = imgvalue[3]
-        # potion relative to director. Clockwise starting with 1 = top
-        # group.matcherpos = random.choice([1, 2, 3, 4])
 
 # PAGES
 class MainPage(Page):
     # Amount of time before timeout in seconds
-    timeout_seconds = 60
+    timeout_seconds = 6000
 
     # Decide what happens if timeout
     @staticmethod
@@ -176,6 +241,12 @@ class MainPage(Page):
     @staticmethod
     def vars_for_template(player):
         group = player.group
+
+        # calculating score
+        score = 0
+        for p in player.in_previous_rounds():
+            if p.group.imgselectedcorrect:
+                score += 1
 
         # find out with silhouette to use
         if player.number == 1:
@@ -197,8 +268,8 @@ class MainPage(Page):
                     image_pathb='FruitGame/p{}.png'.format(group.imgb),
                     image_pathc='FruitGame/p{}.png'.format(group.imgc),
                     silhouetteme=silhouetteme,
-                    silhouetteother=silhouetteother)
-        # image_pathd='FruitGame/{}.jpg'.format(group.imgd))
+                    silhouetteother=silhouetteother,
+                    score=score)
 
     # Returns player role for javascript functions
     @staticmethod
@@ -223,9 +294,6 @@ class MainPage(Page):
             elif '3' in data:
                 group.imgselected = group.imgc
                 group.imgselectedcorrect = group.imgcvalue
-            # elif '4' in data:
-            #    group.imgselected = group.imgd
-            #    group.imgselectedcorrect = group.imgdvalue
             y = Communications.filter(group=group, r=player.round_number)
             messageoutput = ''
             for x in y:
@@ -265,18 +333,21 @@ class PersonalInformation(Page):
     form_fields = ['age', 'gender', 'genderother',  'nativelanguage', 'nonnativelanguage']
 
     @staticmethod
+    def before_next_page(player, timeout_happened):
+        # copies the given information into participant vars, that can be accessed in other apps
+        player.participant.age = player.age
+        player.participant.gender = player.gender
+        player.participant.genderother = player.genderother
+        player.participant.nativelanguage = player.nativelanguage
+        player.participant.nonnativelanguage = player.nonnativelanguage
+
+    @staticmethod
     def error_message(player, value):
         if value['gender'] == 'Other' and value['genderother'] == '':
             return 'You must specify "other" gender'
 
     @staticmethod
     def is_displayed(player):
-        # copies the given information on the first round, into the other rows (seems a little hack)
-        if player.round_number != 1:
-            player.age = player.in_round(player.round_number - 1).age
-            player.gender = player.in_round(player.round_number - 1).gender
-            player.nativelanguage = player.in_round(player.round_number - 1).nativelanguage
-            player.nonnativelanguage = player.in_round(player.round_number - 1).nonnativelanguage
         return player.round_number == 1
 
 
