@@ -16,10 +16,17 @@ SESSION_CONFIGS = [
     #    silhouette_corner=False,
     #),
     dict(
-        name='FruitGame',
+        name='Communications_Game',
         app_sequence=['FruitGameMiscInfo', 'FruitGame'],
         num_demo_participants=2,
     ),
+]
+
+ROOMS = [
+    dict(
+        name='exp',
+        display_name='Communications Game'
+    )
 ]
 
 # if you set a property in SESSION_CONFIG_DEFAULTS, it will be inherited by all configs
