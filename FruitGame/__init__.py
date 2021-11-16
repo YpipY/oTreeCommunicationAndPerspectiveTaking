@@ -14,7 +14,7 @@ from this part as information gathered in the MiscInfo part is copied over here
 class Constants(BaseConstants):
     name_in_url = 'FruitGame'
     players_per_group = 2
-    num_rounds = 96
+    num_rounds = 1 #96
     director_role = 'Director'
     matcher_role = 'Matcher'
 
@@ -71,6 +71,18 @@ class Player(BasePlayer):
     zumapping = models.StringField(label='What, if anything, is the meaning of "zu":')
     # Old question:
     # 'Describe, if applicable, what thing(s) "wa" communicates in your communications system:'
+
+    # Final survey
+    systemobject = models.BooleanField(initial=False, label='The objects themselves:')
+    systemdidactic = models.BooleanField(initial=False, label='The positions of the objects relative to the Director or the Matcher:')
+    systemabsolute = models.BooleanField(initial=False, label='The squares of the grid:')
+    systemother = models.StringField(label='Other: Please specify', blank=True)
+
+    adaptobject = models.StringField(label='When the objects changed:')
+    adaptavatar = models.StringField(label='When the avatar(s) changed position:')
+    adaptgrid = models.StringField(label='When the grid rotated:')
+
+    selfrating = models.IntegerField(label='', choices=[1, 2, 3, 4, 5], widget=widgets.RadioSelectHorizontal)
 
     # number used to assign silhouette color
     number = models.IntegerField()
@@ -367,16 +379,52 @@ class GridColorChange(Page):
 class MidSurvey(Page):
     form_model = 'player'
     form_fields = ['wamapping', 'bimapping', 'kemapping', 'zumapping']
+
     @staticmethod
     def is_displayed(player):
         return player.round_number % 24 == 18
 
 
 # More detailed survey asking what each symbol maps to
-class EndingSurvey(Page):
+class EndSurvey1(Page):
     @staticmethod
     def is_displayed(player):
         return player.round_number == Constants.num_rounds
+
+
+class EndSurvey2(Page):
+    form_model = 'player'
+    form_fields = ['systemobject', 'systemdidactic', 'systemabsolute', 'systemother']
+
+    # in case no information is entered
+    @staticmethod
+    def error_message(player, value):
+        if value['systemobject'] is False and value['systemdidactic'] is False and value['systemabsolute'] is False \
+                and value['systemother'] is '':
+            return 'If none of the options match your system please specify in the text box'
+
+    @staticmethod
+    def is_displayed(player):
+        return player.round_number == Constants.num_rounds
+
+
+class EndSurvey3(Page):
+    form_model = 'player'
+    form_fields = ['adaptobject', 'adaptavatar', 'adaptgrid']
+
+    @staticmethod
+    def is_displayed(player):
+        return player.round_number == Constants.num_rounds
+
+
+class EndSurvey4(Page):
+    form_model = 'player'
+    form_fields = ['selfrating']
+
+    @staticmethod
+    def is_displayed(player):
+        return player.round_number == Constants.num_rounds
+
 
 # Page that tell the player that the experiment has begun (only round 1)
 class Start1(Page):
@@ -410,5 +458,5 @@ class Start3(Page):
 
 page_sequence = [Start1, Start2, Start3,
                  PerspectiveChange, ObjectChange, GridColorChange,
-                 MidSurvey, EndingSurvey,
-                 StartWaitPage, MainPage, Results]
+                 StartWaitPage, MainPage, Results,
+                 MidSurvey, EndSurvey1, EndSurvey2, EndSurvey3, EndSurvey4]
