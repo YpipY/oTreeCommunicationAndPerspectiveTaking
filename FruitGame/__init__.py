@@ -14,7 +14,7 @@ from this part as information gathered in the MiscInfo part is copied over here
 class Constants(BaseConstants):
     name_in_url = 'FruitGame'
     players_per_group = 2
-    num_rounds = 1 #96
+    num_rounds = 96
     director_role = 'Director'
     matcher_role = 'Matcher'
 
