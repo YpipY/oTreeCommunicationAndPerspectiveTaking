@@ -170,18 +170,18 @@ class MainPage(Page):
         # find out with silhouette to use
         if player.number == 1:
             if player.role == "Director":
-                silhouetteme = 'FruitGame/Player1Director.png'
-                silhouetteother = 'FruitGame/Player2Matcher.png'
+                silhouetteme = 'FruitGame/Player1DirectorMe.png'
+                silhouetteother = 'FruitGame/Player2MatcherPartner.png'
             else:
-                silhouetteme = 'FruitGame/Player1Matcher.png'
-                silhouetteother = 'FruitGame/Player2Director.png'
+                silhouetteme = 'FruitGame/Player1MatcherMe.png'
+                silhouetteother = 'FruitGame/Player2DirectorPartner.png'
         else:
             if player.role == "Director":
-                silhouetteme = 'FruitGame/Player2Director.png'
-                silhouetteother = 'FruitGame/Player1Matcher.png'
+                silhouetteme = 'FruitGame/Player2DirectorMe.png'
+                silhouetteother = 'FruitGame/Player1MatcherPartner.png'
             else:
-                silhouetteme = 'FruitGame/Player2Matcher.png'
-                silhouetteother = 'FruitGame/Player1Director.png'
+                silhouetteme = 'FruitGame/Player2MatcherMe.png'
+                silhouetteother = 'FruitGame/Player1DirectorPartner.png'
 
         return dict(image_patha='FruitGame/p{}.png'.format(group.imga),
                     image_pathb='FruitGame/p{}.png'.format(group.imgb),

@@ -66,7 +66,7 @@ class Player(BasePlayer):
 
     # Meaning mappings
     wamapping = models.StringField(label='What, if anything, is the meaning of "wa":')
-    bimapping = models.StringField(label='What, if anything, is the meaning of "bi":')
+    limapping = models.StringField(label='What, if anything, is the meaning of "li":')
     kemapping = models.StringField(label='What, if anything, is the meaning of "ke":')
     zumapping = models.StringField(label='What, if anything, is the meaning of "zu":')
     # Old question:
@@ -78,9 +78,9 @@ class Player(BasePlayer):
     systemabsolute = models.BooleanField(initial=False, label='The squares of the grid:')
     systemother = models.StringField(label='Other: Please specify', blank=True)
 
-    adaptobject = models.StringField(label='When the objects changed:')
-    adaptavatar = models.StringField(label='When the avatar(s) changed position:')
-    adaptgrid = models.StringField(label='When the grid rotated:')
+    adaptobject = models.StringField(label='When the objects changed:', blank=True)
+    adaptavatar = models.StringField(label='When the avatar(s) changed position:', blank=True)
+    adaptgrid = models.StringField(label='When the grid rotated:', blank=True)
 
     selfrating = models.IntegerField(label='', choices=[1, 2, 3, 4, 5], widget=widgets.RadioSelectHorizontal)
 
@@ -102,8 +102,10 @@ def creating_session(subsession):
     # make all the switching of object, perspective and grid color permutations
     if subsession.round_number == 1:
         # make starting positions and object blocks random
-        a = [[1, 2, 3, 4], [2, 3, 4, 1], [3, 4, 1, 2], [4, 1, 2, 3]]
-        x = random.sample(a, 3)
+        #a = [[1, 2, 3, 4], [2, 3, 4, 1], [3, 4, 1, 2], [4, 1, 2, 3]]
+        #x = random.sample(a, 3)
+        # Non random setup
+        x = [[1, 2, 3, 4], [1, 2, 3, 4], [1, 2, 3, 4]]
         switch = [[x[0][0]] * 20 + [x[0][1]] * 24 + [x[0][2]] * 24 + [x[0][3]] * 28,
                   [x[1][0]] * 28 + [x[1][1]] * 20 + [x[1][2]] * 24 + [x[1][3]] * 24,
                   [x[2][0]] * 24 + [x[2][1]] * 28 + [x[2][2]] * 24 + [x[2][3]] * 20]
@@ -272,25 +274,26 @@ class MainPage(Page):
         # find out with silhouette to use
         if player.number == 1:
             if player.role == "Director":
-                silhouetteme = 'FruitGame/Player1Director.png'
-                silhouetteother = 'FruitGame/Player2Matcher.png'
+                silhouetteme = 'FruitGame/Player1DirectorMe.png'
+                silhouetteother = 'FruitGame/Player2MatcherPartner.png'
             else:
-                silhouetteme = 'FruitGame/Player1Matcher.png'
-                silhouetteother = 'FruitGame/Player2Director.png'
+                silhouetteme = 'FruitGame/Player1MatcherMe.png'
+                silhouetteother = 'FruitGame/Player2DirectorPartner.png'
         else:
             if player.role == "Director":
-                silhouetteme = 'FruitGame/Player2Director.png'
-                silhouetteother = 'FruitGame/Player1Matcher.png'
+                silhouetteme = 'FruitGame/Player2DirectorMe.png'
+                silhouetteother = 'FruitGame/Player1MatcherPartner.png'
             else:
-                silhouetteme = 'FruitGame/Player2Matcher.png'
-                silhouetteother = 'FruitGame/Player1Director.png'
+                silhouetteme = 'FruitGame/Player2MatcherMe.png'
+                silhouetteother = 'FruitGame/Player1DirectorPartner.png'
 
         return dict(image_patha='FruitGame/{}.png'.format(group.imga),
                     image_pathb='FruitGame/{}.png'.format(group.imgb),
                     image_pathc='FruitGame/{}.png'.format(group.imgc),
                     silhouetteme=silhouetteme,
                     silhouetteother=silhouetteother,
-                    score=score)
+                    score=score,
+                    cur_round=player.round_number)
 
     # Returns player role for javascript functions
     @staticmethod
@@ -378,7 +381,7 @@ class GridColorChange(Page):
 # Small survey asking what each symbol maps to
 class MidSurvey(Page):
     form_model = 'player'
-    form_fields = ['wamapping', 'bimapping', 'kemapping', 'zumapping']
+    form_fields = ['wamapping', 'limapping', 'kemapping', 'zumapping']
 
     @staticmethod
     def is_displayed(player):

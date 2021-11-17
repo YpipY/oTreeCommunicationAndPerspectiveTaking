@@ -1,9 +1,9 @@
 {{ block title }}
     {{ if player.number == 1 }}
-        <p style="line-height:1; margin:0px; margin-left:10px"> You are the<span style="line-height:1; margin:0px; margin-left:10px; color: purple">{{ player.role }} </span>
+        <p style="line-height:1; margin:0px; margin-left:0px"> You are the<span style="line-height:1; margin:0px; margin-left:10px; color: purple">{{ player.role }} </span>
             </p>
     {{ else }}
-        <p style="line-height:1; margin:0px; margin-left:10px"> You are the<span style="line-height:1; margin:0px; margin-left:10px; color: orange">{{ player.role }} </span>
+        <p style="line-height:1; margin:0px; margin-left:0px"> You are the<span style="line-height:1; margin:0px; margin-left:10px; color: orange">{{ player.role }} </span>
             </p>
     {{ endif }}
 {{ endblock }}
@@ -23,214 +23,214 @@
     {{ endif }}
     <!-- Game box -->
     <div style="line-height:1;  width: 49%; height: 400px; margin-right: 11%; float:left; transform: rotateX(75deg) rotateZ(45deg);">
-    <!-- Grid -->
+   <!-- Grid -->
     {{ if player.number == 1}}
         {{ if player.group.gridcolorpos == 1}}
-            <div style="width: 50%; height: 200px; float:left; border:1px; border-style: none solid solid none; background-color: #e8e7e3">
+            <div style="width: 50%; height: 200px; float:left; border:1px; border-style: none solid solid none; background-color: #d01c8b">
             </div>
-            <div style="width: 50%; height: 200px; float:right; border:1px; border-style: none none solid solid; background-color: #b5b5b5">
+            <div style="width: 50%; height: 200px; float:right; border:1px; border-style: none none solid solid; background-color: #b8e186">
             </div>
-            <div style="width: 50%; height: 200px; float:left; border:1px; border-style: solid solid none none; background-color: #787777">
+            <div style="width: 50%; height: 200px; float:left; border:1px; border-style: solid solid none none; background-color: #f1b6da">
             </div>
-            <div style="width: 50%; height: 200px; float:right; border:1px; border-style: solid none none solid; background-color: #575656">
+            <div style="width: 50%; height: 200px; float:right; border:1px; border-style: solid none none solid; background-color: #4dac26">
             </div>
         {{ endif }}
         {{ if player.group.gridcolorpos == 4}}
-            <div style="width: 50%; height: 200px; float:left; border:1px; border-style: none solid solid none; background-color: #b5b5b5">
+            <div style="width: 50%; height: 200px; float:left; border:1px; border-style: none solid solid none; background-color: #b8e186">
             </div>
-            <div style="width: 50%; height: 200px; float:right; border:1px; border-style: none none solid solid; background-color: #575656">
+            <div style="width: 50%; height: 200px; float:right; border:1px; border-style: none none solid solid; background-color: #4dac26">
             </div>
-            <div style="width: 50%; height: 200px; float:left; border:1px; border-style: solid solid none none; background-color: #e8e7e3">
+            <div style="width: 50%; height: 200px; float:left; border:1px; border-style: solid solid none none; background-color: #d01c8b">
             </div>
-            <div style="width: 50%; height: 200px; float:right; border:1px; border-style: solid none none solid; background-color: #787777">
+            <div style="width: 50%; height: 200px; float:right; border:1px; border-style: solid none none solid; background-color: #f1b6da">
             </div>
         {{ endif }}
         {{ if player.group.gridcolorpos == 3}}
-            <div style="width: 50%; height: 200px; float:left; border:1px; border-style: none solid solid none; background-color: #575656">
+            <div style="width: 50%; height: 200px; float:left; border:1px; border-style: none solid solid none; background-color: #4dac26">
             </div>
-            <div style="width: 50%; height: 200px; float:right; border:1px; border-style: none none solid solid; background-color: #787777">
+            <div style="width: 50%; height: 200px; float:right; border:1px; border-style: none none solid solid; background-color: #f1b6da">
             </div>
-            <div style="width: 50%; height: 200px; float:left; border:1px; border-style: solid solid none none; background-color: #b5b5b5">
+            <div style="width: 50%; height: 200px; float:left; border:1px; border-style: solid solid none none; background-color: #b8e186">
             </div>
-            <div style="width: 50%; height: 200px; float:right; border:1px; border-style: solid none none solid; background-color: #e8e7e3">
+            <div style="width: 50%; height: 200px; float:right; border:1px; border-style: solid none none solid; background-color: #d01c8b">
             </div>
         {{ endif }}
         {{ if player.group.gridcolorpos == 2}}
-            <div style="width: 50%; height: 200px; float:left; border:1px; border-style: none solid solid none; background-color: #787777">
+            <div style="width: 50%; height: 200px; float:left; border:1px; border-style: none solid solid none; background-color: #f1b6da">
             </div>
-            <div style="width: 50%; height: 200px; float:right; border:1px; border-style: none none solid solid; background-color: #e8e7e3">
+            <div style="width: 50%; height: 200px; float:right; border:1px; border-style: none none solid solid; background-color: #d01c8b">
             </div>
-            <div style="width: 50%; height: 200px; float:left; border:1px; border-style: solid solid none none; background-color: #575656">
+            <div style="width: 50%; height: 200px; float:left; border:1px; border-style: solid solid none none; background-color: #4dac26">
             </div>
-            <div style="width: 50%; height: 200px; float:right; border:1px; border-style: solid none none solid; background-color: #b5b5b5">
+            <div style="width: 50%; height: 200px; float:right; border:1px; border-style: solid none none solid; background-color: #b8e186">
             </div>
         {{ endif }}
     {{ else }}
         {{ if player.group.player2pos == 2}}
             {{ if player.group.gridcolorpos == 4}}
-                <div style="width: 50%; height: 200px; float:left; border:1px; border-style: none solid solid none; background-color: #e8e7e3">
+                <div style="width: 50%; height: 200px; float:left; border:1px; border-style: none solid solid none; background-color: #d01c8b">
                 </div>
-                <div style="width: 50%; height: 200px; float:right; border:1px; border-style: none none solid solid; background-color: #b5b5b5">
+                <div style="width: 50%; height: 200px; float:right; border:1px; border-style: none none solid solid; background-color: #b8e186">
                 </div>
-                <div style="width: 50%; height: 200px; float:left; border:1px; border-style: solid solid none none; background-color: #787777">
+                <div style="width: 50%; height: 200px; float:left; border:1px; border-style: solid solid none none; background-color: #f1b6da">
                 </div>
-                <div style="width: 50%; height: 200px; float:right; border:1px; border-style: solid none none solid; background-color: #575656">
+                <div style="width: 50%; height: 200px; float:right; border:1px; border-style: solid none none solid; background-color: #4dac26">
                 </div>
             {{ endif }}
             {{ if player.group.gridcolorpos == 3}}
-                <div style="width: 50%; height: 200px; float:left; border:1px; border-style: none solid solid none; background-color: #b5b5b5">
+                <div style="width: 50%; height: 200px; float:left; border:1px; border-style: none solid solid none; background-color: #b8e186">
                 </div>
-                <div style="width: 50%; height: 200px; float:right; border:1px; border-style: none none solid solid; background-color: #575656">
+                <div style="width: 50%; height: 200px; float:right; border:1px; border-style: none none solid solid; background-color: #4dac26">
                 </div>
-                <div style="width: 50%; height: 200px; float:left; border:1px; border-style: solid solid none none; background-color: #e8e7e3">
+                <div style="width: 50%; height: 200px; float:left; border:1px; border-style: solid solid none none; background-color: #d01c8b">
                 </div>
-                <div style="width: 50%; height: 200px; float:right; border:1px; border-style: solid none none solid; background-color: #787777">
+                <div style="width: 50%; height: 200px; float:right; border:1px; border-style: solid none none solid; background-color: #f1b6da">
                 </div>
             {{ endif }}
             {{ if player.group.gridcolorpos == 2}}
-                <div style="width: 50%; height: 200px; float:left; border:1px; border-style: none solid solid none; background-color: #575656">
+                <div style="width: 50%; height: 200px; float:left; border:1px; border-style: none solid solid none; background-color: #4dac26">
                 </div>
-                <div style="width: 50%; height: 200px; float:right; border:1px; border-style: none none solid solid; background-color: #787777">
+                <div style="width: 50%; height: 200px; float:right; border:1px; border-style: none none solid solid; background-color: #f1b6da">
                 </div>
-                <div style="width: 50%; height: 200px; float:left; border:1px; border-style: solid solid none none; background-color: #b5b5b5">
+                <div style="width: 50%; height: 200px; float:left; border:1px; border-style: solid solid none none; background-color: #b8e186">
                 </div>
-                <div style="width: 50%; height: 200px; float:right; border:1px; border-style: solid none none solid; background-color: #e8e7e3">
+                <div style="width: 50%; height: 200px; float:right; border:1px; border-style: solid none none solid; background-color: #d01c8b">
                 </div>
             {{ endif }}
             {{ if player.group.gridcolorpos == 1}}
-                <div style="width: 50%; height: 200px; float:left; border:1px; border-style: none solid solid none; background-color: #787777">
+                <div style="width: 50%; height: 200px; float:left; border:1px; border-style: none solid solid none; background-color: #f1b6da">
                 </div>
-                <div style="width: 50%; height: 200px; float:right; border:1px; border-style: none none solid solid; background-color: #e8e7e3">
+                <div style="width: 50%; height: 200px; float:right; border:1px; border-style: none none solid solid; background-color: #d01c8b">
                 </div>
-                <div style="width: 50%; height: 200px; float:left; border:1px; border-style: solid solid none none; background-color: #575656">
+                <div style="width: 50%; height: 200px; float:left; border:1px; border-style: solid solid none none; background-color: #4dac26">
                 </div>
-                <div style="width: 50%; height: 200px; float:right; border:1px; border-style: solid none none solid; background-color: #b5b5b5">
+                <div style="width: 50%; height: 200px; float:right; border:1px; border-style: solid none none solid; background-color: #b8e186">
                 </div>
             {{ endif }}
         {{ endif }}
         {{ if player.group.player2pos == 3}}
             {{ if player.group.gridcolorpos == 3}}
-                <div style="width: 50%; height: 200px; float:left; border:1px; border-style: none solid solid none; background-color: #e8e7e3">
+                <div style="width: 50%; height: 200px; float:left; border:1px; border-style: none solid solid none; background-color: #d01c8b">
                 </div>
-                <div style="width: 50%; height: 200px; float:right; border:1px; border-style: none none solid solid; background-color: #b5b5b5">
+                <div style="width: 50%; height: 200px; float:right; border:1px; border-style: none none solid solid; background-color: #b8e186">
                 </div>
-                <div style="width: 50%; height: 200px; float:left; border:1px; border-style: solid solid none none; background-color: #787777">
+                <div style="width: 50%; height: 200px; float:left; border:1px; border-style: solid solid none none; background-color: #f1b6da">
                 </div>
-                <div style="width: 50%; height: 200px; float:right; border:1px; border-style: solid none none solid; background-color: #575656">
+                <div style="width: 50%; height: 200px; float:right; border:1px; border-style: solid none none solid; background-color: #4dac26">
                 </div>
             {{ endif }}
             {{ if player.group.gridcolorpos == 2}}
-                <div style="width: 50%; height: 200px; float:left; border:1px; border-style: none solid solid none; background-color: #b5b5b5">
+                <div style="width: 50%; height: 200px; float:left; border:1px; border-style: none solid solid none; background-color: #b8e186">
                 </div>
-                <div style="width: 50%; height: 200px; float:right; border:1px; border-style: none none solid solid; background-color: #575656">
+                <div style="width: 50%; height: 200px; float:right; border:1px; border-style: none none solid solid; background-color: #4dac26">
                 </div>
-                <div style="width: 50%; height: 200px; float:left; border:1px; border-style: solid solid none none; background-color: #e8e7e3">
+                <div style="width: 50%; height: 200px; float:left; border:1px; border-style: solid solid none none; background-color: #d01c8b">
                 </div>
-                <div style="width: 50%; height: 200px; float:right; border:1px; border-style: solid none none solid; background-color: #787777">
+                <div style="width: 50%; height: 200px; float:right; border:1px; border-style: solid none none solid; background-color: #f1b6da">
                 </div>
             {{ endif }}
             {{ if player.group.gridcolorpos == 1}}
-                <div style="width: 50%; height: 200px; float:left; border:1px; border-style: none solid solid none; background-color: #575656">
+                <div style="width: 50%; height: 200px; float:left; border:1px; border-style: none solid solid none; background-color: #4dac26">
                 </div>
-                <div style="width: 50%; height: 200px; float:right; border:1px; border-style: none none solid solid; background-color: #787777">
+                <div style="width: 50%; height: 200px; float:right; border:1px; border-style: none none solid solid; background-color: #f1b6da">
                 </div>
-                <div style="width: 50%; height: 200px; float:left; border:1px; border-style: solid solid none none; background-color: #b5b5b5">
+                <div style="width: 50%; height: 200px; float:left; border:1px; border-style: solid solid none none; background-color: #b8e186">
                 </div>
-                <div style="width: 50%; height: 200px; float:right; border:1px; border-style: solid none none solid; background-color: #e8e7e3">
+                <div style="width: 50%; height: 200px; float:right; border:1px; border-style: solid none none solid; background-color: #d01c8b">
                 </div>
             {{ endif }}
             {{ if player.group.gridcolorpos == 4}}
-                <div style="width: 50%; height: 200px; float:left; border:1px; border-style: none solid solid none; background-color: #787777">
+                <div style="width: 50%; height: 200px; float:left; border:1px; border-style: none solid solid none; background-color: #f1b6da">
                 </div>
-                <div style="width: 50%; height: 200px; float:right; border:1px; border-style: none none solid solid; background-color: #e8e7e3">
+                <div style="width: 50%; height: 200px; float:right; border:1px; border-style: none none solid solid; background-color: #d01c8b">
                 </div>
-                <div style="width: 50%; height: 200px; float:left; border:1px; border-style: solid solid none none; background-color: #575656">
+                <div style="width: 50%; height: 200px; float:left; border:1px; border-style: solid solid none none; background-color: #4dac26">
                 </div>
-                <div style="width: 50%; height: 200px; float:right; border:1px; border-style: solid none none solid; background-color: #b5b5b5">
+                <div style="width: 50%; height: 200px; float:right; border:1px; border-style: solid none none solid; background-color: #b8e186">
                 </div>
             {{ endif }}
         {{ endif }}
         {{ if player.group.player2pos == 4}}
             {{ if player.group.gridcolorpos == 2}}
-                <div style="width: 50%; height: 200px; float:left; border:1px; border-style: none solid solid none; background-color: #e8e7e3">
+                <div style="width: 50%; height: 200px; float:left; border:1px; border-style: none solid solid none; background-color: #d01c8b">
                 </div>
-                <div style="width: 50%; height: 200px; float:right; border:1px; border-style: none none solid solid; background-color: #b5b5b5">
+                <div style="width: 50%; height: 200px; float:right; border:1px; border-style: none none solid solid; background-color: #b8e186">
                 </div>
-                <div style="width: 50%; height: 200px; float:left; border:1px; border-style: solid solid none none; background-color: #787777">
+                <div style="width: 50%; height: 200px; float:left; border:1px; border-style: solid solid none none; background-color: #f1b6da">
                 </div>
-                <div style="width: 50%; height: 200px; float:right; border:1px; border-style: solid none none solid; background-color: #575656">
+                <div style="width: 50%; height: 200px; float:right; border:1px; border-style: solid none none solid; background-color: #4dac26">
                 </div>
             {{ endif }}
             {{ if player.group.gridcolorpos == 1}}
-                <div style="width: 50%; height: 200px; float:left; border:1px; border-style: none solid solid none; background-color: #b5b5b5">
+                <div style="width: 50%; height: 200px; float:left; border:1px; border-style: none solid solid none; background-color: #b8e186">
                 </div>
-                <div style="width: 50%; height: 200px; float:right; border:1px; border-style: none none solid solid; background-color: #575656">
+                <div style="width: 50%; height: 200px; float:right; border:1px; border-style: none none solid solid; background-color: #4dac26">
                 </div>
-                <div style="width: 50%; height: 200px; float:left; border:1px; border-style: solid solid none none; background-color: #e8e7e3">
+                <div style="width: 50%; height: 200px; float:left; border:1px; border-style: solid solid none none; background-color: #d01c8b">
                 </div>
-                <div style="width: 50%; height: 200px; float:right; border:1px; border-style: solid none none solid; background-color: #787777">
+                <div style="width: 50%; height: 200px; float:right; border:1px; border-style: solid none none solid; background-color: #f1b6da">
                 </div>
             {{ endif }}
             {{ if player.group.gridcolorpos == 4}}
-                <div style="width: 50%; height: 200px; float:left; border:1px; border-style: none solid solid none; background-color: #575656">
+                <div style="width: 50%; height: 200px; float:left; border:1px; border-style: none solid solid none; background-color: #4dac26">
                 </div>
-                <div style="width: 50%; height: 200px; float:right; border:1px; border-style: none none solid solid; background-color: #787777">
+                <div style="width: 50%; height: 200px; float:right; border:1px; border-style: none none solid solid; background-color: #f1b6da">
                 </div>
-                <div style="width: 50%; height: 200px; float:left; border:1px; border-style: solid solid none none; background-color: #b5b5b5">
+                <div style="width: 50%; height: 200px; float:left; border:1px; border-style: solid solid none none; background-color: #b8e186">
                 </div>
-                <div style="width: 50%; height: 200px; float:right; border:1px; border-style: solid none none solid; background-color: #e8e7e3">
+                <div style="width: 50%; height: 200px; float:right; border:1px; border-style: solid none none solid; background-color: #d01c8b">
                 </div>
             {{ endif }}
             {{ if player.group.gridcolorpos == 3}}
-                <div style="width: 50%; height: 200px; float:left; border:1px; border-style: none solid solid none; background-color: #787777">
+                <div style="width: 50%; height: 200px; float:left; border:1px; border-style: none solid solid none; background-color: #f1b6da">
                 </div>
-                <div style="width: 50%; height: 200px; float:right; border:1px; border-style: none none solid solid; background-color: #e8e7e3">
+                <div style="width: 50%; height: 200px; float:right; border:1px; border-style: none none solid solid; background-color: #d01c8b">
                 </div>
-                <div style="width: 50%; height: 200px; float:left; border:1px; border-style: solid solid none none; background-color: #575656">
+                <div style="width: 50%; height: 200px; float:left; border:1px; border-style: solid solid none none; background-color: #4dac26">
                 </div>
-                <div style="width: 50%; height: 200px; float:right; border:1px; border-style: solid none none solid; background-color: #b5b5b5">
+                <div style="width: 50%; height: 200px; float:right; border:1px; border-style: solid none none solid; background-color: #b8e186">
                 </div>
             {{ endif }}
         {{ endif }}
         {{ if player.group.player2pos == 1}}
             {{ if player.group.gridcolorpos == 1}}
-                <div style="width: 50%; height: 200px; float:left; border:1px; border-style: none solid solid none; background-color: #e8e7e3">
+                <div style="width: 50%; height: 200px; float:left; border:1px; border-style: none solid solid none; background-color: #d01c8b">
                 </div>
-                <div style="width: 50%; height: 200px; float:right; border:1px; border-style: none none solid solid; background-color: #b5b5b5">
+                <div style="width: 50%; height: 200px; float:right; border:1px; border-style: none none solid solid; background-color: #b8e186">
                 </div>
-                <div style="width: 50%; height: 200px; float:left; border:1px; border-style: solid solid none none; background-color: #787777">
+                <div style="width: 50%; height: 200px; float:left; border:1px; border-style: solid solid none none; background-color: #f1b6da">
                 </div>
-                <div style="width: 50%; height: 200px; float:right; border:1px; border-style: solid none none solid; background-color: #575656">
+                <div style="width: 50%; height: 200px; float:right; border:1px; border-style: solid none none solid; background-color: #4dac26">
                 </div>
             {{ endif }}
             {{ if player.group.gridcolorpos == 4}}
-                <div style="width: 50%; height: 200px; float:left; border:1px; border-style: none solid solid none; background-color: #b5b5b5">
+                <div style="width: 50%; height: 200px; float:left; border:1px; border-style: none solid solid none; background-color: #b8e186">
                 </div>
-                <div style="width: 50%; height: 200px; float:right; border:1px; border-style: none none solid solid; background-color: #575656">
+                <div style="width: 50%; height: 200px; float:right; border:1px; border-style: none none solid solid; background-color: #4dac26">
                 </div>
-                <div style="width: 50%; height: 200px; float:left; border:1px; border-style: solid solid none none; background-color: #e8e7e3">
+                <div style="width: 50%; height: 200px; float:left; border:1px; border-style: solid solid none none; background-color: #d01c8b">
                 </div>
-                <div style="width: 50%; height: 200px; float:right; border:1px; border-style: solid none none solid; background-color: #787777">
+                <div style="width: 50%; height: 200px; float:right; border:1px; border-style: solid none none solid; background-color: #f1b6da">
                 </div>
             {{ endif }}
             {{ if player.group.gridcolorpos == 3}}
-                <div style="width: 50%; height: 200px; float:left; border:1px; border-style: none solid solid none; background-color: #575656">
+                <div style="width: 50%; height: 200px; float:left; border:1px; border-style: none solid solid none; background-color: #4dac26">
                 </div>
-                <div style="width: 50%; height: 200px; float:right; border:1px; border-style: none none solid solid; background-color: #787777">
+                <div style="width: 50%; height: 200px; float:right; border:1px; border-style: none none solid solid; background-color: #f1b6da">
                 </div>
-                <div style="width: 50%; height: 200px; float:left; border:1px; border-style: solid solid none none; background-color: #b5b5b5">
+                <div style="width: 50%; height: 200px; float:left; border:1px; border-style: solid solid none none; background-color: #b8e186">
                 </div>
-                <div style="width: 50%; height: 200px; float:right; border:1px; border-style: solid none none solid; background-color: #e8e7e3">
+                <div style="width: 50%; height: 200px; float:right; border:1px; border-style: solid none none solid; background-color: #d01c8b">
                 </div>
             {{ endif }}
             {{ if player.group.gridcolorpos == 2}}
-                <div style="width: 50%; height: 200px; float:left; border:1px; border-style: none solid solid none; background-color: #787777">
+                <div style="width: 50%; height: 200px; float:left; border:1px; border-style: none solid solid none; background-color: #f1b6da">
                 </div>
-                <div style="width: 50%; height: 200px; float:right; border:1px; border-style: none none solid solid; background-color: #e8e7e3">
+                <div style="width: 50%; height: 200px; float:right; border:1px; border-style: none none solid solid; background-color: #d01c8b">
                 </div>
-                <div style="width: 50%; height: 200px; float:left; border:1px; border-style: solid solid none none; background-color: #575656">
+                <div style="width: 50%; height: 200px; float:left; border:1px; border-style: solid solid none none; background-color: #4dac26">
                 </div>
-                <div style="width: 50%; height: 200px; float:right; border:1px; border-style: solid none none solid; background-color: #b5b5b5">
+                <div style="width: 50%; height: 200px; float:right; border:1px; border-style: solid none none solid; background-color: #b8e186">
                 </div>
             {{ endif }}
         {{ endif }}
@@ -240,7 +240,7 @@
     {{ if player.role == Constants.director_role }}
         {{ if player.group.imgavalue == True }}
             <div style="position: absolute; top: 225px;  left: 235px">
-            <p style="line-height:0; font-size: 60px; font-weight: bold; color: green; margin-left: 13px; transform: rotateZ(-55deg)"> &larr;</p>
+            <p style="line-height:0; font-size: 60px; font-weight: bold; color: black; margin-left: 13px; transform: rotateZ(-55deg)"> &larr;</p>
             </div>
         {{ endif }}
         <div style="position: absolute; top: 250px;  left: 214px">
@@ -248,7 +248,7 @@
         </div>
         {{ if player.group.imgbvalue == True }}
             <div style="position: absolute; top: 255px;  left: 385px">
-            <p style="line-height:0; font-size: 65px; font-weight: bold; color: green; margin-left: 20px; transform: rotateZ(-55deg)"> &larr;</p>
+            <p style="line-height:0; font-size: 65px; font-weight: bold; color: black; margin-left: 20px; transform: rotateZ(-55deg)"> &larr;</p>
             </div>
         {{ endif }}
         <div style="position: absolute; top: 275px;  left: 360px">
@@ -256,7 +256,7 @@
         </div>
         {{ if player.group.imgcvalue == True }}
             <div style="position: absolute; top: 300px;  left: 220px">
-            <p style="line-height:0; font-size: 80px; font-weight: bold; color: green; margin-left: 23px; transform: rotateZ(-55deg)"> &larr;</p>
+            <p style="line-height:0; font-size: 80px; font-weight: bold; color: black; margin-left: 23px; transform: rotateZ(-55deg)"> &larr;</p>
             </div>
         {{ endif }}
         <div style="position: absolute; top: 310px;  left: 200px">
@@ -335,50 +335,50 @@
     <!-- Add silhouette -->
     {{ if player.number == 1 }}
         <div style="position: absolute; top: 400px;  left: 200px" >
-            <img src="{{ static silhouetteme }}" width="60px" height="auto"/>
+            <img src="{{ static silhouetteme }}" width="80px" height="auto"/>
         </div>
         {{ if player.group.player2pos == 3}}
-            <div style="position: absolute; top: 170px;  left: 225px" >
-                <img src="{{ static silhouetteother }}" width="40px" height="auto"/>
+            <div style="position: absolute; top: 135px;  left: 200px" >
+                <img src="{{ static silhouetteother }}" width="60px" height="auto"/>
             </div>
         {{ endif }}
         {{ if player.group.player2pos == 2}}
-            <div style="position: absolute; top: 245px;  left: 560px" >
-                <img src="{{ static silhouetteother }}" width="50px" height="auto"/>
+            <div style="position: absolute; top: 215px;  left: 560px" >
+                <img src="{{ static silhouetteother }}" width="70px" height="auto"/>
             </div>
         {{ endif }}
         {{ if player.group.player2pos == 1}}
             <div style="position: absolute; top: 400px;  left: 270px" >
-                <img src="{{ static silhouetteother }}" width="60px" height="auto"/>
+                <img src="{{ static silhouetteother }}" width="80px" height="auto"/>
             </div>
         {{ endif }}
         {{ if player.group.player2pos == 4}}
-            <div style="position: absolute; top: 245px;  left: -100px" >
-                <img src="{{ static silhouetteother }}" width="50px" height="auto"/>
+            <div style="position: absolute; top: 215px;  left: -120px" >
+                <img src="{{ static silhouetteother }}" width="70px" height="auto"/>
             </div>
         {{ endif }}
     {{ else }}
         <div style="position: absolute; top: 400px;  left: 270px" >
-            <img src="{{ static silhouetteme }}" width="60px" height="auto"/>
+            <img src="{{ static silhouetteme }}" width="80px" height="auto"/>
         </div>
         {{ if player.group.player2pos == 3}}
-            <div style="position: absolute; top: 170px;  left: 225px" >
-                <img src="{{ static silhouetteother }}" width="40px" height="auto"/>
+            <div style="position: absolute; top: 135px;  left: 200px" >
+                <img src="{{ static silhouetteother }}" width="60px" height="auto"/>
             </div>
         {{ endif }}
         {{ if player.group.player2pos == 2}}
-            <div style="position: absolute; top: 245px;  left: -100px" >
-                <img src="{{ static silhouetteother }}" width="50px" height="auto"/>
+            <div style="position: absolute; top: 215px;  left: -120px" >
+                <img src="{{ static silhouetteother }}" width="70px" height="auto"/>
             </div>
         {{ endif }}
         {{ if player.group.player2pos == 1}}
             <div style="position: absolute; top: 400px;  left: 200px" >
-                <img src="{{ static silhouetteother }}" width="60px" height="auto"/>
+                <img src="{{ static silhouetteother }}" width="80px" height="auto"/>
             </div>
         {{ endif }}
         {{ if player.group.player2pos == 4}}
-            <div style="position: absolute; top: 245px;  left: 560px" >
-                <img src="{{ static silhouetteother }}" width="50px" height="auto"/>
+            <div style="position: absolute; top: 215px;  left: 560px" >
+                <img src="{{ static silhouetteother }}" width="60px" height="auto"/>
             </div>
         {{ endif }}
     {{ endif }}
@@ -395,7 +395,7 @@
             </div>
             <div  style="width: 75%; float:left">
                 <button id="buttonwa" type="button" class="button button1" onclick="liveSend('wa'); disablesymbols()" >wa</button>
-                <button id="buttonbi" type="button" class="button button1" onclick="liveSend('bi'); disablesymbols()" >bi</button>
+                <button id="buttonli" type="button" class="button button1" onclick="liveSend('li'); disablesymbols()" >li</button>
                 <button id="buttonke" type="button" class="button button1" onclick="liveSend('ke'); disablesymbols()" >ke</button>
                 <button id="buttonzu" type="button" class="button button1" onclick="liveSend('zu'); disablesymbols()" >zu</button>
             </div>
@@ -480,9 +480,9 @@ button[disabled]{
     background-color:#e8e7e3;
     border-color:black;
     position: absolute;
-    top: 60px;
-    left: 645px;
-    width: 300px;
+    top: 72px;
+    left: 627px;
+    width: 330px;
     height: 60px;
 }
 
@@ -519,7 +519,7 @@ function disablefinal(){
     document.getElementById("buttonsend").disabled = true;
     document.getElementById("buttonundo").disabled = true;
     document.getElementById("buttonwa").disabled = true;
-    document.getElementById("buttonbi").disabled = true;
+    document.getElementById("buttonli").disabled = true;
     document.getElementById("buttonke").disabled = true;
     document.getElementById("buttonzu").disabled = true;
 }
@@ -529,7 +529,7 @@ function disablesymbols(){
     document.getElementById("buttonsend").disabled = false;
     document.getElementById("buttonundo").disabled = false;
     document.getElementById("buttonwa").disabled = true;
-    document.getElementById("buttonbi").disabled = true;
+    document.getElementById("buttonli").disabled = true;
     document.getElementById("buttonke").disabled = true;
     document.getElementById("buttonzu").disabled = true;
 }
@@ -539,7 +539,7 @@ function ensablesymbols(){
     document.getElementById("buttonsend").disabled = true;
     document.getElementById("buttonundo").disabled = true;
     document.getElementById("buttonwa").disabled = false;
-    document.getElementById("buttonbi").disabled = false;
+    document.getElementById("buttonli").disabled = false;
     document.getElementById("buttonke").disabled = false;
     document.getElementById("buttonzu").disabled = false;
 }
