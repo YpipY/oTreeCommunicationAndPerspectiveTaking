@@ -1,0 +1,51 @@
+{{ block title }}
+<p style="line-height:1; margin:0px; margin-left:0px"> <span>The following statements inquire about your thoughts and
+    feelings during the experiment.</span>
+</p>
+<p style="line-height:1; margin:0px; margin-left:0px">For each item, choose the number that most appropriately
+    describes how you felt during the experiment.
+</p>
+<p style="line-height:1; margin:0px; margin-left:0px; font-weight: bold">Read each item carefully before responding.
+</p>
+<p style="line-height:1; margin:0px; margin-left:0px">Answer as honestly as you can. Thank you.
+</p>
+{{ endblock }}
+{{ block content }}
+<div style="line-height:1; width: 670px">
+    <div style="line-height:1; width: 150px; margin-right: 0px; float:left; ">
+    <p style="line-height:1; margin:0px; margin-left:0px"><span>I felt very relaxed during this activity</span>
+    </div>
+    {{ formfield 'motivationsurvey1' }}
+    <div style="line-height:1; width: 150px;  margin-left: 0px; margin-top: -57px; float:right; ">
+    <p style="line-height:1; margin:0px; margin-left:0px"><span>I felt very tense during this activity</span>
+    </p>
+    </div>
+</div>
+<br>
+<div style="line-height:1; width: 670px">
+    <div style="line-height:1; width: 150px; margin-right: 0px; float:left; ">
+    <p style="line-height:1; margin:0px; margin-left:0px"><span>I didn’t feel nervous at all during this activity</span>
+    </div>
+    {{ formfield 'motivationsurvey2' }}
+    <div style="line-height:1; width: 150px;  margin-left: 0px; margin-top: -57px; float:right; ">
+    <p style="line-height:1; margin:0px; margin-left:0px"><span>I was nervous during this activity</span>
+    </p>
+    </div>
+</div>
+<br>
+<div style="line-height:1; width: 670px">
+    <div style="line-height:1; width: 150px; margin-right: 0px; float:left; ">
+    <p style="line-height:1; margin:0px; margin-left:0px"><span>I was trying very hard during this activity</span>
+    </div>
+    {{ formfield 'motivationsurvey3' }}
+    <div style="line-height:1; width: 150px;  margin-left: 0px; margin-top: -57px; float:right; ">
+    <p style="line-height:1; margin:0px; margin-left:0px"><span>I wasn’t trying very hard during this activity</span>
+    </p>
+    </div>
+</div>
+
+<br>
+<br>
+<br>
+    {{ next_button }}
+{{ endblock }}

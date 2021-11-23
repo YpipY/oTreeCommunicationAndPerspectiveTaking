@@ -74,7 +74,7 @@ class Player(BasePlayer):
 
     # Final survey
     systemobject = models.BooleanField(initial=False, label='The objects themselves:')
-    systemdidactic = models.BooleanField(initial=False, label='The positions of the objects relative to the Director or the Matcher:')
+    systemdeictic = models.BooleanField(initial=False, label='The positions of the objects relative to the Director or the Matcher:')
     systemabsolute = models.BooleanField(initial=False, label='The squares of the grid:')
     systemother = models.StringField(label='Other: Please specify', blank=True)
 
@@ -83,6 +83,68 @@ class Player(BasePlayer):
     adaptgrid = models.StringField(label='When the grid rotated:', blank=True)
 
     selfrating = models.IntegerField(label='', choices=[1, 2, 3, 4, 5], widget=widgets.RadioSelectHorizontal)
+
+    # Perspective survey
+    perspectivesurvey1 = models.IntegerField(label='I sometimes find it difficult to see things from the '
+                                                   '"other person\'s" point of view.',
+                                             choices=[[1, "A"],
+                                                      [2, "B"], [3, "C"], [4, "D"], [5, "E"]],
+                                             widget=widgets.RadioSelectHorizontal)
+    perspectivesurvey2 = models.IntegerField(label='I try to look at everybody\'s side of a disagreement before '
+                                                   'I make a decision.',
+                                             choices=[[1, "A"],
+                                                      [2, "B"], [3, "C"], [4, "D"], [5, "E"]],
+                                             widget=widgets.RadioSelectHorizontal)
+    perspectivesurvey3 = models.IntegerField(label='I sometimes try to understand my friends better by imagining '
+                                                   'how things look from their perspective.',
+                                             choices=[[1, "A"],
+                                                      [2, "B"], [3, "C"], [4, "D"], [5, "E"]],
+                                             widget=widgets.RadioSelectHorizontal)
+    perspectivesurvey4 = models.IntegerField(label='If I\'m sure I\'m right about something, I don\'t waste much '
+                                                   'time listening to other peoplen\'s arguments.',
+                                             choices=[[1, "A"],
+                                                      [2, "B"], [3, "C"], [4, "D"], [5, "E"]],
+                                             widget=widgets.RadioSelectHorizontal)
+    perspectivesurvey5 = models.IntegerField(label='I believe that there are two sides to every question and try '
+                                                   'to look at them both.',
+                                             choices=[[1, "A"],
+                                                      [2, "B"], [3, "C"], [4, "D"], [5, "E"]],
+                                             widget=widgets.RadioSelectHorizontal)
+    perspectivesurvey6 = models.IntegerField(label='When I\'m upset at someone, I usually try to "put myself in '
+                                                   'their shoes" for a while.',
+                                             choices=[[1, "A"],
+                                                      [2, "B"], [3, "C"], [4, "D"], [5, "E"]],
+                                             widget=widgets.RadioSelectHorizontal)
+    perspectivesurvey7 = models.IntegerField(label='Before criticizing somebody, I try to imagine how I would '
+                                                   'feel if I were in their place.',
+                                             choices=[[1, "A"],
+                                                      [2, "B"], [3, "C"], [4, "D"], [5, "E"]],
+                                             widget=widgets.RadioSelectHorizontal)
+    # Motivation survey
+    motivationsurvey1 = models.IntegerField(label='', choices=[1, 2, 3, 4, 5, 6, 7],
+                                            widget=widgets.RadioSelectHorizontal)
+    motivationsurvey2 = models.IntegerField(label='', choices=[1, 2, 3, 4, 5, 6, 7],
+                                            widget=widgets.RadioSelectHorizontal)
+    motivationsurvey3 = models.IntegerField(label='', choices=[1, 2, 3, 4, 5, 6, 7],
+                                            widget=widgets.RadioSelectHorizontal)
+    motivationsurvey4 = models.IntegerField(label='', choices=[1, 2, 3, 4, 5, 6, 7],
+                                            widget=widgets.RadioSelectHorizontal)
+    motivationsurvey5 = models.IntegerField(label='', choices=[1, 2, 3, 4, 5, 6, 7],
+                                            widget=widgets.RadioSelectHorizontal)
+    motivationsurvey6 = models.IntegerField(label='', choices=[1, 2, 3, 4, 5, 6, 7],
+                                            widget=widgets.RadioSelectHorizontal)
+    motivationsurvey7 = models.IntegerField(label='', choices=[1, 2, 3, 4, 5, 6, 7],
+                                            widget=widgets.RadioSelectHorizontal)
+    motivationsurvey8 = models.IntegerField(label='', choices=[1, 2, 3, 4, 5, 6, 7],
+                                            widget=widgets.RadioSelectHorizontal)
+    motivationsurvey9 = models.IntegerField(label='', choices=[1, 2, 3, 4, 5, 6, 7],
+                                            widget=widgets.RadioSelectHorizontal)
+    motivationsurvey10 = models.IntegerField(label='', choices=[1, 2, 3, 4, 5, 6, 7],
+                                             widget=widgets.RadioSelectHorizontal)
+    motivationsurvey11 = models.IntegerField(label='', choices=[1, 2, 3, 4, 5, 6, 7],
+                                             widget=widgets.RadioSelectHorizontal)
+    motivationsurvey12 = models.IntegerField(label='', choices=[1, 2, 3, 4, 5, 6, 7],
+                                             widget=widgets.RadioSelectHorizontal)
 
     # number used to assign silhouette color
     number = models.IntegerField()
@@ -348,7 +410,31 @@ class StartWaitPage(WaitPage):
 
 
 class Results(Page):
-    pass
+    # For finding the image path for each image placement and silhouette
+    @staticmethod
+    def vars_for_template(player):
+        group = player.group
+
+        if player.number == 1:
+            if player.role == "Director":
+                silhouetteme = 'FruitGame/Player1DirectorMe.png'
+                silhouetteother = 'FruitGame/Player2MatcherPartner.png'
+            else:
+                silhouetteme = 'FruitGame/Player1MatcherMe.png'
+                silhouetteother = 'FruitGame/Player2DirectorPartner.png'
+        else:
+            if player.role == "Director":
+                silhouetteme = 'FruitGame/Player2DirectorMe.png'
+                silhouetteother = 'FruitGame/Player1MatcherPartner.png'
+            else:
+                silhouetteme = 'FruitGame/Player2MatcherMe.png'
+                silhouetteother = 'FruitGame/Player1DirectorPartner.png'
+
+        return dict(image_patha='FruitGame/{}.png'.format(group.imga),
+                    image_pathb='FruitGame/{}.png'.format(group.imgb),
+                    image_pathc='FruitGame/{}.png'.format(group.imgc),
+                    silhouetteme=silhouetteme,
+                    silhouetteother=silhouetteother)
 
 
 # Tells the players if the perspective has just changed
@@ -397,13 +483,13 @@ class EndSurvey1(Page):
 
 class EndSurvey2(Page):
     form_model = 'player'
-    form_fields = ['systemobject', 'systemdidactic', 'systemabsolute', 'systemother']
+    form_fields = ['systemobject', 'systemdeictic', 'systemabsolute', 'systemother']
 
     # in case no information is entered
     @staticmethod
     def error_message(player, value):
-        if value['systemobject'] is False and value['systemdidactic'] is False and value['systemabsolute'] is False \
-                and value['systemother'] is '':
+        if value['systemobject'] is False and value['systemdeictic'] is False and value['systemabsolute'] is False \
+                and value['systemother'] == '':
             return 'If none of the options match your system please specify in the text box'
 
     @staticmethod
@@ -447,19 +533,64 @@ class Start1(Page):
         return player.round_number == 1
 
 
-class Start2(Page):
-    @staticmethod
-    def is_displayed(player):
-        return player.round_number == 1
-
-
 class Start3(Page):
     @staticmethod
     def is_displayed(player):
         return player.round_number == 1
 
+# Perspective survey
+class PerspectiveSurvey1(Page):
+    form_model = 'player'
+    form_fields = ['perspectivesurvey1', 'perspectivesurvey2', 'perspectivesurvey3']
 
-page_sequence = [Start1, Start2, Start3,
+    @staticmethod
+    def is_displayed(player):
+        return player.round_number == Constants.num_rounds
+
+class PerspectiveSurvey2(Page):
+    form_model = 'player'
+    form_fields = ['perspectivesurvey4', 'perspectivesurvey5', 'perspectivesurvey6', 'perspectivesurvey7']
+
+    @staticmethod
+    def is_displayed(player):
+        return player.round_number == Constants.num_rounds
+
+# Motivation Survey
+class MotivationSurvey1(Page):
+    form_model = 'player'
+    form_fields = ['motivationsurvey1', 'motivationsurvey2', 'motivationsurvey3']
+
+    @staticmethod
+    def is_displayed(player):
+        return player.round_number == Constants.num_rounds
+
+class MotivationSurvey2(Page):
+    form_model = 'player'
+    form_fields = ['motivationsurvey4', 'motivationsurvey5', 'motivationsurvey6', 'motivationsurvey7',
+                   'motivationsurvey8']
+
+    @staticmethod
+    def is_displayed(player):
+        return player.round_number == Constants.num_rounds
+
+class MotivationSurvey3(Page):
+    form_model = 'player'
+    form_fields = ['motivationsurvey9', 'motivationsurvey10', 'motivationsurvey11', 'motivationsurvey12']
+
+    @staticmethod
+    def is_displayed(player):
+        return player.round_number == Constants.num_rounds
+
+# Page that tells participants that the experiment is over
+class Goodbye(Page):
+    @staticmethod
+    def is_displayed(player):
+        return player.round_number == Constants.num_rounds
+
+
+page_sequence = [Start1, Start3,
                  PerspectiveChange, ObjectChange, GridColorChange,
                  StartWaitPage, MainPage, Results,
-                 MidSurvey, EndSurvey1, EndSurvey2, EndSurvey3, EndSurvey4]
+                 MidSurvey, EndSurvey1, EndSurvey2, EndSurvey3, EndSurvey4,
+                 PerspectiveSurvey1, PerspectiveSurvey2, MotivationSurvey1, MotivationSurvey2, MotivationSurvey3,
+                 Goodbye]

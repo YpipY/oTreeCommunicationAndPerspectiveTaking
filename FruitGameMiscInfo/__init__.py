@@ -83,11 +83,12 @@ def creating_session(subsession):
     if subsession.round_number == 1:
         # make starting positions and object blocks random
         x = [[1, 2, 3, 4], [1, 2, 3, 4], [1, 2, 3, 4], [1, 2, 3, 4]]
-        switch = [[x[0][0]] * 20 + [x[0][1]] * 24 + [x[0][2]] * 24 + [x[0][3]] * 28,
-                  [x[1][0]] * 28 + [x[1][1]] * 20 + [x[1][2]] * 24 + [x[1][3]] * 24,
-                  [x[2][0]] * 24 + [x[2][1]] * 28 + [x[2][2]] * 24 + [x[2][3]] * 20]
-        switch = list(itertools.permutations(switch, 3))
-        random.shuffle(switch)
+        #switch = [[x[0][0]] * 20 + [x[0][1]] * 24 + [x[0][2]] * 24 + [x[0][3]] * 28,
+        #          [x[1][0]] * 28 + [x[1][1]] * 20 + [x[1][2]] * 24 + [x[1][3]] * 24,
+        #          [x[2][0]] * 24 + [x[2][1]] * 28 + [x[2][2]] * 24 + [x[2][3]] * 20]
+        #switch = list(itertools.permutations(switch, 3))
+        switch = [[1, 1, 1, 1], [1, 1, 2, 2], [1, 1, 1, 2]]
+        #random.shuffle(switch)
 
     # flip the roles every round
     matrix = subsession.get_group_matrix()
@@ -108,12 +109,14 @@ def creating_session(subsession):
     # setting values for all the groups
     for group in subsession.get_groups():
         # select the block sizes
-        group.objects = switch[(group.id_in_subsession - 1) % 5][0][subsession.round_number - 1]
-        group.player2pos = switch[(group.id_in_subsession - 1) % 5][1][subsession.round_number - 1]
-        group.gridcolorpos = switch[(group.id_in_subsession - 1) % 5][2][subsession.round_number - 1]
+        group.objects = switch[0][subsession.round_number - 1]
+        group.player2pos = switch[1][subsession.round_number - 1]
+        group.gridcolorpos = switch[2][subsession.round_number - 1]
 
         # make the all permutations of the object ordering (pseudorandom)
         if subsession.round_number == 1:
+            # non random implementation for practices trials
+            # (makes sure all objects are shown and in different positions)
             permutations = [[1, 2, 3], [3, 4, 1], [2, 3, 4], [1, 4, 3]]
             #permutations = list(itertools.permutations([1, 2, 3, 4], 3))
             #random.shuffle(permutations)
@@ -243,7 +246,58 @@ class StartWaitPage(WaitPage):
 
 
 class Results(Page):
-    pass
+    # For finding the image path for each image placement and silhouette
+    @staticmethod
+    def vars_for_template(player):
+        group = player.group
+
+        if player.number == 1:
+            if player.role == "Director":
+                silhouetteme = 'FruitGame/Player1DirectorMe.png'
+                silhouetteother = 'FruitGame/Player2MatcherPartner.png'
+            else:
+                silhouetteme = 'FruitGame/Player1MatcherMe.png'
+                silhouetteother = 'FruitGame/Player2DirectorPartner.png'
+        else:
+            if player.role == "Director":
+                silhouetteme = 'FruitGame/Player2DirectorMe.png'
+                silhouetteother = 'FruitGame/Player1MatcherPartner.png'
+            else:
+                silhouetteme = 'FruitGame/Player2MatcherMe.png'
+                silhouetteother = 'FruitGame/Player1DirectorPartner.png'
+
+        return dict(image_patha='FruitGame/p{}.png'.format(group.imga),
+                    image_pathb='FruitGame/p{}.png'.format(group.imgb),
+                    image_pathc='FruitGame/p{}.png'.format(group.imgc),
+                    silhouetteme=silhouetteme,
+                    silhouetteother=silhouetteother)
+
+
+# Tells the players if the perspective has just changed
+class PerspectiveChange(Page):
+    @staticmethod
+    def is_displayed(player):
+        if player.round_number == 1:
+            return False
+        return player.in_round(player.round_number - 1).group.player2pos != player.group.player2pos
+
+
+# Tells the players if the objects have just changed
+class ObjectChange(Page):
+    @staticmethod
+    def is_displayed(player):
+        if player.round_number == 1:
+            return False
+        return player.in_round(player.round_number - 1).group.objects != player.group.objects
+
+
+# Tells the players if the grid colors have just changed
+class GridColorChange(Page):
+    @staticmethod
+    def is_displayed(player):
+        if player.round_number == 1:
+            return False
+        return player.in_round(player.round_number - 1).group.gridcolorpos != player.group.gridcolorpos
 
 
 # Page where personal information is collected (only round 1)
@@ -300,7 +354,19 @@ class Introduction5(Page):
     def is_displayed(player):
         return player.round_number == 1
 
+class Start2(Page):
+    @staticmethod
+    def is_displayed(player):
+        return player.round_number == 3
+
+class Start3(Page):
+    @staticmethod
+    def is_displayed(player):
+        return player.round_number == 3
+
 
 page_sequence = [PersonalInformation,
                  Introduction1, Introduction2, Introduction3, Introduction4, Introduction5,
+                 Start2, Start3,
+                 PerspectiveChange, ObjectChange, GridColorChange,
                  StartWaitPage, MainPage, Results]
