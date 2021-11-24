@@ -1,16 +1,101 @@
 {{ block title }}
-<p style="line-height:1; margin:0px; margin-left:10px"> <span>When you are the</span>
-    <span style="font-weight: bold">Director,</span> <span> you will be shown a</span>
-    <span style="font-weight: bold">target item</span>
-    <span>on the screen that you have to communicate to the Matcher by</span>
-    <span style="font-weight: bold">sending a signal</span> <span>.</span>
+<p style="line-height:1; margin:0px; margin-left:10px">
+    <span>In this experiment, you and your partner are both positioned in a grid-like space.
+        Here’s an example of what it looks like for you and your partner:</span>
+</p>
+<!-- For spacing -->
+<div style="height: 0px;">
+    </div>
+<!-- Game box -->
+<div style="line-height:1;  width: 49%; height: 400px; margin-right: 11%; float:left; transform: rotateX(75deg) rotateZ(45deg);">
+    <!-- Grid -->
+    <div style="width: 50%; height: 200px; float:left; border:1px; border-style: none solid solid none; background-color: #d01c8b">
+    </div>
+    <div style="width: 50%; height: 200px; float:right; border:1px; border-style: none none solid solid; background-color: #b8e186">
+    </div>
+    <div style="width: 50%; height: 200px; float:left; border:1px; border-style: solid solid none none; background-color: #f1b6da">
+    </div>
+    <div style="width: 50%; height: 200px; float:right; border:1px; border-style: solid none none solid; background-color: #4dac26">
+    </div>
+</div>
+<!-- Placing objects-->
+<div style="position: absolute; top: 250px;  left: 214px">
+    <img src="{{ static image_patha }}" width="56px" height="56px"/>
+</div>
+<div style="position: absolute; top: 275px;  left: 360px">
+    <img src="{{ static image_pathb }}" width="66px" height="66px"/>
+</div>
+<div style="position: absolute; top: 310px;  left: 200px">
+    <img src="{{ static image_pathc }}" width="80px" height="80px"/>
+</div>
+<!-- Add silhouette -->
+{{ if player.number == 1 }}
+<div style="position: absolute; top: 400px;  left: 200px" >
+    <img src="{{ static silhouetteme }}" width="80px" height="auto"/>
+</div>
+<div style="position: absolute; top: 400px;  left: 270px" >
+    <img src="{{ static silhouetteother }}" width="80px" height="auto"/>
+</div>
+{{ else }}
+<div style="position: absolute; top: 400px;  left: 270px" >
+    <img src="{{ static silhouetteme }}" width="80px" height="auto"/>
+</div>
+<div style="position: absolute; top: 400px;  left: 200px" >
+    <img src="{{ static silhouetteother }}" width="80px" height="auto"/>
+</div>
+{{ endif }}
+<!-- Game box -->
+<div style="line-height:1;  width: 49%; height: 400px; margin-right: 11%; float:left; transform: rotateX(75deg) rotateZ(45deg);">
+    <!-- Grid -->
+    <div style="width: 50%; height: 200px; float:left; border:1px; border-style: none solid solid none; background-color: #d01c8b">
+    </div>
+    <div style="width: 50%; height: 200px; float:right; border:1px; border-style: none none solid solid; background-color: #b8e186">
+    </div>
+    <div style="width: 50%; height: 200px; float:left; border:1px; border-style: solid solid none none; background-color: #f1b6da">
+    </div>
+    <div style="width: 50%; height: 200px; float:right; border:1px; border-style: solid none none solid; background-color: #4dac26">
+    </div>
+</div>
+<!-- Placing objects-->
+<div style="position: absolute; top: 650px;  left: 214px">
+    <img src="{{ static image_patha }}" width="56px" height="56px"/>
+</div>
+<div style="position: absolute; top: 675px;  left: 360px">
+    <img src="{{ static image_pathb }}" width="66px" height="66px"/>
+</div>
+<div style="position: absolute; top: 710px;  left: 200px">
+    <img src="{{ static image_pathc }}" width="80px" height="80px"/>
+</div>
+<!-- Add silhouette -->
+{{ if player.number == 1 }}
+<div style="position: absolute; top: 800px;  left: 200px" >
+    <img src="{{ static silhouetteother1 }}" width="80px" height="auto"/>
+</div>
+<div style="position: absolute; top: 800px;  left: 270px" >
+    <img src="{{ static silhouetteme1 }}" width="80px" height="auto"/>
+</div>
+{{ else }}
+<div style="position: absolute; top: 800px;  left: 270px" >
+    <img src="{{ static silhouetteother1 }}" width="80px" height="auto"/>
+</div>
+<div style="position: absolute; top: 800px;  left: 200px" >
+    <img src="{{ static silhouetteme1 }}" width="80px" height="auto"/>
+</div>
+{{ endif }}
+<!-- Placing text -->
+<p style="position: absolute; top: 180px; left: 270px, line-height:1; margin:0px; margin-left:10px">
+    <span style="font-weight: bold">Your view:</span>
+<p style="position: absolute; top: 580px; left: 270px, line-height:1; margin:0px; margin-left:10px">
+    <span style="font-weight: bold">Your partner’s view:</span>
+</p>
+<br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br>
+<p style="line-height:1; margin:0px; margin-left:10px"> <span>Your avatar (and that of your partner)
+    will stay the same throughout the experiment.</span> <span>Please take a moment to</span>
+    <span style="font-weight: bold">familiarise yourself with the colour of your avatar.</span>
 </p>
 <br>
-<p style="line-height:1; margin:0px; margin-left:10px"> <span>When you are the</span>
-    <span style="font-weight: bold">Matcher,</span>
-    <span>you will receive the signal that the Director sent, and your task is to</span>
-    <span style="font-weight: bold">select the item</span>
-    <span>that you think the Director wanted to communicate, out of several possibilities on the screen.</span>
+<p style="line-height:1; margin:0px; margin-left:10px"><span>However, </span>
+    <span style="font-weight: bold">your positions in the space will sometimes change.</span>
 </p>
 <br>
 {{ endblock }}
@@ -19,4 +104,27 @@
 {{ block content }}
 
     {{ next_button }}
+
+<style>
+.center {
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.container {
+  height: 120px;
+  position: relative;
+}
+
+.center-full {
+  margin: 0;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  -ms-transform: translate(-50%, -50%);
+  transform: translate(-50%, -50%);
+}
+</style>
+
 {{ endblock }}

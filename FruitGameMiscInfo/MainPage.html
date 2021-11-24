@@ -400,9 +400,9 @@
             <div id="div1" style="height: 80%; background-color:#e8e7e3">
             </div>
         </div>
-        {{ if player.role == Constants.director_role }}
         <div id="div3">
-            <div id="div2" style="height: 10%;  border:1px; border: 4px groove; background-color:#e8e7e3; overflow:auto ;" >
+        {{ if player.role == Constants.director_role }}
+            <div id="div2" style="height: 10%; border:1px; border: 4px groove; background-color:#e8e7e3; overflow:auto ;" >
             </div>
             <div  style="width: 75%; float:left">
                 <button id="buttonwa" type="button" class="button button1" onclick="liveSend('wa'); disablesymbols()" >wa</button>
@@ -414,7 +414,23 @@
                 <button disabled id="buttonsend" type="button" class="button button1" style="float:right;" onclick="liveSend('send'), disablefinal()" >send</button>
                 <button disabled id="buttonundo" type="button" class="button button1" style="float:right;" onclick="liveSend('undo'); ensablesymbols()" >undo</button>
             </div>
-        </div>
+            </div>
+        {{ else }}
+            <div style="height: 10%; border:1px; border: 4px groove; background-color:#e8e7e3; overflow:auto ;" >
+                <p>Message: </p>
+            </div>
+            <!-- Dummy buttons -->
+            <div  style="width: 75%; float:left">
+                <button disabled type="button" class="button button1">wa</button>
+                <button disabled type="button" class="button button1">li</button>
+                <button disabled type="button" class="button button1">ke</button>
+                <button disabled type="button" class="button button1">zu</button>
+            </div>
+            <div  style="width: 10%; float:right">
+                <button disabled type="button" class="button button1" style="float:right;">send</button>
+                <button disabled type="button" class="button button1" style="float:right;">undo</button>
+            </div>
+            </div>
         {{ endif }}
     </div>
 
@@ -569,6 +585,11 @@ function liveRecv(data){
         for (var i = 0; i < tempimg.length; i++) {
             tempimg[i].disabled = false;
         }
+    }
+
+    // Disables signal buttons for the Director if message is already sent (For page reloads)
+    if (role == "Director" && data.length != 1){
+        disablefinal();
     }
 
     var element = document.getElementById("div1");

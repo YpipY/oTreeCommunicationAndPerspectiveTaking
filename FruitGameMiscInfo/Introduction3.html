@@ -1,13 +1,99 @@
 {{ block title }}
-<p style="line-height:1; margin:0px; margin-left:10px"> <span>As a Director, you are</span>
-    <span style="font-weight: bold">not allowed to use any existing language or symbols.</span>
-    <span> You are limited to using only the 4 signals that are provided to you on the screen.</span>
+<p style="line-height:1; margin:0px; margin-left:10px">
+    <span>Here’s an example of what it might look like if you and your partner each have a</span>
+    <span style="font-weight: bold">different position.</span>
 </p>
 <br>
-<p style="line-height:1; margin:0px; margin-left:10px">
-    <span>This means that you and your partner have to</span>
-    <span style="font-weight: bold">create a new communication system</span> <span>together.</span>
+<p style="line-height:1; margin:0px; margin-left:10px"> <span>Note that you are still both looking at the</span>
+    <span style="font-weight: bold">same scene,</span> <span>but that you will have </span>
+    <span style="font-weight: bold">different perspectives </span> <span>on this scene.</span>
 </p>
+<!-- For spacing -->
+<div style="height: 0px;">
+    </div>
+<!-- Game box -->
+<div style="line-height:1;  width: 49%; height: 400px; margin-right: 11%; float:left; transform: rotateX(75deg) rotateZ(45deg);">
+    <!-- Grid -->
+    <div style="width: 50%; height: 200px; float:left; border:1px; border-style: none solid solid none; background-color: #d01c8b">
+    </div>
+    <div style="width: 50%; height: 200px; float:right; border:1px; border-style: none none solid solid; background-color: #b8e186">
+    </div>
+    <div style="width: 50%; height: 200px; float:left; border:1px; border-style: solid solid none none; background-color: #f1b6da">
+    </div>
+    <div style="width: 50%; height: 200px; float:right; border:1px; border-style: solid none none solid; background-color: #4dac26">
+    </div>
+</div>
+<!-- Placing objects-->
+<div style="position: absolute; top: 320px;  left: 214px">
+    <img src="{{ static image_patha }}" width="56px" height="56px"/>
+</div>
+<div style="position: absolute; top: 345px;  left: 360px">
+    <img src="{{ static image_pathb }}" width="66px" height="66px"/>
+</div>
+<div style="position: absolute; top: 380px;  left: 200px">
+    <img src="{{ static image_pathc }}" width="80px" height="80px"/>
+</div>
+<!-- Add silhouette -->
+{{ if player.number == 1 }}
+<div style="position: absolute; top: 470px;  left: 200px" >
+    <img src="{{ static silhouetteme }}" width="80px" height="auto"/>
+</div>
+<div style="position: absolute; top: 285px;  left: 560px" >
+    <img src="{{ static silhouetteother }}" width="70px" height="auto"/>
+</div>
+{{ else }}
+<div style="position: absolute; top: 470px;  left: 270px" >
+    <img src="{{ static silhouetteme }}" width="80px" height="auto"/>
+</div>
+<div style="position: absolute; top: 285px;  left: 560px" >
+    <img src="{{ static silhouetteother }}" width="70px" height="auto"/>
+</div>
+{{ endif }}
+<!-- Game box -->
+<div style="line-height:1;  width: 49%; height: 400px; margin-right: 11%; float:left; transform: rotateX(75deg) rotateZ(45deg);">
+    <!-- Grid -->
+    <div style="width: 50%; height: 200px; float:left; border:1px; border-style: none solid solid none; background-color: #f1b6da">
+    </div>
+    <div style="width: 50%; height: 200px; float:right; border:1px; border-style: none none solid solid; background-color: #d01c8b">
+    </div>
+    <div style="width: 50%; height: 200px; float:left; border:1px; border-style: solid solid none none; background-color: #4dac26">
+    </div>
+    <div style="width: 50%; height: 200px; float:right; border:1px; border-style: solid none none solid; background-color: #b8e186">
+    </div>
+</div>
+<!-- Placing objects-->
+<div style="position: absolute; top: 745px;  left: 360px">
+    <img src="{{ static image_patha }}" width="66px" height="66px"/>
+</div>
+<div style="position: absolute; top: 775px;  left: 214px">
+    <img src="{{ static image_pathb }}" width="80px" height="80px"/>
+</div>
+<div style="position: absolute; top: 745px;  left: 60px">
+    <img src="{{ static image_pathc }}" width="66px" height="66px"/>
+</div>
+<!-- Add silhouette -->
+{{ if player.number == 1 }}
+<div style="position: absolute; top: 870px;  left: 270px" >
+    <img src="{{ static silhouetteme1 }}" width="80px" height="auto"/>
+</div>
+<div style="position: absolute; top: 685px;  left: -120px" >
+    <img src="{{ static silhouetteother1 }}" width="70px" height="auto"/>
+</div>
+{{ else }}
+<div style="position: absolute; top: 870px;  left: 200px" >
+    <img src="{{ static silhouetteme1 }}" width="80px" height="auto"/>
+</div>
+<div style="position: absolute; top: 685px;  left: -120px" >
+    <img src="{{ static silhouetteother1 }}" width="70px" height="auto"/>
+</div>
+{{ endif }}
+<!-- Placing text -->
+<p style="position: absolute; top: 250px; left: 270px, line-height:1; margin:0px; margin-left:10px">
+    <span style="font-weight: bold">Your perspective:</span>
+<p style="position: absolute; top: 650px; left: 270px, line-height:1; margin:0px; margin-left:10px">
+    <span style="font-weight: bold">Your partner’s perspective:</span>
+</p>
+<br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br>
 <br>
 {{ endblock }}
 
@@ -15,4 +101,27 @@
 {{ block content }}
 
     {{ next_button }}
+
+<style>
+.center {
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.container {
+  height: 120px;
+  position: relative;
+}
+
+.center-full {
+  margin: 0;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  -ms-transform: translate(-50%, -50%);
+  transform: translate(-50%, -50%);
+}
+</style>
+
 {{ endblock }}

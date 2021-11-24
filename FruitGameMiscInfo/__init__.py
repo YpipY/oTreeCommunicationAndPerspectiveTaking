@@ -332,12 +332,60 @@ class Introduction1(Page):
 
 
 class Introduction2(Page):
+    # For finding the image path for each image placement and silhouette
+    @staticmethod
+    def vars_for_template(player):
+        group = player.group
+
+        if player.number == 1:
+            silhouetteme = 'FruitGame/Player1MatcherMe.png'
+            silhouetteother = 'FruitGame/Player2DirectorPartner.png'
+            silhouetteme1 = 'FruitGame/Player2DirectorMe.png'
+            silhouetteother1 = 'FruitGame/Player1MatcherPartner.png'
+        else:
+            silhouetteme = 'FruitGame/Player2MatcherMe.png'
+            silhouetteother = 'FruitGame/Player1DirectorPartner.png'
+            silhouetteme1 = 'FruitGame/Player1DirectorMe.png'
+            silhouetteother1 = 'FruitGame/Player2MatcherPartner.png'
+
+        return dict(image_patha='FruitGame/p{}.png'.format(4),
+                    image_pathb='FruitGame/p{}.png'.format(1),
+                    image_pathc='FruitGame/p{}.png'.format(3),
+                    silhouetteme=silhouetteme,
+                    silhouetteother=silhouetteother,
+                    silhouetteme1=silhouetteme1,
+                    silhouetteother1=silhouetteother1)
+
     @staticmethod
     def is_displayed(player):
         return player.round_number == 1
 
 
 class Introduction3(Page):
+    # For finding the image path for each image placement and silhouette
+    @staticmethod
+    def vars_for_template(player):
+        group = player.group
+
+        if player.number == 1:
+            silhouetteme = 'FruitGame/Player1DirectorMe.png'
+            silhouetteother = 'FruitGame/Player2MatcherPartner.png'
+            silhouetteme1 = 'FruitGame/Player2MatcherMe.png'
+            silhouetteother1 = 'FruitGame/Player1DirectorPartner.png'
+        else:
+            silhouetteme = 'FruitGame/Player2DirectorMe.png'
+            silhouetteother = 'FruitGame/Player1MatcherPartner.png'
+            silhouetteme1 = 'FruitGame/Player1MatcherMe.png'
+            silhouetteother1 = 'FruitGame/Player2DirectorPartner.png'
+
+        return dict(image_patha='FruitGame/p{}.png'.format(4),
+                    image_pathb='FruitGame/p{}.png'.format(1),
+                    image_pathc='FruitGame/p{}.png'.format(3),
+                    silhouetteme=silhouetteme,
+                    silhouetteother=silhouetteother,
+                    silhouetteme1=silhouetteme1,
+                    silhouetteother1=silhouetteother1)
+
     @staticmethod
     def is_displayed(player):
         return player.round_number == 1
@@ -354,6 +402,25 @@ class Introduction5(Page):
     def is_displayed(player):
         return player.round_number == 1
 
+
+class Introduction6(Page):
+    @staticmethod
+    def is_displayed(player):
+        return player.round_number == 1
+
+
+class Introduction7(Page):
+    @staticmethod
+    def is_displayed(player):
+        return player.round_number == 1
+
+
+class Introduction8(Page):
+    @staticmethod
+    def is_displayed(player):
+        return player.round_number == 1
+
+
 class Start2(Page):
     @staticmethod
     def is_displayed(player):
@@ -366,7 +433,8 @@ class Start3(Page):
 
 
 page_sequence = [PersonalInformation,
-                 Introduction1, Introduction2, Introduction3, Introduction4, Introduction5,
+                 Introduction1, Introduction2, Introduction3, Introduction4, Introduction5, Introduction6,
+                 Introduction7, Introduction8,
                  Start2, Start3,
                  PerspectiveChange, ObjectChange, GridColorChange,
                  StartWaitPage, MainPage, Results]

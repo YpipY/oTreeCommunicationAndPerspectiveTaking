@@ -1,0 +1,53 @@
+{{ block title }}
+<p style="line-height:1; margin:0px; margin-left:10px"> <span>As a Director, you are</span>
+    <span style="font-weight: bold">not allowed to use any existing language or symbols.</span>
+    <span> You are limited to using only the following 4 signals,
+        which will always be available to you on the screen:</span>
+</p>
+<br>
+<div style="width: 75%; float:left; margin-left: 35%">
+    <button disabled id="buttonwa" type="button" class="button button1">wa</button>
+    <button disabled id="buttonli" type="button" class="button button1">li</button>
+    <button disabled id="buttonke" type="button" class="button button1">ke</button>
+    <button disabled id="buttonzu" type="button" class="button button1">zu</button>
+</div>
+<br>
+<br>
+<p style="line-height:1; margin:0px; margin-left:10px">
+    <span>This means that you and your partner have to</span>
+    <span style="font-weight: bold">create a new communication system</span> <span>together.</span>
+</p>
+<br>
+<p style="line-height:1; margin:0px; margin-left:10px">
+    <span>Please take a moment to</span>
+    <span style="font-weight: bold">familiarise yourself with the signals.</span>
+</p>
+<br>
+{{ endblock }}
+
+
+{{ block content }}
+
+    {{ next_button }}
+
+
+<style>
+.button {
+  border: none;
+  color: Black;
+  padding: 8px 16px;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  font-size: 16px;
+  margin: 4px 2px;
+  cursor: pointer;
+}
+
+button:disabled,
+button[disabled]{
+  background-color: #cccccc;
+  color: #666666;
+}
+</style>
+{{ endblock }}
