@@ -3,14 +3,27 @@
     <span style="font-weight: bold">rate the effectiveness</span> <span>of your</span>
     <span style="font-weight: bold">final </span> <span>system for successful communication?</span>
 </p>
-<br>
-<p style="line-height:1; margin:0px; margin-left:0px">Where 1 corresponds to not effective at all, and 5 corresponds
-    to completely effective.
-</p>
 {{ endblock }}
 
 {{ block content }}
-{{ formfields }}
+{{ formfield 'selfrating' }}
+<div style="line-height:1; width: 280px">
+    <div style="line-height:1; width: 100px; margin-right: 0px; float:left; ">
+    <p style="line-height:1; margin:0px; margin-left:0px"><span style="font-weight: bold">Not</span>
+    </p>
+    <p style="line-height:1; margin:0px; margin-left:0px"><span style="font-weight: bold">effective</span>
+    </p>
+    <p style="line-height:1; margin:0px; margin-left:0px"><span style="font-weight: bold">at all</span>
+    </p>
+    </div>
+    <div style="line-height:1;  margin-left: 0px; float:right; ">
+    <p style="line-height:1; margin:0px; margin-left:0px"><span style="font-weight: bold">Completely</span>
+    </p>
+    <p style="line-height:1; margin:0px; margin-left:0px"><span style="font-weight: bold">effective</span>
+    </p>
+    </div>
+</div>
+<br><br><br><br><br>
 
     {{ next_button }}
 {{ endblock }}

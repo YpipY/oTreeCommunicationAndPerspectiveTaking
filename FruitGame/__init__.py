@@ -1,3 +1,5 @@
+import time
+
 from otree.api import *
 import random
 import itertools
@@ -63,6 +65,9 @@ class Player(BasePlayer):
     nonnativelanguage = models.StringField(label="Your fluent non-native language(s). Capitalized, written in english "
                                                  "and separated by a semicolon (;). If unsure ask an experimenter:",
                                            blank=True)
+    # tracking time
+    starttimer = models.IntegerField()
+    openedmainpage = models.IntegerField()
 
     # Meaning mappings
     wamapping = models.StringField(label='What, if anything, is the meaning of "wa":')
@@ -77,10 +82,15 @@ class Player(BasePlayer):
     systemdeictic = models.BooleanField(initial=False, label='The positions of the objects relative to the Director or the Matcher:')
     systemabsolute = models.BooleanField(initial=False, label='The squares of the grid:')
     systemother = models.StringField(label='Other: Please specify', blank=True)
+    systemchange = models.BooleanField(label='Did you change strategy during the experiment, '
+                                             'in terms of which of these things your communication system signalled?',
+                                       choices=[[True, "Yes (please specify)"],
+                                                [False, "No"]])
+    systemchangeyes = models.StringField(label='If you answered yes please specify these changes here:', blank=True)
 
-    adaptobject = models.StringField(label='When the objects changed:', blank=True)
-    adaptavatar = models.StringField(label='When the avatar(s) changed position:', blank=True)
-    adaptgrid = models.StringField(label='When the grid rotated:', blank=True)
+    adaptobject = models.StringField(label='When the objects changed:')
+    adaptavatar = models.StringField(label='When the avatar(s) changed position:')
+    adaptgrid = models.StringField(label='When the grid rotated:')
 
     selfrating = models.IntegerField(label='', choices=[1, 2, 3, 4, 5], widget=widgets.RadioSelectHorizontal)
 
@@ -101,7 +111,7 @@ class Player(BasePlayer):
                                                       [2, "B"], [3, "C"], [4, "D"], [5, "E"]],
                                              widget=widgets.RadioSelectHorizontal)
     perspectivesurvey4 = models.IntegerField(label='If I\'m sure I\'m right about something, I don\'t waste much '
-                                                   'time listening to other peoplen\'s arguments.',
+                                                   'time listening to other people\'s arguments.',
                                              choices=[[1, "A"],
                                                       [2, "B"], [3, "C"], [4, "D"], [5, "E"]],
                                              widget=widgets.RadioSelectHorizontal)
@@ -325,6 +335,9 @@ class MainPage(Page):
     # For finding the image path for each image placement and silhouette
     @staticmethod
     def vars_for_template(player):
+        # For timing, should not be here but I'm pressed on time.
+        player.openedmainpage = int(time.time()) - player.starttimer
+
         group = player.group
 
         # calculating score
@@ -483,7 +496,7 @@ class EndSurvey1(Page):
 
 class EndSurvey2(Page):
     form_model = 'player'
-    form_fields = ['systemobject', 'systemdeictic', 'systemabsolute', 'systemother']
+    form_fields = ['systemobject', 'systemdeictic', 'systemabsolute', 'systemother', 'systemchange', 'systemchangeyes']
 
     # in case no information is entered
     @staticmethod
@@ -491,6 +504,8 @@ class EndSurvey2(Page):
         if value['systemobject'] is False and value['systemdeictic'] is False and value['systemabsolute'] is False \
                 and value['systemother'] == '':
             return 'If none of the options match your system please specify in the text box'
+        if value['systemchange'] is True and value['systemchangeyes'] == '':
+            return 'If you changed strategy during the experiment please specify in the text box at the bottom'
 
     @staticmethod
     def is_displayed(player):
@@ -522,6 +537,7 @@ class Start1(Page):
     def before_next_page(player, timeout_happened):
         # copying over personal information
         for p in player.in_rounds(1, Constants.num_rounds):
+            p.starttimer = player.participant.starttimer
             p.age = player.participant.age
             p.gender = player.participant.gender
             p.genderother = player.participant.genderother

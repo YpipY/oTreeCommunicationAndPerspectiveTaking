@@ -1,3 +1,5 @@
+import time
+
 from otree.api import *
 import random
 import itertools
@@ -14,7 +16,7 @@ personal information gathering part. The data from this part can be discarded as
 class Constants(BaseConstants):
     name_in_url = 'FruitGameMiscInfo'
     players_per_group = 2
-    num_rounds = 4
+    num_rounds = 8
     director_role = 'Director'
     matcher_role = 'Matcher'
 
@@ -63,6 +65,8 @@ class Player(BasePlayer):
     nonnativelanguage = models.StringField(label="Your fluent non-native language(s). Capitalized, written in english "
                                                  "and separated by a semicolon (;). If unsure ask an experimenter:",
                                            blank=True)
+    # tracking time
+    starttimer = models.IntegerField()
 
     # number used to assign silhouette color
     number = models.IntegerField()
@@ -87,7 +91,7 @@ def creating_session(subsession):
         #          [x[1][0]] * 28 + [x[1][1]] * 20 + [x[1][2]] * 24 + [x[1][3]] * 24,
         #          [x[2][0]] * 24 + [x[2][1]] * 28 + [x[2][2]] * 24 + [x[2][3]] * 20]
         #switch = list(itertools.permutations(switch, 3))
-        switch = [[1, 1, 1, 1], [1, 1, 2, 2], [1, 1, 1, 2]]
+        switch = [[1, 1, 2, 2, 2, 2, 2, 2], [1, 1, 1, 1, 2, 2, 2, 2], [1, 1, 1, 1, 1, 1, 2, 2]]
         #random.shuffle(switch)
 
     # flip the roles every round
@@ -117,7 +121,7 @@ def creating_session(subsession):
         if subsession.round_number == 1:
             # non random implementation for practices trials
             # (makes sure all objects are shown and in different positions)
-            permutations = [[1, 2, 3], [3, 4, 1], [2, 3, 4], [1, 4, 3]]
+            permutations = [[1, 2, 3], [3, 4, 1], [2, 3, 4], [1, 4, 3], [4, 3, 2], [1, 2, 3], [2, 1, 4], [3, 4, 1]]
             #permutations = list(itertools.permutations([1, 2, 3, 4], 3))
             #random.shuffle(permutations)
 
@@ -308,6 +312,7 @@ class PersonalInformation(Page):
     @staticmethod
     def before_next_page(player, timeout_happened):
         # copies the given information into participant vars, that can be accessed in other apps
+        player.participant.starttimer = player.starttimer
         player.participant.age = player.age
         player.participant.gender = player.gender
         player.participant.genderother = player.genderother
@@ -321,13 +326,16 @@ class PersonalInformation(Page):
 
     @staticmethod
     def is_displayed(player):
+        player.starttimer = int(time.time())
         return player.round_number == 1
 
 
 # Pages where introduction to the task is presented (only round 1)
 class Introduction1(Page):
+
     @staticmethod
     def is_displayed(player):
+        #player.starttimer = int(time.time())
         return player.round_number == 1
 
 

@@ -83,11 +83,21 @@
 </div>
 {{ endif }}
 <!-- Placing text -->
-<p style="position: absolute; top: 180px; left: 270px, line-height:1; margin:0px; margin-left:10px">
-    <span style="font-weight: bold">Your view:</span>
-<p style="position: absolute; top: 580px; left: 270px, line-height:1; margin:0px; margin-left:10px">
-    <span style="font-weight: bold">Your partner’s view:</span>
+{{ if player.number == 1 }}
+<p style="position: absolute; top: 180px; left: 270px, line-height:1; margin:0px; margin-left:10px; font-weight: bold">
+    <span>Your view (you are</span> <span style="color: purple">purple</span><span>):</span>
 </p>
+<p style="position: absolute; top: 580px; left: 270px, line-height:1; margin:0px; margin-left:10px; font-weight: bold">
+    <span>Your partner’s view (your partner is</span> <span style="color: orange">orange</span><span>):</span>
+</p>
+{{ else }}
+<p style="position: absolute; top: 180px; left: 270px, line-height:1; margin:0px; margin-left:10px; font-weight: bold">
+    <span>Your view (you are</span> <span style="color: orange">orange</span><span>):</span>
+</p>
+<p style="position: absolute; top: 580px; left: 270px, line-height:1; margin:0px; margin-left:10px; font-weight: bold">
+    <span>Your partner’s view (your partner is</span> <span style="color: purple">purple</span><span>):</span>
+</p>
+{{ endif }}
 <br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br>
 <p style="line-height:1; margin:0px; margin-left:10px"> <span>Your avatar (and that of your partner)
     will stay the same throughout the experiment.</span> <span>Please take a moment to</span>
