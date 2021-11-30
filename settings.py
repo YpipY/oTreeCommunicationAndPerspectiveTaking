@@ -19,6 +19,21 @@ SESSION_CONFIGS = [
         name='Communications_Game',
         app_sequence=['FruitGameMiscInfo', 'FruitGame'],
         num_demo_participants=2,
+        seqrandom=True,
+        seq0=False,
+        seq1=False,
+        seq2=False,
+        seq3=False,
+        seq4=False,
+        seq5=False,
+        doc="""
+            | seq0:[[20, 24, 24, 28]], [[28, 20, 24, 24]], [[24, 28, 24, 20]] 
+            | seq1:[[20, 24, 24, 28]], [[24, 28, 24, 20]], [[28, 20, 24, 24]] 
+            | seq2:[[28, 20, 24, 24]], [[20, 24, 24, 28]], [[24, 28, 24, 20]] 
+            | seq3:[[28, 20, 24, 24]], [[24, 28, 24, 20]], [[20, 24, 24, 28]] 
+            | seq4:[[24, 28, 24, 20]], [[20, 24, 24, 28]], [[28, 20, 24, 24]] 
+            | seq5:[[24, 28, 24, 20]], [[28, 20, 24, 24]], [[20, 24, 24, 28]] 
+            """
     ),
 ]
 
@@ -38,7 +53,7 @@ SESSION_CONFIG_DEFAULTS = dict(
     real_world_currency_per_point=1.00, participation_fee=0.00, doc=""
 )
 
-PARTICIPANT_FIELDS = ['starttimer', 'age', 'gender', 'genderother',  'nativelanguage', 'nonnativelanguage']
+PARTICIPANT_FIELDS = ['temptime', 'starttimer', 'truestarttimer', 'age', 'gender', 'genderother',  'nativelanguage', 'nonnativelanguage']
 SESSION_FIELDS = []
 
 # ISO-639 code

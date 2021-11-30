@@ -67,7 +67,10 @@ class Player(BasePlayer):
                                            blank=True)
     # tracking time
     starttimer = models.IntegerField()
+    truestarttimer = models.StringField()
     openedmainpage = models.IntegerField()
+    timeonmainpage = models.IntegerField()
+    trueendtimer = models.StringField()
 
     # Meaning mappings
     wamapping = models.StringField(label='What, if anything, is the meaning of "wa":')
@@ -169,20 +172,61 @@ class Communications(ExtraModel):
 # FUNCTIONS
 # called for each round in the session
 def creating_session(subsession):
-    global permutations, aa, switch, x, y, z
+    global permutations, aa, switch, x, y, z, nblocks
 
     # make all the switching of object, perspective and grid color permutations
     if subsession.round_number == 1:
         # make starting positions and object blocks random
         #a = [[1, 2, 3, 4], [2, 3, 4, 1], [3, 4, 1, 2], [4, 1, 2, 3]]
         #x = random.sample(a, 3)
-        # Non random setup
         x = [[1, 2, 3, 4], [1, 2, 3, 4], [1, 2, 3, 4]]
-        switch = [[x[0][0]] * 20 + [x[0][1]] * 24 + [x[0][2]] * 24 + [x[0][3]] * 28,
-                  [x[1][0]] * 28 + [x[1][1]] * 20 + [x[1][2]] * 24 + [x[1][3]] * 24,
-                  [x[2][0]] * 24 + [x[2][1]] * 28 + [x[2][2]] * 24 + [x[2][3]] * 20]
-        switch = list(itertools.permutations(switch, 3))
-        random.shuffle(switch)
+        # Non random setup
+        # Permutation order:
+        # 0: [[20, 24, 24, 28]], [[28, 20, 24, 24]], [[24, 28, 24, 20]]
+        # 1: [[20, 24, 24, 28]], [[24, 28, 24, 20]], [[28, 20, 24, 24]]
+        # 2: [[28, 20, 24, 24]], [[20, 24, 24, 28]], [[24, 28, 24, 20]]
+        # 3: [[28, 20, 24, 24]], [[24, 28, 24, 20]], [[20, 24, 24, 28]]
+        # 4: [[24, 28, 24, 20]], [[20, 24, 24, 28]], [[28, 20, 24, 24]]
+        # 5: [[24, 28, 24, 20]], [[28, 20, 24, 24]], [[20, 24, 24, 28]]
+        if subsession.session.config['seqrandom'] or not subsession.session.config['seq0'] \
+                and not subsession.session.config['seq1'] and not subsession.session.config['seq2']\
+                and not subsession.session.config['seq3'] and not subsession.session.config['seq4']\
+                and not subsession.session.config['seq5']:
+            nblocks = 6
+
+            switch = [[x[0][0]] * 20 + [x[0][1]] * 24 + [x[0][2]] * 24 + [x[0][3]] * 28,
+                      [x[1][0]] * 28 + [x[1][1]] * 20 + [x[1][2]] * 24 + [x[1][3]] * 24,
+                      [x[2][0]] * 24 + [x[2][1]] * 28 + [x[2][2]] * 24 + [x[2][3]] * 20]
+            switch = list(itertools.permutations(switch, 3))
+        # Completely deterministic setup
+        else:
+            nblocks = 0
+            switch = []
+            switchtemp = [[x[0][0]] * 20 + [x[0][1]] * 24 + [x[0][2]] * 24 + [x[0][3]] * 28,
+                          [x[1][0]] * 28 + [x[1][1]] * 20 + [x[1][2]] * 24 + [x[1][3]] * 24,
+                          [x[2][0]] * 24 + [x[2][1]] * 28 + [x[2][2]] * 24 + [x[2][3]] * 20]
+            switchtemp = list(itertools.permutations(switchtemp, 3))
+            if subsession.session.config['seq0']:
+                switch.append(switchtemp[0])
+                nblocks += 1
+            if subsession.session.config['seq1']:
+                switch.append(switchtemp[1])
+                nblocks += 1
+            if subsession.session.config['seq2']:
+                switch.append(switchtemp[2])
+                nblocks += 1
+            if subsession.session.config['seq3']:
+                switch.append(switchtemp[3])
+                nblocks += 1
+            if subsession.session.config['seq4']:
+                switch.append(switchtemp[4])
+                nblocks += 1
+            if subsession.session.config['seq5']:
+                switch.append(switchtemp[5])
+                nblocks += 1
+            random.shuffle(switch)
+        print(switch)
+
 
     # flip the roles every round
     matrix = subsession.get_group_matrix()
@@ -203,9 +247,9 @@ def creating_session(subsession):
     # setting values for all the groups
     for group in subsession.get_groups():
         # select the block sizes
-        group.objects = switch[(group.id_in_subsession - 1) % 5][0][subsession.round_number - 1]
-        group.player2pos = switch[(group.id_in_subsession - 1) % 5][1][subsession.round_number - 1]
-        group.gridcolorpos = switch[(group.id_in_subsession - 1) % 5][2][subsession.round_number - 1]
+        group.objects = switch[(group.id_in_subsession - 1) % nblocks][0][subsession.round_number - 1]
+        group.player2pos = switch[(group.id_in_subsession - 1) % nblocks][1][subsession.round_number - 1]
+        group.gridcolorpos = switch[(group.id_in_subsession - 1) % nblocks][2][subsession.round_number - 1]
 
         # make the all permutations of the object ordering (pseudorandom)
         if subsession.round_number == 1:
@@ -328,6 +372,7 @@ class MainPage(Page):
     # Decide what happens if timeout
     @staticmethod
     def before_next_page(player, timeout_happened):
+        player.timeonmainpage = time.monotonic_ns() - player.participant.temptime
         if timeout_happened:
             player.group.imgselected = 0
             player.group.imgselectedcorrect = False
@@ -335,8 +380,9 @@ class MainPage(Page):
     # For finding the image path for each image placement and silhouette
     @staticmethod
     def vars_for_template(player):
-        # For timing, should not be here but I'm pressed on time.
+        # For timing, should not be here but I was pressed on time.
         player.openedmainpage = int(time.time()) - player.starttimer
+        player.participant.temptime = time.monotonic_ns()
 
         group = player.group
 
@@ -420,7 +466,6 @@ class MainPage(Page):
 
 class StartWaitPage(WaitPage):
     pass
-
 
 class Results(Page):
     # For finding the image path for each image placement and silhouette
@@ -538,6 +583,7 @@ class Start1(Page):
         # copying over personal information
         for p in player.in_rounds(1, Constants.num_rounds):
             p.starttimer = player.participant.starttimer
+            p.truestarttimer = player.participant.truestarttimer
             p.age = player.participant.age
             p.gender = player.participant.gender
             p.genderother = player.participant.genderother
@@ -597,8 +643,16 @@ class MotivationSurvey3(Page):
     def is_displayed(player):
         return player.round_number == Constants.num_rounds
 
+    @staticmethod
+    # check the end time
+    def before_next_page(player, timeout_happened):
+        for p in player.in_rounds(1, Constants.num_rounds):
+            p.trueendtimer = time.asctime()
+
+
 # Page that tells participants that the experiment is over
 class Goodbye(Page):
+
     @staticmethod
     def is_displayed(player):
         return player.round_number == Constants.num_rounds

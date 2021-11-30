@@ -2,6 +2,7 @@ import time
 
 from otree.api import *
 import random
+from datetime import datetime
 import itertools
 
 c = Currency
@@ -65,8 +66,6 @@ class Player(BasePlayer):
     nonnativelanguage = models.StringField(label="Your fluent non-native language(s). Capitalized, written in english "
                                                  "and separated by a semicolon (;). If unsure ask an experimenter:",
                                            blank=True)
-    # tracking time
-    starttimer = models.IntegerField()
 
     # number used to assign silhouette color
     number = models.IntegerField()
@@ -309,10 +308,15 @@ class PersonalInformation(Page):
     form_model = 'player'
     form_fields = ['age', 'gender', 'genderother',  'nativelanguage', 'nonnativelanguage']
 
+    # for timing
+    @staticmethod
+    def vars_for_template(player):
+        player.participant.truestarttimer = time.asctime()
+
     @staticmethod
     def before_next_page(player, timeout_happened):
         # copies the given information into participant vars, that can be accessed in other apps
-        player.participant.starttimer = player.starttimer
+        player.participant.starttimer = int(time.time())
         player.participant.age = player.age
         player.participant.gender = player.gender
         player.participant.genderother = player.genderother
@@ -326,7 +330,6 @@ class PersonalInformation(Page):
 
     @staticmethod
     def is_displayed(player):
-        player.starttimer = int(time.time())
         return player.round_number == 1
 
 
@@ -335,7 +338,6 @@ class Introduction1(Page):
 
     @staticmethod
     def is_displayed(player):
-        #player.starttimer = int(time.time())
         return player.round_number == 1
 
 
@@ -433,6 +435,7 @@ class Start2(Page):
     @staticmethod
     def is_displayed(player):
         return player.round_number == 3
+
 
 class Start3(Page):
     @staticmethod
