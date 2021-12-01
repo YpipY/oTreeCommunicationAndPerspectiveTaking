@@ -337,49 +337,53 @@
         <div style="position: absolute; top: 400px;  left: 200px" >
             <img src="{{ static silhouetteme }}" width="80px" height="auto"/>
         </div>
-        {{ if player.group.player2pos == 3}}
-            <div style="position: absolute; top: 135px;  left: 200px" >
-                <img src="{{ static silhouetteother }}" width="60px" height="auto"/>
-            </div>
-        {{ endif }}
-        {{ if player.group.player2pos == 2}}
-            <div style="position: absolute; top: 215px;  left: 560px" >
-                <img src="{{ static silhouetteother }}" width="70px" height="auto"/>
-            </div>
-        {{ endif }}
-        {{ if player.group.player2pos == 1}}
-            <div style="position: absolute; top: 400px;  left: 270px" >
-                <img src="{{ static silhouetteother }}" width="80px" height="auto"/>
-            </div>
-        {{ endif }}
-        {{ if player.group.player2pos == 4}}
-            <div style="position: absolute; top: 215px;  left: -120px" >
-                <img src="{{ static silhouetteother }}" width="70px" height="auto"/>
-            </div>
+        {{ if group.avatarvisable == True }}
+            {{ if player.group.player2pos == 3}}
+                <div style="position: absolute; top: 135px;  left: 200px" >
+                    <img src="{{ static silhouetteother }}" width="60px" height="auto"/>
+                </div>
+            {{ endif }}
+            {{ if player.group.player2pos == 2}}
+                <div style="position: absolute; top: 215px;  left: 560px" >
+                    <img src="{{ static silhouetteother }}" width="70px" height="auto"/>
+                </div>
+            {{ endif }}
+            {{ if player.group.player2pos == 1}}
+                <div style="position: absolute; top: 400px;  left: 270px" >
+                    <img src="{{ static silhouetteother }}" width="80px" height="auto"/>
+                </div>
+            {{ endif }}
+            {{ if player.group.player2pos == 4}}
+                <div style="position: absolute; top: 215px;  left: -120px" >
+                    <img src="{{ static silhouetteother }}" width="70px" height="auto"/>
+                </div>
+            {{ endif }}
         {{ endif }}
     {{ else }}
         <div style="position: absolute; top: 400px;  left: 270px" >
             <img src="{{ static silhouetteme }}" width="80px" height="auto"/>
         </div>
-        {{ if player.group.player2pos == 3}}
-            <div style="position: absolute; top: 135px;  left: 200px" >
-                <img src="{{ static silhouetteother }}" width="60px" height="auto"/>
-            </div>
-        {{ endif }}
-        {{ if player.group.player2pos == 2}}
-            <div style="position: absolute; top: 215px;  left: -120px" >
-                <img src="{{ static silhouetteother }}" width="70px" height="auto"/>
-            </div>
-        {{ endif }}
-        {{ if player.group.player2pos == 1}}
-            <div style="position: absolute; top: 400px;  left: 200px" >
-                <img src="{{ static silhouetteother }}" width="80px" height="auto"/>
-            </div>
-        {{ endif }}
-        {{ if player.group.player2pos == 4}}
-            <div style="position: absolute; top: 215px;  left: 560px" >
-                <img src="{{ static silhouetteother }}" width="60px" height="auto"/>
-            </div>
+        {{ if group.avatarvisable == True }}
+            {{ if player.group.player2pos == 3}}
+                <div style="position: absolute; top: 135px;  left: 200px" >
+                    <img src="{{ static silhouetteother }}" width="60px" height="auto"/>
+                </div>
+            {{ endif }}
+            {{ if player.group.player2pos == 2}}
+                <div style="position: absolute; top: 215px;  left: -120px" >
+                    <img src="{{ static silhouetteother }}" width="70px" height="auto"/>
+                </div>
+            {{ endif }}
+            {{ if player.group.player2pos == 1}}
+                <div style="position: absolute; top: 400px;  left: 200px" >
+                    <img src="{{ static silhouetteother }}" width="80px" height="auto"/>
+                </div>
+            {{ endif }}
+            {{ if player.group.player2pos == 4}}
+                <div style="position: absolute; top: 215px;  left: 560px" >
+                    <img src="{{ static silhouetteother }}" width="60px" height="auto"/>
+                </div>
+            {{ endif }}
         {{ endif }}
     {{ endif }}
     <!-- Chat box -->

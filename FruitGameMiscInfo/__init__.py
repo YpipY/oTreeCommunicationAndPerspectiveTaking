@@ -50,6 +50,7 @@ class Group(BaseGroup):
     imgcvalue = models.BooleanField()
 
     # conditions
+    avatarvisable = models.BooleanField()
 
 
 class Player(BasePlayer):
@@ -111,6 +112,9 @@ def creating_session(subsession):
 
     # setting values for all the groups
     for group in subsession.get_groups():
+        # save which condition this is
+        group.avatarvisable = subsession.session.config['avatarvisable']
+
         # select the block sizes
         group.objects = switch[0][subsession.round_number - 1]
         group.player2pos = switch[1][subsession.round_number - 1]

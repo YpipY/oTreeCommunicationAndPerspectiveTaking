@@ -49,6 +49,7 @@ class Group(BaseGroup):
     imgcvalue = models.BooleanField()
 
     # conditions
+    avatarvisable = models.BooleanField()
 
 
 class Player(BasePlayer):
@@ -225,8 +226,6 @@ def creating_session(subsession):
                 switch.append(switchtemp[5])
                 nblocks += 1
             random.shuffle(switch)
-        print(switch)
-
 
     # flip the roles every round
     matrix = subsession.get_group_matrix()
@@ -246,6 +245,9 @@ def creating_session(subsession):
 
     # setting values for all the groups
     for group in subsession.get_groups():
+        # save which condition this is
+        group.avatarvisable = subsession.session.config['avatarvisable']
+
         # select the block sizes
         group.objects = switch[(group.id_in_subsession - 1) % nblocks][0][subsession.round_number - 1]
         group.player2pos = switch[(group.id_in_subsession - 1) % nblocks][1][subsession.round_number - 1]

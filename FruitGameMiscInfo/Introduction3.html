@@ -35,19 +35,23 @@
 </div>
 <!-- Add silhouette -->
 {{ if player.number == 1 }}
-<div style="position: absolute; top: 470px;  left: 200px" >
-    <img src="{{ static silhouetteme }}" width="80px" height="auto"/>
-</div>
-<div style="position: absolute; top: 285px;  left: 560px" >
-    <img src="{{ static silhouetteother }}" width="70px" height="auto"/>
-</div>
+    <div style="position: absolute; top: 470px;  left: 200px" >
+        <img src="{{ static silhouetteme }}" width="80px" height="auto"/>
+    </div>
+    {{ if group.avatarvisable == True }}
+        <div style="position: absolute; top: 285px;  left: 560px" >
+            <img src="{{ static silhouetteother }}" width="70px" height="auto"/>
+        </div>
+    {{ endif }}
 {{ else }}
-<div style="position: absolute; top: 470px;  left: 270px" >
-    <img src="{{ static silhouetteme }}" width="80px" height="auto"/>
-</div>
-<div style="position: absolute; top: 285px;  left: 560px" >
-    <img src="{{ static silhouetteother }}" width="70px" height="auto"/>
-</div>
+    <div style="position: absolute; top: 470px;  left: 270px" >
+        <img src="{{ static silhouetteme }}" width="80px" height="auto"/>
+    </div>
+    {{ if group.avatarvisable == True }}
+        <div style="position: absolute; top: 285px;  left: 560px" >
+            <img src="{{ static silhouetteother }}" width="70px" height="auto"/>
+        </div>
+    {{ endif }}
 {{ endif }}
 <!-- Game box -->
 <div style="line-height:1;  width: 49%; height: 400px; margin-right: 11%; float:left; transform: rotateX(75deg) rotateZ(45deg);">
@@ -73,19 +77,23 @@
 </div>
 <!-- Add silhouette -->
 {{ if player.number == 1 }}
-<div style="position: absolute; top: 870px;  left: 270px" >
-    <img src="{{ static silhouetteme1 }}" width="80px" height="auto"/>
-</div>
-<div style="position: absolute; top: 685px;  left: -120px" >
-    <img src="{{ static silhouetteother1 }}" width="70px" height="auto"/>
-</div>
+    <div style="position: absolute; top: 870px;  left: 270px" >
+        <img src="{{ static silhouetteme1 }}" width="80px" height="auto"/>
+    </div>
+    {{ if group.avatarvisable == True }}
+        <div style="position: absolute; top: 685px;  left: -120px" >
+            <img src="{{ static silhouetteother1 }}" width="70px" height="auto"/>
+        </div>
+    {{ endif }}
 {{ else }}
-<div style="position: absolute; top: 870px;  left: 200px" >
-    <img src="{{ static silhouetteme1 }}" width="80px" height="auto"/>
-</div>
-<div style="position: absolute; top: 685px;  left: -120px" >
-    <img src="{{ static silhouetteother1 }}" width="70px" height="auto"/>
-</div>
+    <div style="position: absolute; top: 870px;  left: 200px" >
+        <img src="{{ static silhouetteme1 }}" width="80px" height="auto"/>
+    </div>
+    {{ if group.avatarvisable == True }}
+        <div style="position: absolute; top: 685px;  left: -120px" >
+            <img src="{{ static silhouetteother1 }}" width="70px" height="auto"/>
+        </div>
+    {{ endif }}
 {{ endif }}
 <!-- Placing text -->
 <p style="position: absolute; top: 250px; left: 270px, line-height:1; margin:0px; margin-left:10px">

@@ -1,24 +1,11 @@
 from os import environ
 
 SESSION_CONFIGS = [
-    #dict(
-    #    name='FruitGame',
-    #    app_sequence=['FruitGame'],
-    #    num_demo_participants=2,
-    #    condition3d=False,
-    #    silhouette_corner=False,
-    #),
-    #dict(
-    #    name='FruitGame3d',
-    #    app_sequence=['FruitGame'],
-    #    num_demo_participants=2,
-    #    condition3d=True,
-    #    silhouette_corner=False,
-    #),
     dict(
         name='Communications_Game',
         app_sequence=['FruitGameMiscInfo', 'FruitGame'],
         num_demo_participants=2,
+        avatarvisable=True,
         seqrandom=True,
         seq0=False,
         seq1=False,
